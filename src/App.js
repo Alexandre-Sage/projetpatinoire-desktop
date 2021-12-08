@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends Component{
+    constructor(props){
+        super(props)
+        this.state={
 
-export default App;
+        }
+    } componentDidMount(){
+        let users;
+        fetch(process.env.REACT_APP_API_URL+"/users")
+          .then(response => response.json())
+          .then(data => this.setState({countries: [data]}))
+    } render(){
+
+        return(
+            <div>
+                <h1>lorem ipsum</h1>
+                <button type="button">Connexion</button>
+                <button type="button">Inscription</button>
+            </div>
+        );
+    }
+};
