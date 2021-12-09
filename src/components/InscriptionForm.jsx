@@ -2,43 +2,62 @@ import React from "react";
 import {Component} from "react";
 
 export default class InscriptionForm extends Component{
-    constructor(pops){
+    constructor(props){
         super(props);
         this.state={
             countries:[],
-            towns:[]
-        };
+            towns:[],
+        }
+        /*this.handleChange=this.handleChange.bind(this);*/
+
     } componentDidMount(){
-        fetch(process.env.REACT_APP_API_URL)
+        fetch("http://localhost:4000/users/countriesInscriptionForm")
           .then(response => response.json())
-          .then(data => this.setState({countries: [data]}))
+          .then(data => this.setState({countries: [data]}));
+
+    } handleChange(value){
+        fetch(`http://localhost:4000/users/townsInscriptionForm/`+value.target.value)
+        .then(response => response.json())
+        .then(data => this.setState({towns: [data]}))
+
+
     } render(){
+        const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} value={country.countryId}>{country.countryName}</option>));
+
+        const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} value={town.townId}>{town.townName}</option>));
         return(
             <div>
+
                 <form>
-                    <label></label>
-                    <select></select>
+                    <label htmlFor="countriesSelector">Pays</label>
+                    <select onChange={(value)=>this.handleChange(value)} name="countriesSelector">
+                            {countrySelectorJsx}
+                    </select>
 
                     <label></label>
-                    <select></select>
+                    <select>
+                        <option>Default</option>
+                        {townSelectroJsx}
+                    </select>
 
-                    <label></label>
-                    <input type="text" name="" value="" />
+                    <label htmlFor="firstName">Nom: </label>
+                    <input type="text" name="firstName"  />
 
-                    <label></label>
-                    <input type="text" name="" value="" />
+                    <label htmlFor="lastName">Prénom: </label>
+                    <input type="text" name="lastName"  />
 
-                    <label></label>
-                    <input type="text" name="" value="" />
+                    <label htmlFor="userName">Pseudo: </label>
+                    <input type="text" name="userName"  />
 
-                    <label></label>
-                    <input type="text" name="" value="" />
+                    <label htmlFor="eMail">Email: </label>
+                    <input type="text" name="eMail"/>
 
-                    <label></label>
-                    <input type="password" name="" value="" />
+                    <label htmlFor="password">Mot de Passe: </label>
+                    <input type="password" name="password"/>
 
-                    <label></label>
-                    <input type="password" name="" value="" />
+                    <label htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
+                    <input type="password" name="passwordConfirmation"/>
+                    <button type="button">INSCRIPTION</button>
                 </form>
             </div>
         )

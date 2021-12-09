@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import InscriptionForm from "./components/InscriptionForm.jsx";
 
 export default class App extends Component{
     constructor(props){
@@ -8,10 +9,7 @@ export default class App extends Component{
 
         }
     } componentDidMount(){
-        let users;
-        fetch(process.env.REACT_APP_API_URL+"/users")
-          .then(response => response.json())
-          .then(data => this.setState({countries: [data]}))
+
     } render(){
 
         return(
@@ -19,6 +17,8 @@ export default class App extends Component{
                 <h1>lorem ipsum</h1>
                 <button type="button">Connexion</button>
                 <button type="button">Inscription</button>
+                <InscriptionForm/>
+
             </div>
         );
     }
