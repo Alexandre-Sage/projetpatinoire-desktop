@@ -7,7 +7,8 @@ export default class InscriptionForm extends Component{
         this.state={
             countries:[],
             towns:[],
-            answers:{}
+            answers:{},
+            confirmationPassword: ""
         }
         /*this.handleChange=this.handleChange.bind(this);*/
 
@@ -20,54 +21,81 @@ export default class InscriptionForm extends Component{
         fetch(`http://localhost:4000/users/townsInscriptionForm/`+selectedCountry.target.value)
         .then(response => response.json())
         .then(data => this.setState({towns: [data]}))
-        this.setState({answers:{"country": selectedCountry.target.value}})
+        this.setState({answers:{...this.state.answers, "country": selectedCountry.target.value}})
 
     } handleTownChange(selectedTown){
         this.setState({answers:{...this.state.answers, "town":selectedTown.target.value}})
-    } handleInputChange(){
-    
-    } handleSubmit(){
+    } handleInputChange(input){
+        {input.target.name==="passwordConfirmation"? this.setState({confirmationPassword: input.target.value}) : this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}})}
+    } handleSubmit(event){
+        event.preventDefault()
+        if(Object.entries(this.state.answers).length===8){
+            Object.entries(this.state.answers).map(([objectKeys, keyValues])=>{
+                let confirmation=false;
+                if(objectKeys==="password"){
+                    {keyValues===this.state.confirmationPassword? confirmation=true : confirmation=false}
+                    if (confirmation===false){
+                        alert("Mot de passe incorect")
+                    }else if(keyValues.length< 2){
+                        alert("Pas asser de caractère dans le mot de passe")
+                    }else{
+                        alert("ok")
+                        fetch(`http://localhost:4000/users/sendInscriptionForm`,{
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(this.state.answers),
+                        })
 
+                            .then(response => response.json())
+                            .then(data =>alert(data))
+                    }
+                }
+            })
+        }else{
+            alert("Veuillez renseigner tout les champ")
+        }
     } render(){
         console.log("answers",this.state.answers);
-        console.log("town", this.state.towns);
-        const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} value={country.countryId}>{country.countryName}</option>));
+        console.log("confirmationPassword:", this.state.confirmationPassword);
+        const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} value={country.countryId} name="country">{country.countryName}</option>));
 
-        const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} value={town.townId}> {town.townName}</option>));
+        const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} value={town.townId} name="town">{town.townName}</option>));
         return(
-            <div class="mainContInscriptionForm">
-                <form Class="inscriptionForm">
+            <div className="mainContInscriptionForm">
+                <form className="inscriptionForm">
                     <label htmlFor="countriesSelector">Pays</label>
-                    <select Class="countriesSelector" onChange={(value)=>this.handleCountryChange(value)} name="countriesSelector">
+                    <select className="countriesSelector" onChange={(value)=>this.handleCountryChange(value)} name="countriesSelector">
                         <option>Default</option>
                             {countrySelectorJsx}
                     </select>
 
                     <label  htmlFor="townsSelector"></label>
-                    <select class="townsSelector" onChange={(value)=>this.handleTownChange(value)}>
+                    <select className="townsSelector" onChange={(value)=>this.handleTownChange(value)}>
                         <option>Default</option>
                         {townSelectroJsx}
                     </select>
+                    <label htmlFor="birthday">Date de naissance: </label>
+                    <input type="date" onChange={(birthday)=>this.handleInputChange(birthday)} name="birthday"/>
 
                     <label htmlFor="firstName">Nom: </label>
-                    <input class="firstNameInput" type="text" name="firstName"  />
+                    <input className="firstNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
 
                     <label  htmlFor="lastName">Prénom: </label>
-                    <input class="lasNameInput" type="text" name="lastName"  />
+                    <input className="lasNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
 
                     <label htmlFor="userName">Pseudo: </label>
-                    <input type="text" name="userName"  />
+                    <input className="userNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName"  />
 
-                    <label htmlFor="eMail">Email: </label>
-                    <input class="mailInput" type="text" name="eMail"/>
+                    <label htmlFor="email">Email: </label>
+                    <input className="mailInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
 
                     <label htmlFor="password">Mot de Passe: </label>
-                    <input class="passwordInut" type="password" name="password"/>
+                    <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
 
                     <label htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
-                    <input class="passwordInut" type="password" value={this.value} name="passwordConfirmation"/>
+                    <input class="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
 
-                    <button type="submit">INSCRIPTION</button>
+                    <button type="submit" onClick={(click)=>this.handleSubmit(click)}>INSCRIPTION</button>
                 </form>
             </div>
         )
