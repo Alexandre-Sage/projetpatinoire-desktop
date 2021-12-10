@@ -1,5 +1,7 @@
 import React from "react";
 import {Component} from "react";
+import  "./css/CssInscriptionForm.css"
+import  "./css/btn_croix.css"
 
 export default class InscriptionForm extends Component{
     constructor(props){
@@ -45,7 +47,6 @@ export default class InscriptionForm extends Component{
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(this.state.answers),
                         })
-
                             .then(response => response.json())
                             .then(data =>alert(data))
                     }
@@ -55,47 +56,59 @@ export default class InscriptionForm extends Component{
             alert("Veuillez renseigner tout les champ")
         }
     } render(){
-        console.log("answers",this.state.answers);
-        console.log("confirmationPassword:", this.state.confirmationPassword);
-        const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} value={country.countryId} name="country">{country.countryName}</option>));
+        const {addInsciptionForm}= this.props;
+        console.log(addInsciptionForm);
+        /*console.log("confirmationPassword:", this.state.confirmationPassword);*/
+        const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} className="inscriptionFormOptions" value={country.countryId} name="country">{country.countryName}</option>));
 
-        const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} value={town.townId} name="town">{town.townName}</option>));
+        const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} className="inscriptionFormOptions" value={town.townId} name="town">{town.townName}</option>));
         return(
             <div className="mainContInscriptionForm">
+                <h2>INSCRIPTION</h2>
+                <div onClick={(click)=>addInsciptionForm(click)} className="btn-croix">
+                   <p>BOUTON</p>
+                </div>
                 <form className="inscriptionForm">
-                    <label htmlFor="countriesSelector">Pays</label>
-                    <select className="countriesSelector" onChange={(value)=>this.handleCountryChange(value)} name="countriesSelector">
-                        <option>Default</option>
-                            {countrySelectorJsx}
-                    </select>
+                    <div className="selectContainer">
 
-                    <label  htmlFor="townsSelector"></label>
-                    <select className="townsSelector" onChange={(value)=>this.handleTownChange(value)}>
-                        <option>Default</option>
-                        {townSelectroJsx}
-                    </select>
-                    <label htmlFor="birthday">Date de naissance: </label>
-                    <input type="date" onChange={(birthday)=>this.handleInputChange(birthday)} name="birthday"/>
+                        <select className="countriesSelector" onChange={(value)=>this.handleCountryChange(value)}>
+                            <option className="inscriptionFormOptions">Pays</option>
+                                {countrySelectorJsx}
+                        </select>
 
-                    <label htmlFor="firstName">Nom: </label>
-                    <input className="firstNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
+                        <select className="townsSelector" onChange={(value)=>this.handleTownChange(value)}>
+                            <option className="inscriptionFormOptions">Ville</option>
+                            {townSelectroJsx}
+                        </select>
 
-                    <label  htmlFor="lastName">Prénom: </label>
-                    <input className="lasNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
+                        <label className="inscriptionFormLabel" htmlFor="birthday">Date de naissance: </label>
+                        <input type="date" className="birthdaySelector" onChange={(birthday)=>this.handleInputChange(birthday)} name="birthday"/>
+                    </div>
 
-                    <label htmlFor="userName">Pseudo: </label>
-                    <input className="userNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName"  />
+                    <div className="namesCointainer">
 
-                    <label htmlFor="email">Email: </label>
-                    <input className="mailInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
+                        <label className="inscriptionFormLabel" htmlFor="firstName">Nom: </label>
+                        <input className="firstNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
 
-                    <label htmlFor="password">Mot de Passe: </label>
-                    <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
+                        <label className="inscriptionFormLabel" htmlFor="lastName">Prénom: </label>
+                        <input className="lasNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
+                    </div>
+                    <div className="pseudoMailcontainer">
+                        <label className="inscriptionFormLabel" htmlFor="email">Email: </label>
+                        <input className="mailInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
 
-                    <label htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
-                    <input class="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
+                        <label className="inscriptionFormLabel" htmlFor="userName">Pseudo: </label>
+                        <input className="userNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName" />
+                    </div>
+                    <div className="passwordButtonCountainer">
+                        <label className="inscriptionFormLabel" htmlFor="password">Mot de Passe: </label>
+                        <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
 
-                    <button type="submit" onClick={(click)=>this.handleSubmit(click)}>INSCRIPTION</button>
+                        <label className="passwordLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
+                        <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
+
+                        <button type="submit" onClick={(click)=>this.handleSubmit(click)}>INSCRIPTION</button>
+                    </div>
                 </form>
             </div>
         )

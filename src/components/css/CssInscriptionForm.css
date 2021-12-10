@@ -1,0 +1,113 @@
+:root{
+    /*--inscriptionFormFont-colorWhite: white;*/
+}
+
+.mainContInscriptionForm{
+    border: var(--box-show);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 50rem;
+    background: rgb(4,5,5);
+    background: radial-gradient(circle, rgba(4,5,5,1) 5%, rgba(51,59,58,1) 63%, rgba(65,83,75,1) 100%);
+}
+
+.inscriptionForm{
+    border: var(--box-show);
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-around;
+    width: 75rem;
+    height: 50rem;
+}
+
+.selectContainer{
+    border: var(--box-show);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.countriesSelector{
+    width: 15rem;
+    font-size: 1.6rem;
+}
+
+.townsSelector{
+    width: 15rem;
+    font-size: 1.6rem;
+}
+
+.inscriptionFormOptions{
+    font-size: 1.6rem;
+}
+.inscriptionFormLabel{
+    font-size:1.6rem;
+    color: var(--inscriptionFormFont-colorWhite)
+}
+
+.birthdaySelector{
+    width: 20rem;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.namesCointainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.firstNameInput{
+    width: 25rem;
+    height: 3rem;
+}
+
+.lasNameInput{
+    width: 25rem;
+    height: 3rem;
+}
+
+.pseudoMailcontainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60rem;
+    align-items: center;
+    height: 15rem;
+    align-content: space-around;
+    margin-left: 1.5rem;
+}
+
+.mailInput{
+    width: 50rem;
+    height: 3rem;
+}
+
+.userNameInput{
+    width: 50rem;
+    height:  3rem;
+
+}
+
+.passwordButtonCountainer{
+    display: flex;
+    border: 1px solid black;
+    height: 20rem;
+    align-items: center;
+    flex-flow: wrap;
+    width: 60rem;
+    justify-content: space-around;
+}
+
+.passwordLabel{
+    font-size: 1.6rem;
+    margin-left: 2rem;
+}
+
+.passwordInput{
+    width: 25rem;
+}
