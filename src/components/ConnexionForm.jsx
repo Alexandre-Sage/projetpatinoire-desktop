@@ -5,13 +5,37 @@ export default class ConnexionForm extends Component{
     constructor(props){
         super(props);
         this.state={
+            answers:{},
+            connected: false,
             userProfil:[]
         }
     } componentDidMount(){
 
-    } render(){
-        return(
+    } handleInputChange(input){
+        this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}});
 
+    } handleConnexionButton(event){
+        event.preventDefault();
+        const passwordInput=this.state.answers.passwordInput;
+        const emailInput=this.state.answers.emailInput;
+        console.log(emailInput);
+        fetch(`http://localhost:4000/users/`+emailInput+"/"+passwordInput)
+        .then(response => response.json())
+        .then(data => this.setState({userProfil: [data]}));
+    } render(){
+        console.log(this.state.answers);
+        console.log(this.state.userProfil);
+        return(
+            <React.Fragment>
+                <h3>Connexion</h3>
+                <form>
+                    <label htmlFor="emailInput">Email utilisateur: </label>
+                    <input className="connexionFormInput" type="text" name="emailInput"  onChange={(email)=>this.handleInputChange((email))}/>
+                    <label htmlFor="passwordInput">Mot de passe utilisateur</label>
+                    <input className="connexionFormInput" type="password" name="passwordInput" onChange={(password)=>this.handleInputChange((password))} />
+                    <button type="submit" onClick={(event)=>this.handleConnexionButton(event)}>Connexion</button>
+                </form>
+            </React.Fragment>
         );
     }
 }

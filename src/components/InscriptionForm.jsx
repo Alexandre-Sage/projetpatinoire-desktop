@@ -15,12 +15,12 @@ export default class InscriptionForm extends Component{
         /*this.handleChange=this.handleChange.bind(this);*/
 
     } componentDidMount(){
-        fetch("http://localhost:4000/users/countriesInscriptionForm")
+        fetch("http://localhost:4000/inscription/countriesInscriptionForm")
           .then(response => response.json())
           .then(data => this.setState({countries: [data]}));
 
     } handleCountryChange(selectedCountry){
-        fetch(`http://localhost:4000/users/townsInscriptionForm/`+selectedCountry.target.value)
+        fetch(`http://localhost:4000/inscription/townsInscriptionForm/`+selectedCountry.target.value)
         .then(response => response.json())
         .then(data => this.setState({towns: [data]}))
         this.setState({answers:{...this.state.answers, "country": selectedCountry.target.value}})
@@ -42,7 +42,7 @@ export default class InscriptionForm extends Component{
                         alert("Pas asser de caractère dans le mot de passe")
                     }else{
                         alert("ok")
-                        fetch(`http://localhost:4000/users/sendInscriptionForm`,{
+                        fetch(`http://localhost:4000/inscription/sendInscriptionForm`,{
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(this.state.answers),
@@ -64,9 +64,10 @@ export default class InscriptionForm extends Component{
         const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} className="inscriptionFormOptions" value={town.townId} name="town">{town.townName}</option>));
         return(
             <div className="mainContInscriptionForm">
-                <h2>INSCRIPTION</h2>
-                <div onClick={(click)=>addInsciptionForm(click)} className="btn-croix">
-                   <p>BOUTON</p>
+                <div className="titleCloseButtonContainer">
+                    <h2>INSCRIPTION</h2>
+                    <div onClick={(click)=>addInsciptionForm(click)} className="btn-croix">
+                    </div>
                 </div>
                 <form className="inscriptionForm">
                     <div className="selectContainer">
@@ -86,13 +87,13 @@ export default class InscriptionForm extends Component{
                     </div>
 
                     <div className="namesCointainer">
-
                         <label className="inscriptionFormLabel" htmlFor="firstName">Nom: </label>
                         <input className="firstNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
 
                         <label className="inscriptionFormLabel" htmlFor="lastName">Prénom: </label>
                         <input className="lasNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
                     </div>
+
                     <div className="pseudoMailcontainer">
                         <label className="inscriptionFormLabel" htmlFor="email">Email: </label>
                         <input className="mailInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
@@ -101,11 +102,13 @@ export default class InscriptionForm extends Component{
                         <input className="userNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName" />
                     </div>
                     <div className="passwordButtonCountainer">
-                        <label className="inscriptionFormLabel" htmlFor="password">Mot de Passe: </label>
-                        <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
+                        <div className="passwordCountainer">
+                            <label className="inscriptionFormLabel" htmlFor="password">Mot de Passe: </label>
+                            <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
 
-                        <label className="passwordLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
-                        <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
+                            <label className="passwordLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
+                            <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
+                        </div>
 
                         <button type="submit" onClick={(click)=>this.handleSubmit(click)}>INSCRIPTION</button>
                     </div>

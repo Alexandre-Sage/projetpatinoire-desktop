@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import InscriptionForm from "./components/InscriptionForm.jsx";
+import ConnexionForm from "./components/ConnexionForm.jsx";
 import "./App.css"
 
 
@@ -10,38 +11,31 @@ export default class App extends Component{
         super(props)
         this.state={
             displayInscriptionForm: false,
-            displayInscriptionButton: true,
             displayConnexionForm: false,
-            displayConnexionButton: true,
-            displayMainTitle: true
+            displayButtonsTitle: true
         }
     } componentDidMount(){
 
     } addInsciptionForm(event){
         event.preventDefault();
         {!this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false})}
+        {this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
 
-        {this.state.displayInscriptionButton? this.setState({displayInscriptionButton: false}): this.setState({displayInscriptionButton: true})};
-
-        {this.state.displayConnexionButton?this.setState({displayConnexionButton: false}):this.setState({displayConnexionButton:true})};
-
-        {this.state.displayMainTitle?this.setState({displayMainTitle: false}):this.setState({displayMainTitle: true})}
-        ;
     } addConexionForm(event){
         event.preventDefault();
-        {!this.state.displayConexionForm?  this.setState({displayConexionForm : true}) : this.setState({displayConexionForm : false})}
-        this.setState({displayInscriptionButton: false});
-        this.setState({displayConnexionButton: false});
-        this.setState({displayMainTitle: false});
+        {!this.state.displayConexionForm?  this.setState({displayConexionForm : true}) : this.setState({displayButtonsTitle : false})}
     } render(){
-
+        const ButtonsTitleLandingPage=(
+                    <React.Fragment>
+                        <h1 className="landingPageTitle">lorem ipsum</h1>
+                        <button className="connexionButton" type="button">Connexion</button>
+                        <button className="incriptionButton" type="button" onClick={(click)=>this.addInsciptionForm(click)}>Inscription</button>
+                    </React.Fragment> )
         return(
             <div className="mainContainerLandingPage">
-                {this.state.displayMainTitle? <h1>lorem ipsum</h1> : null}
-                {this.state.displayConnexionButton? <button type="button">Connexion</button>: null}
-                {this.state.displayInscriptionButton? <button type="button" onClick={(click)=>this.addInsciptionForm(click)}>Inscription</button> : null}
+                {this.state.displayButtonsTitle? ButtonsTitleLandingPage: null}
                 {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)}/> : null}
-
+                <ConnexionForm/>
             </div>
         );
     }

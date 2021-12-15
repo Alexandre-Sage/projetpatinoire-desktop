@@ -2,28 +2,17 @@
 
 :root
 {
-   --button-croix-height: 5rem;
-   --button-croix-width: 25rem;
+   --button-croix-height: 2rem;
+   --button-croix-width: 10rem;
    --font-button-croix-color: rgba(228, 228, 228, 0.8);
    --border-button-croix-color: rgba(255,255,255,0.5);
    --background-button-croix-color: rgba(255,255,255,0.1);
    --border-button-croix-width: 0.1rem;
    --border-button-croix-style: solid;
    --button-croix-letter-spacing: 0.2rem;
-   --font-button-croix-size: 2rem;
+   --font-button-croix-size: 1rem;
 }
 
-
-.ctnbtn
-{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border: var(--box-show);
-   width: 100rem;
-   height: 50rem;
-   background-color: rgba(38, 30, 35, 0.8);
-}
 /*###################################################*/
 .btn-croix
 {

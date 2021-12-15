@@ -9,9 +9,12 @@
     align-items: center;
     justify-content: space-around;
     height: 50rem;
-    background: rgb(4,5,5);
-    background: radial-gradient(circle, rgba(4,5,5,1) 5%, rgba(51,59,58,1) 63%, rgba(65,83,75,1) 100%);
+    /*background: rgb(4,5,5);
+    background: radial-gradient(circle, rgba(4,5,5,1) 5%, rgba(51,59,58,1) 63%, rgba(65,83,75,1) 100%);*/
 }
+.inscriptionTitle{
+
+};
 
 .inscriptionForm{
     border: var(--box-show);
@@ -94,18 +97,24 @@
 }
 
 .passwordButtonCountainer{
+    border: var(--box-show);
     display: flex;
-    border: 1px solid black;
-    height: 20rem;
+    flex-wrap: wrap;
+    height: 15rem;
+}
+
+.passwordCountainer{
+    border: var(--box-show);
+    display: flex;
+    flex-wrap: wrap;
+    width: 50rem;
     align-items: center;
-    flex-flow: wrap;
-    width: 60rem;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .passwordLabel{
     font-size: 1.6rem;
-    margin-left: 2rem;
+    /*margin-left: 2rem;*/
 }
 
 .passwordInput{
