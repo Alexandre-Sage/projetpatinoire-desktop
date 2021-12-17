@@ -2,8 +2,8 @@
 
 :root
 {
-   --button-croix-height: 2rem;
-   --button-croix-width: 10rem;
+   --button-croix-height: 0.5rem;
+   --button-croix-width: 3rem;
    --font-button-croix-color: rgba(228, 228, 228, 0.8);
    --border-button-croix-color: rgba(255,255,255,0.5);
    --background-button-croix-color: rgba(255,255,255,0.1);

@@ -5,3 +5,22 @@
 :root{
     --box-show: 1px solid black;
 }
+
+.mainContainerLandingPage{
+    border: var(--box-show);
+    background: url("./images/tube.jpg") no-repeat;
+    background-size: cover;
+
+    height: 72rem;
+
+}
+
+.blackBackLandingPage{
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 72rem;
+    width: 100%
+}

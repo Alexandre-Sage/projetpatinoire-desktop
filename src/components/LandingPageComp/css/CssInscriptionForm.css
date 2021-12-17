@@ -1,19 +1,27 @@
 :root{
-    /*--inscriptionFormFont-colorWhite: white;*/
+    --inscriptionFormFont-colorWhite: rgba(206, 224, 221, 1);
 }
 
 .mainContInscriptionForm{
-    border: var(--box-show);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 50rem;
-    /*background: rgb(4,5,5);
-    background: radial-gradient(circle, rgba(4,5,5,1) 5%, rgba(51,59,58,1) 63%, rgba(65,83,75,1) 100%);*/
+    width: 90rem;
+    height: 65rem;
+    background: rgba(0, 0, 0, 0.79);
 }
-.inscriptionTitle{
 
+.titleCloseButtonContainer{
+    display: flex;
+    width: 80rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inscriptionTitle{
+    font-size: 3.5rem;
+    color: var(--inscriptionFormFont-colorWhite)
 };
 
 .inscriptionForm{
@@ -22,15 +30,16 @@
     flex-direction: column;
     align-content: space-around;
     justify-content: space-around;
-    width: 75rem;
+    width: 80rem;
     height: 50rem;
 }
 
 .selectContainer{
-    border: var(--box-show);
+
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 80rem;
 }
 
 .countriesSelector{
@@ -60,8 +69,10 @@
 
 .namesCointainer{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 80rem;
+    height: 10rem;
 }
 
 .firstNameInput{
@@ -78,45 +89,42 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 80rem;
     align-items: center;
     height: 15rem;
     align-content: space-around;
-    margin-left: 1.5rem;
+    margin-left:;
 }
 
 .mailInput{
-    width: 50rem;
+    width: 69rem;
     height: 3rem;
 }
 
 .userNameInput{
-    width: 50rem;
+    width: 69rem;
     height:  3rem;
 
 }
 
 .passwordButtonCountainer{
-    border: var(--box-show);
     display: flex;
     flex-wrap: wrap;
-    height: 15rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 10rem;
 }
 
 .passwordCountainer{
-    border: var(--box-show);
     display: flex;
     flex-wrap: wrap;
     width: 50rem;
+    height: 15rem;
     align-items: center;
     justify-content: space-between;
 }
 
-.passwordLabel{
-    font-size: 1.6rem;
-    /*margin-left: 2rem;*/
-}
-
 .passwordInput{
     width: 25rem;
+    height: 3rem;
 }

@@ -21,7 +21,15 @@ export default class ConnexionForm extends Component{
         console.log(emailInput);
         fetch(`http://localhost:4000/users/`+emailInput+"/"+passwordInput)
         .then(response => response.json())
-        .then(data => this.setState({userProfil: [data]}));
+        .then(data => {
+            if(data==="mdp"){
+                console.log(data);
+                alert("Mot de passe incorrecte");
+            } else{
+                this.setState({userProfil: [data]});
+            }
+        });
+        //data==="mdp"? alert("Mot de passe incorrecte"): this.setState({userProfil: [data]})
     } render(){
         console.log(this.state.answers);
         console.log(this.state.userProfil);

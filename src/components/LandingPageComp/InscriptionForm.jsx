@@ -1,7 +1,8 @@
 import React from "react";
 import {Component} from "react";
-import  "./css/CssInscriptionForm.css"
-import  "./css/btn_croix.css"
+import  "./css/CssInscriptionForm.css";
+import  "./css/btn_croix.css";
+import "./css/btn-linear-flat.css";
 
 export default class InscriptionForm extends Component{
     constructor(props){
@@ -18,6 +19,7 @@ export default class InscriptionForm extends Component{
         fetch("http://localhost:4000/inscription/countriesInscriptionForm")
           .then(response => response.json())
           .then(data => this.setState({countries: [data]}));
+
 
     } handleCountryChange(selectedCountry){
         fetch(`http://localhost:4000/inscription/townsInscriptionForm/`+selectedCountry.target.value)
@@ -49,6 +51,7 @@ export default class InscriptionForm extends Component{
                         })
                             .then(response => response.json())
                             .then(data =>alert(data))
+                            .catch(err => {alert("flmdskflsdfkmfs")})
                     }
                 }
             })
@@ -65,7 +68,7 @@ export default class InscriptionForm extends Component{
         return(
             <div className="mainContInscriptionForm">
                 <div className="titleCloseButtonContainer">
-                    <h2>INSCRIPTION</h2>
+                    <h2 className="inscriptionTitle">INSCRIPTION</h2>
                     <div onClick={(click)=>addInsciptionForm(click)} className="btn-croix">
                     </div>
                 </div>
@@ -106,11 +109,12 @@ export default class InscriptionForm extends Component{
                             <label className="inscriptionFormLabel" htmlFor="password">Mot de Passe: </label>
                             <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="password"/>
 
-                            <label className="passwordLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
+                            <label className="inscriptionFormLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
                             <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
                         </div>
-
-                        <button type="submit" onClick={(click)=>this.handleSubmit(click)}>INSCRIPTION</button>
+                        <div class="btn-linear-flat" onClick={(click)=>this.handleSubmit(click)}>
+                           <p>INSCRIPTION</p>
+                        </div>
                     </div>
                 </form>
             </div>
