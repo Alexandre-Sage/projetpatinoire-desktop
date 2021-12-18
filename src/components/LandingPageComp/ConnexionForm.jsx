@@ -21,11 +21,12 @@ export default class ConnexionForm extends Component{
         console.log(emailInput);
         fetch(`http://localhost:4000/users/`+emailInput+"/"+passwordInput)
         .then(response => response.json())
-        .then(data => {
-            if(data==="mdp"){
-                console.log(data);
+        .then(data =>{
+            if( data==="mdp"){
                 alert("Mot de passe incorrecte");
-            } else{
+            }else if(data==="mail"){
+                alert("Email inconnue")
+            }else{
                 this.setState({userProfil: [data]});
             }
         });

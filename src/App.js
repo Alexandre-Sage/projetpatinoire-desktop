@@ -39,6 +39,8 @@ export default class App extends Component{
                     {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)}/> : null}
                     {this.state.displayConnexionForm? <ConnexionForm addInsciptionForm={(event)=>this.addConnexionForm(event)}/> : null}
                 </div>
+                <label htmlFor="file">Dossei</label>
+                <input type="file" name="file"/>
             </main>
         );
     }

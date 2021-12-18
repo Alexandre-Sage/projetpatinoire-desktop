@@ -112,7 +112,7 @@ export default class InscriptionForm extends Component{
                             <label className="inscriptionFormLabel" htmlFor="passwordConfirmation">Confirmation Mot de Passe</label>
                             <input className="passwordInput" onChange={(password)=>this.handleInputChange(password)} type="password" name="passwordConfirmation"/>
                         </div>
-                        <div class="btn-linear-flat" onClick={(click)=>this.handleSubmit(click)}>
+                        <div className="btn-linear-flat" onClick={(click)=>this.handleSubmit(click)}>
                            <p>INSCRIPTION</p>
                         </div>
                     </div>
