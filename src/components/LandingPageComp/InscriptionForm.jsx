@@ -1,8 +1,8 @@
 import React from "react";
 import {Component} from "react";
 import  "./css/CssInscriptionForm.css";
-import  "./css/btn_croix.css";
-import "./css/btn-linear-flat.css";
+import  "../../cssBouton/btn_croix.css";
+import "../../cssBouton/btn-linear-flat.css";
 
 export default class InscriptionForm extends Component{
     constructor(props){
@@ -13,8 +13,6 @@ export default class InscriptionForm extends Component{
             answers:{},
             confirmationPassword: ""
         }
-        /*this.handleChange=this.handleChange.bind(this);*/
-
     } componentDidMount(){
         fetch("http://localhost:4000/inscription/countriesInscriptionForm")
           .then(response => response.json())
@@ -75,12 +73,12 @@ export default class InscriptionForm extends Component{
                 <form className="inscriptionForm">
                     <div className="selectContainer">
 
-                        <select className="countriesSelector" onChange={(value)=>this.handleCountryChange(value)}>
+                        <select className="countriesTownsSelectors" onChange={(value)=>this.handleCountryChange(value)}>
                             <option className="inscriptionFormOptions">Pays</option>
                                 {countrySelectorJsx}
                         </select>
 
-                        <select className="townsSelector" onChange={(value)=>this.handleTownChange(value)}>
+                        <select className="countriesTownsSelectors" onChange={(value)=>this.handleTownChange(value)}>
                             <option className="inscriptionFormOptions">Ville</option>
                             {townSelectroJsx}
                         </select>
@@ -91,18 +89,18 @@ export default class InscriptionForm extends Component{
 
                     <div className="namesCointainer">
                         <label className="inscriptionFormLabel" htmlFor="firstName">Nom: </label>
-                        <input className="firstNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
+                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
 
                         <label className="inscriptionFormLabel" htmlFor="lastName">Prénom: </label>
-                        <input className="lasNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
+                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
                     </div>
 
                     <div className="pseudoMailcontainer">
                         <label className="inscriptionFormLabel" htmlFor="email">Email: </label>
-                        <input className="mailInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
+                        <input className="mailUserNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="email"/>
 
                         <label className="inscriptionFormLabel" htmlFor="userName">Pseudo: </label>
-                        <input className="userNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName" />
+                        <input className="mailUserNameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="userName" />
                     </div>
                     <div className="passwordButtonCountainer">
                         <div className="passwordCountainer">

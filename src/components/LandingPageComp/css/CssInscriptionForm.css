@@ -1,7 +1,3 @@
-:root{
-    --inscriptionFormFont-colorWhite: rgba(206, 224, 221, 1);
-}
-
 .mainContInscriptionForm{
     display: flex;
     flex-direction: column;
@@ -21,7 +17,7 @@
 
 .inscriptionTitle{
     font-size: 3.5rem;
-    color: var(--inscriptionFormFont-colorWhite)
+    color: var(--font-colorWhite)
 };
 
 .inscriptionForm{
@@ -42,14 +38,16 @@
     width: 80rem;
 }
 
-.countriesSelector{
+.countriesTownsSelectors{
     width: 15rem;
     font-size: 1.6rem;
-}
-
-.townsSelector{
-    width: 15rem;
-    font-size: 1.6rem;
+    height: 3rem;
+    color: var(--font-colorWhite);
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance: none;
 }
 
 .inscriptionFormOptions{
@@ -57,7 +55,7 @@
 }
 .inscriptionFormLabel{
     font-size:1.6rem;
-    color: var(--inscriptionFormFont-colorWhite)
+    color: var(--font-colorWhite)
 }
 
 .birthdaySelector{
@@ -65,6 +63,9 @@
     height: 3rem;
     text-align: center;
     font-size: 1.6rem;
+    color: var(--font-colorWhite);
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
 }
 
 .namesCointainer{
@@ -75,14 +76,12 @@
     height: 10rem;
 }
 
-.firstNameInput{
+.nameInput{
     width: 25rem;
     height: 3rem;
-}
-
-.lasNameInput{
-    width: 25rem;
-    height: 3rem;
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
+    color: var(--font-colorWhite);
 }
 
 .pseudoMailcontainer{
@@ -96,15 +95,12 @@
     margin-left:;
 }
 
-.mailInput{
-    width: 69rem;
+.mailUserNameInput{
+    width: 69.62rem;
     height: 3rem;
-}
-
-.userNameInput{
-    width: 69rem;
-    height:  3rem;
-
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
+    color: var(--font-colorWhite);
 }
 
 .passwordButtonCountainer{
@@ -127,4 +123,7 @@
 .passwordInput{
     width: 25rem;
     height: 3rem;
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
+    color: var(--font-colorWhite);
 }

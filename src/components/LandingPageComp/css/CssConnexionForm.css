@@ -1,0 +1,52 @@
+.connexionFromMainContainer{
+    background: rgba(0, 0, 0, 0.79);
+    width: 90rem;
+    height: 40rem;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ .closeButtonTitleConnexionFormContainer{
+     display: flex;
+     width: 80rem;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+.connexionFormTitle{
+    color: var(--font-colorWhite);
+    font-size: 3.5rem;
+}
+
+ .connexionForm{
+
+     display: flex;
+     justify-content: space-between;
+     width: 80rem;
+     align-items: center;
+
+ }
+
+.connexionFormEmailPasswordContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50rem;
+    height: 15rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .connexionFormLabel{
+     font-size:1.6rem;
+     color: var(--font-colorWhite)
+ }
+
+.connexionFormInput{
+    width: 25rem;
+    height: 3rem;
+    background-color: var(--inputBackground-color);
+    border: var(--inputBorder-style);
+    color: var(--font-colorWhite);
+}

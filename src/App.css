@@ -4,14 +4,16 @@
 
 :root{
     --box-show: 1px solid black;
+    --font-colorWhite: rgba(206, 224, 221, 1);
+    --inputBackground-color: rgba(188, 188, 188, 0.3);
+    --inputBorder-style: none;
 }
 
 .mainContainerLandingPage{
     border: var(--box-show);
     background: url("./images/tube.jpg") no-repeat;
     background-size: cover;
-
-    height: 72rem;
+    height: 71.5rem;
 
 }
 
@@ -21,6 +23,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 72rem;
+    gap: 10rem;
+    height: 71.5rem;
     width: 100%
+}
+
+.landingPageTitle{
+    font-size: 6rem;
+}
+.landingPageButtonsContainer{
+    display: flex;
+    justify-content: space-around;
+    width: 80rem;
 }
