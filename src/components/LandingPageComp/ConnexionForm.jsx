@@ -1,6 +1,8 @@
 import React from "react";
 import {Component} from "react";
 import  "./css/CssConnexionForm.css"
+import cookies from "js-cookies";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 
 export default class ConnexionForm extends Component{
     constructor(props){
@@ -27,26 +29,20 @@ export default class ConnexionForm extends Component{
                 credentials: 'include',
             })
                 .then(response => response.json())
-                .then(data =>alert(data))
-                .catch(err => {alert("flmdskflsdfkmfs")})
+                .then(data =>{if(data==="mail" || data==="mdp"){
+                        alert(data)
+                    } else {
+                        this.setState({connected: true});
+                        this.setState({userProfil: document.cookie})
+                        //console.log(this.state);
+                        //console.log(document);
+                    }
+                })
+                .catch(err => {console.log(err);})
 
-        /*fetch(`http://localhost:4000/users/`+emailInput+"/"+passwordInput)
-        .then(response => response.json())
-        .then(data =>{
-            if( data==="mdp"){
-                alert("Mot de passe incorrecte");
-            }else if(data==="mail"){
-                alert("Email inconnue")
-            }else{
-                this.setState({userProfil: [data]});
-            }
-        });*/
-        //data==="mdp"? alert("Mot de passe incorrecte"): this.setState({userProfil: [data]})
     } render(){
         const {addConnexionForm}= this.props;
-        console.log(addConnexionForm);
-        console.log(this.state.answers);
-        console.log(this.state.userProfil);
+        console.log(document);
         return(
             <div className="connexionFromMainContainer">
                 <div className="closeButtonTitleConnexionFormContainer">
@@ -65,6 +61,7 @@ export default class ConnexionForm extends Component{
                        <p>CONNEXION</p>
                     </div>
                 </form>
+                {this.state.connected? <Navigate to="/userProfil"/>:null}
             </div>
         );
     }

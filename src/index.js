@@ -2,11 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import UserPage from "./components/UserProfil/UserPage.jsx";
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<App/>}/>
+              <Route path="/userprofil" element={<UserPage/>}/>
+          </Routes>
+      </BrowserRouter>,
   </React.StrictMode>,
   document.getElementById('root')
 );

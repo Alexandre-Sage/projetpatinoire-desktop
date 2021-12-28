@@ -5,6 +5,7 @@ import ConnexionForm from "./components/LandingPageComp/ConnexionForm.jsx";
 import PictureUpload from "./components/PictureUpload.jsx"
 import "./App.css"
 import "./cssBouton/btn-linear-flat.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -46,7 +47,7 @@ export default class App extends Component{
             <main className="mainContainerLandingPage">
                 <div className="blackBackLandingPage">
                     {this.state.displayButtonsTitle? ButtonsTitleLandingPage: null}
-                    
+
                     {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)}/> : null}
                     {this.state.displayConnexionForm? <ConnexionForm addConnexionForm={(event)=>this.addConnexionForm(event)}/> : null}
                 </div>
