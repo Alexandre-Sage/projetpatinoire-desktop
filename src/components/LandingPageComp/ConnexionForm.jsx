@@ -1,8 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import  "./css/CssConnexionForm.css"
-import cookies from "js-cookies";
-import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 export default class ConnexionForm extends Component{
     constructor(props){
@@ -10,9 +9,7 @@ export default class ConnexionForm extends Component{
         this.state={
             answers:{},
             connected: false,
-            userProfil:[]
         }
-    } componentDidMount(){
 
     } handleInputChange(input){
         this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}});
@@ -33,16 +30,12 @@ export default class ConnexionForm extends Component{
                         alert(data)
                     } else {
                         this.setState({connected: true});
-                        this.setState({userProfil: document.cookie})
-                        //console.log(this.state);
-                        //console.log(document);
                     }
                 })
                 .catch(err => {console.log(err);})
 
     } render(){
         const {addConnexionForm}= this.props;
-        console.log(document);
         return(
             <div className="connexionFromMainContainer">
                 <div className="closeButtonTitleConnexionFormContainer">

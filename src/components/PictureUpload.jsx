@@ -15,7 +15,8 @@ export default class PictureUpload extends Component{
             headers:{
                 "Content-Type": "application/json",
                 "Accept": "application/json, text/html",
-            }
+            },
+                credentials: "include",
         })
           .then(response => response.json())
           .then((data)=>{
@@ -39,6 +40,7 @@ export default class PictureUpload extends Component{
             method: "POST",
             body: formData,
             headers: { "Accept": "multipart/form-data" },
+            credentials: "include",
 
         })
             .then(response => response.json())
