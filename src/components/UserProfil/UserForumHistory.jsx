@@ -5,21 +5,30 @@ export default class UserForumHistory extends Component{
     constructor(props){
         super(props)
         this.state={
-            ForumHistory: [],
+            forumHistory: [],
         }
     } componentDidMount(){
-            fetch("http://localhost:4000/users/userProfilHistory/",{
+            fetch(`${process.env.REACT_APP_API_URL}users/userProfilHistory/` ,{
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include',
             })
               .then(response => response.json())
-              .then(data => console.log(data))
+              .then(data => this.setState({forumHistory:[data]}))
               .catch(err => {console.log(err)})
     } render(){
+        console.log(this.state.forumHistory);
+        const userHistroyJsx= this.state.forumHistory.map((postDetails)=>postDetails.map((detail, key)=>(
+                <div key={key}>
+                    <h3>{detail.topicTitle}</h3>
+                    <p>{detail.postContent}</p>
+                    <p>{detail.postCreationDate}</p>
+                 </div>
+             ))
+        )
         return(
             <main>
-            <h1>HELLO</h1>
+            {userHistroyJsx}
             </main>
         )
     }

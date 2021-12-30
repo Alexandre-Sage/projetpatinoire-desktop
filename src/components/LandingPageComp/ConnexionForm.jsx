@@ -18,8 +18,8 @@ export default class ConnexionForm extends Component{
         event.preventDefault();
         const passwordInput=this.state.answers.passwordInput;
         const emailInput=this.state.answers.emailInput;
-        console.log(emailInput);
-            fetch(`http://localhost:4000/users/`+emailInput+"/"+passwordInput,{
+
+            fetch(`${process.env.REACT_APP_API_URL}users/${emailInput}/${passwordInput}`,{
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(this.state.answers),

@@ -8,9 +8,10 @@ export default class UserPage extends Component{
         super(props);
         this.state={
             userProfil: [],
+            displayHistory: true,
         }
     } componentDidMount(){;
-        fetch("http://localhost:4000/users/userProfil/",{
+        fetch(`${process.env.REACT_APP_API_URL}users/userProfil/` ,{
             method: "GET",
             headers: { "Content-Type": "application/json" },
             credentials: 'include',
@@ -19,24 +20,30 @@ export default class UserPage extends Component{
           .then(data => this.setState({userProfil: data}))
           .catch(err => {console.log(err)})
     } render(){
-        console.log(this.state.userProfil[0]);
-        //const profilPicUrl= `http://localhost:4000/${}`
-        const testProfilJsx= this.state.userProfil.map((user, key)=> (
-            <header key={key}>
+        const headerProfilJsx= this.state.userProfil.map((user, key)=> (
+            <header className="userPageHeader" key={key}>
                 <h2 className="userPageTitle">Profil de: {user.firstName} {user.LastName} </h2>
                 <div className="userPageHeaderInfoContainer">
                     <h3 className="userPageHeaderInfo">Nom d'utilisateur: {user.userName}</h3>
                     <h3 className="userPageHeaderInfo">Spot principale: {user.homeSpot}</h3>
                     <h3 className="userPageHeaderInfo">Ville: {user.townName}</h3>
                 </div>
-                <img className="userPageProfilPicture" src={`http://localhost:4000/${user.profilPicture}`} alt="" />
+                <img className="userPageProfilPicture" src={`${process.env.REACT_APP_API_URL}${user.profilPicture}`} alt="" />
             </header>
         ))
         return(
 
             <div className="userPageMainContainer">
-                    {testProfilJsx}
-                    <UserForumHistory/>
+                    {headerProfilJsx}
+                    <nav>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </nav>
+                    {this.state.displayHistory?<UserForumHistory/>: null}
+                    <PictureUpload/>
 
             </div>
         );

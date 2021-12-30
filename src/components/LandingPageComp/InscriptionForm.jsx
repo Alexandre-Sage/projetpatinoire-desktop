@@ -14,13 +14,13 @@ export default class InscriptionForm extends Component{
             confirmationPassword: ""
         }
     } componentDidMount(){
-        fetch("http://localhost:4000/inscription/countriesInscriptionForm")
+        fetch(`${process.env.REACT_APP_API_URL}inscription/countriesInscriptionForm`)
           .then(response => response.json())
           .then(data => this.setState({countries: [data]}));
 
 
     } handleCountryChange(selectedCountry){
-        fetch(`http://localhost:4000/inscription/townsInscriptionForm/`+selectedCountry.target.value)
+        fetch(`${process.env.REACT_APP_API_URL}inscription/townsInscriptionForm/${selectedCountry.target.value}`)
         .then(response => response.json())
         .then(data => this.setState({towns: [data]}))
         this.setState({answers:{...this.state.answers, "country": selectedCountry.target.value}})
@@ -42,10 +42,11 @@ export default class InscriptionForm extends Component{
                         alert("Pas asser de caractère dans le mot de passe")
                     }else{
                         alert("ok")
-                        fetch(`http://localhost:4000/inscription/sendInscriptionForm`,{
+                        fetch(`${process.env.REACT_APP_API_URL}inscription/sendInscriptionForm`,{
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(this.state.answers),
+                            credentials: 'include',
                         })
                             .then(response => response.json())
                             .then(data =>alert(data))

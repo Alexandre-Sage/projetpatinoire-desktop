@@ -10,7 +10,7 @@ export default class PictureUpload extends Component{
             downloadImages: null,
         }
     } componentDidMount(){
-        fetch("http://localhost:4000/upload/image", {
+        /*fetch("http://localhost:4000/upload/image", {
             method:"GET",
             headers:{
                 "Content-Type": "application/json",
@@ -22,20 +22,19 @@ export default class PictureUpload extends Component{
           .then((data)=>{
               console.log(data.image)
               this.setState({downloadImages: "http://localhost:4000/"+data.image
-          })})
+          })})*/
     } handleFilesChange(event){
         this.setState({image: event.target.files[0]})
-        let profilPic= this.state.downloadImages
     } handlePictureUploads(event){
         event.preventDefault();
         const formData= new FormData()
         formData.append("image", this.state.image)
 
-        for (let v of formData.entries()){
+        /*for (let v of formData.entries()){
             console.log(v);
             console.log("0",v[0]);
             console.log("1",v[1]);
-        }
+        }*/
         fetch(`http://localhost:4000/upload`,{
             method: "POST",
             body: formData,
@@ -44,11 +43,10 @@ export default class PictureUpload extends Component{
 
         })
             .then(response => response.json())
-            .then(response =>console.log(response))
+            .then(response =>alert(response))
             .catch(err => {alert("error")})
 
     } render(){
-        let imageUrl=this.state.downloadImages;
         return(
             <div>
             <form encType="multipart/form-data">
@@ -56,11 +54,6 @@ export default class PictureUpload extends Component{
                 <input type="file" name="image" onChange={(event)=>this.handleFilesChange(event)}/>
                 <button type="submit" name="image" onClick={(event)=>this.handlePictureUploads(event)} >ENVOYER</button>
             </form>
-            <div>
-                <img src={imageUrl} alt="" />
-
-
-            </div>
             </div>
         )
     }
