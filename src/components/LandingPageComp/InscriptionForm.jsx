@@ -90,10 +90,10 @@ export default class InscriptionForm extends Component{
 
                     <div className="namesCointainer">
                         <label className="inscriptionFormLabel" htmlFor="firstName">Nom: </label>
-                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"  />
+                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="firstName"/>
 
                         <label className="inscriptionFormLabel" htmlFor="lastName">Prénom: </label>
-                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"  />
+                        <input className="nameInput" onChange={(firstName)=>this.handleInputChange(firstName)} type="text" name="lastName"/>
                     </div>
 
                     <div className="pseudoMailcontainer">

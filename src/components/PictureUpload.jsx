@@ -6,23 +6,10 @@ export default class PictureUpload extends Component{
         super(props);
         //onChange={(event)=>this.handleFilesChange(event)}
         this.state={
-            image: null,
-            downloadImages: null,
+            //image: null,
+            //downloadImages: null,
         }
     } componentDidMount(){
-        /*fetch("http://localhost:4000/upload/image", {
-            method:"GET",
-            headers:{
-                "Content-Type": "application/json",
-                "Accept": "application/json, text/html",
-            },
-                credentials: "include",
-        })
-          .then(response => response.json())
-          .then((data)=>{
-              console.log(data.image)
-              this.setState({downloadImages: "http://localhost:4000/"+data.image
-          })})*/
     } handleFilesChange(event){
         this.setState({image: event.target.files[0]})
     } handlePictureUploads(event){
@@ -35,7 +22,7 @@ export default class PictureUpload extends Component{
             console.log("0",v[0]);
             console.log("1",v[1]);
         }*/
-        fetch(`http://localhost:4000/upload`,{
+        fetch(`http://localhost:4000/usersImages/upload`,{
             method: "POST",
             body: formData,
             headers: { "Accept": "multipart/form-data" },

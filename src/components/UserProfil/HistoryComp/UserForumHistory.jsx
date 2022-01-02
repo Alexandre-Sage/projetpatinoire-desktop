@@ -17,7 +17,6 @@ export default class UserForumHistory extends Component{
               .then(data => this.setState({forumHistory:[data]}))
               .catch(err => {console.log(err)})
     } render(){
-        console.log(this.state.forumHistory);
         const userHistroyJsx= this.state.forumHistory.map((postDetails)=>postDetails.map((detail, key)=>(
                 <div key={key}>
                     <h3>{detail.topicTitle}</h3>
@@ -27,9 +26,9 @@ export default class UserForumHistory extends Component{
              ))
         )
         return(
-            <main>
+            <div>
             {userHistroyJsx}
-            </main>
+        </div>
         )
     }
 }
