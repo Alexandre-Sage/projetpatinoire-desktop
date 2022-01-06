@@ -21,7 +21,11 @@ export default class UserImages extends Component{
           .then(data => this.setState({userImages: data}))
           .catch(err => {console.log(err)})
     } handleTextInputChange(event){
-        {event.target.name==="imageTitle"? this.setState({title: event.target.value}): this.setState({description: event.target.value})}
+        if(event.target.name==="imageTitle"){
+            this.setState({title: event.target.value});
+        }else{
+            this.setState({description: event.target.value});
+        };
     } handleFilesChange(event){
         this.setState({imageUpload: event.target.files[0]})
     } handlePictureUploads(event){
@@ -30,12 +34,6 @@ export default class UserImages extends Component{
         formData.append("image", this.state.imageUpload)
         formData.append("title",this.state.title)
         formData.append("description", this.state.description)
-
-        /*for (let v of formData.entries()){
-            console.log(v);
-            console.log("0",v[0]);
-            console.log("1",v[1]);
-        }*/
         fetch(`http://localhost:4000/usersImages/upload`,{
             method: "POST",
             body: formData,
@@ -44,15 +42,26 @@ export default class UserImages extends Component{
         })
             .then(response => response.json())
             .then(response =>alert(response))
-            .catch(err => {alert("error")})
+            .catch(err => {console.log(err)})
+    } handleProfilPictureChange(event){
+        event.preventDefault();
+        fetch(`http://localhost:4000/usersImages/profilPictureChange/${parseInt(event.target.getAttribute("value"))}`,{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+        })
+            .then(response => response.json())
+            .then(response =>alert(response))
+            .catch(err => {alert(err)})
+
     } render(){
-        console.log(this.state);
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="imageContainer">
                 <h3 className="userImageTitle">TITRE: {image.imageTitle}</h3>
                 <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt=""/>
                 <h4 className="userImageDescriptionTitle">DESCRIPTION: </h4>
                 <p className="userImageDescription">{image.imageDescription}</p>
+                <div onClick={(event)=>this.handleProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>
             </div>
         ))
         const pictureUploadsJsx=(
@@ -63,7 +72,7 @@ export default class UserImages extends Component{
                 <input type="text" name="imageTitle" onChange={(event)=>this.handleTextInputChange(event)}/>
                 <label htmlFor="imageDescription">Description de l'image</label>
                 <input type="textarea" name="imageDescription" onChange={(event)=>this.handleTextInputChange(event)}/>
-                <p type="submit" name="image" onClick={(event)=>this.handlePictureUploads(event)} >ENVOYER</p>
+                <p type="submit" name="image" onClick={(event)=>this.handlePictureUploads(event)}>ENVOYER</p>
             </form>
         )
         return(

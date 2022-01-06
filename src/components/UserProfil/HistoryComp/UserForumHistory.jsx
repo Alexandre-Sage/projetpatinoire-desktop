@@ -8,7 +8,7 @@ export default class UserForumHistory extends Component{
             forumHistory: [],
         }
     } componentDidMount(){
-            fetch(`${process.env.REACT_APP_API_URL}users/userProfilHistory/` ,{
+            fetch(`${process.env.REACT_APP_API_URL}users/userProfilForumHistory` ,{
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include',
