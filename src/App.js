@@ -5,7 +5,6 @@ import ConnexionForm from "./components/LandingPageComp/ConnexionForm.jsx";
 import "./App.css"
 import "./cssBouton/btn-linear-flat.css";
 
-
 export default class App extends Component{
     constructor(props){
         super(props)
@@ -13,20 +12,40 @@ export default class App extends Component{
             displayInscriptionForm: false,
             displayConnexionForm: false,
             displayButtonsTitle: true,
-            image:null,
         }
 
-    }  addInsciptionForm(event){
+    } componentDidMount(){
+        document.body.classList.add("landingPageBody");
+    } addInsciptionForm(event){
         event.preventDefault();
-        {!this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false})}
-        {this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
+        if(!this.state.displayInscriptionForm){
+            this.setState({displayInscriptionForm : true})
+        } else{
+            this.setState({displayInscriptionForm : false})
+        };
+        if(this.state.displayButtonsTitle){
+            this.setState({displayButtonsTitle: false});
+        }else{
+            this.setState({displayButtonsTitle: true});
+        };
+        //{!this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false})}
+        //{this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
 
     } addConnexionForm(event){
         event.preventDefault();
-        {!this.state.displayConnexionForm?  this.setState({displayConnexionForm : true}) : this.setState({displayConnexionForm : false})};
-        {this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
+        if(!this.state.displayConnexionForm){
+            this.setState({displayConnexionForm : true});
+        }else{
+            this.setState({displayConnexionForm : false});
+        }
+        if(this.state.displayButtonsTitle){
+            this.setState({displayButtonsTitle: false});
+        }else{
+            this.setState({displayButtonsTitle: true});
+        }
+        //{!this.state.displayConnexionForm?  this.setState({displayConnexionForm : true}) : this.setState({displayConnexionForm : false})};
+        //{this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
     } render(){
-        //console.log(this.state);
         const ButtonsTitleLandingPage=(
             <React.Fragment>
                 <h1 className="landingPageTitle">lorem ipsum</h1>
@@ -46,7 +65,7 @@ export default class App extends Component{
                     {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)}/> : null}
                     {this.state.displayConnexionForm? <ConnexionForm addConnexionForm={(event)=>this.addConnexionForm(event)}/> : null}
                 </div>
-        </main>
+            </main>
         );
     }
 };

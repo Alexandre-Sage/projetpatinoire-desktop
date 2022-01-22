@@ -8,12 +8,11 @@
     --inputBackground-color: rgba(188, 188, 188, 0.3);
     --inputBorder-style: none;
 }
-
-.mainContainerLandingPage{
-    border: var(--box-show);
+.landingPageBody{
     background: url("./images/tube.jpg") no-repeat;
     background-size: cover;
-    height: 71.5rem;
+}
+.mainContainerLandingPage{
 
 }
 

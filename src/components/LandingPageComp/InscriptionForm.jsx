@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import PopUp from "../popUp/PopUp.jsx";
 import  "./css/CssInscriptionForm.css";
 import  "../../cssBouton/btn_croix.css";
 import "../../cssBouton/btn-linear-flat.css";
@@ -11,14 +12,15 @@ export default class InscriptionForm extends Component{
             countries:[],
             towns:[],
             answers:{},
-            confirmationPassword: ""
+            confirmationPassword: "",
+            message: null,
+            displayForm: true,
+            displayPopUp: false,
         }
     } componentDidMount(){
         fetch(`${process.env.REACT_APP_API_URL}inscription/countriesInscriptionForm`)
-          .then(response => response.json())
-          .then(data => this.setState({countries: [data]}));
-
-
+        .then(response => response.json())
+        .then(data => this.setState({countries: [data]}));
     } handleCountryChange(selectedCountry){
         fetch(`${process.env.REACT_APP_API_URL}inscription/townsInscriptionForm/${selectedCountry.target.value}`)
         .then(response => response.json())
@@ -28,13 +30,17 @@ export default class InscriptionForm extends Component{
     } handleTownChange(selectedTown){
         this.setState({answers:{...this.state.answers, "town":selectedTown.target.value}})
     } handleInputChange(input){
+        //eslint-disable-next-line
         {input.target.name==="passwordConfirmation"? this.setState({confirmationPassword: input.target.value}) : this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}})}
     } handleSubmit(event){
         event.preventDefault()
+        //eslint-disable-next-line
         if(Object.entries(this.state.answers).length===8){
+            //eslint-disable-next-line
             Object.entries(this.state.answers).map(([objectKeys, keyValues])=>{
                 let confirmation=false;
                 if(objectKeys==="password"){
+                    //eslint-disable-next-line
                     {keyValues===this.state.confirmationPassword? confirmation=true : confirmation=false}
                     if (confirmation===false){
                         alert("Mot de passe incorect")
@@ -49,8 +55,12 @@ export default class InscriptionForm extends Component{
                             credentials: 'include',
                         })
                             .then(response => response.json())
-                            .then(data =>alert(data))
-                            .catch(err => {alert("flmdskflsdfkmfs")})
+                            .then(data =>{
+                                this.setState({message: data});
+                                this.setState({displayPopUp: true});
+                                this.setState({displayForm: false})
+                            })
+                            .catch(err => {console.log(err);})
                     }
                 }
             })
@@ -59,13 +69,11 @@ export default class InscriptionForm extends Component{
         }
     } render(){
         const {addInsciptionForm}= this.props;
-        console.log(addInsciptionForm);
-        /*console.log("confirmationPassword:", this.state.confirmationPassword);*/
         const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} className="inscriptionFormOptions" value={country.countryId} name="country">{country.countryName}</option>));
 
         const townSelectroJsx= this.state.towns.map((towns)=>towns.map((town, key)=><option key={key} className="inscriptionFormOptions" value={town.townId} name="town">{town.townName}</option>));
-        return(
-            <div className="mainContInscriptionForm">
+        const inscriptionFormJsx=
+            <React.Fragment>
                 <div className="titleCloseButtonContainer">
                     <h2 className="inscriptionTitle">INSCRIPTION</h2>
                     <div onClick={(click)=>addInsciptionForm(click)} className="btn-croix">
@@ -73,13 +81,14 @@ export default class InscriptionForm extends Component{
                 </div>
                 <form className="inscriptionForm">
                     <div className="selectContainer">
-
-                        <select className="countriesTownsSelectors" onChange={(value)=>this.handleCountryChange(value)}>
+                        <select className="countriesTownsSelectors"
+                        onChange={(value)=>this.handleCountryChange(value)}>
                             <option className="inscriptionFormOptions">Pays</option>
-                                {countrySelectorJsx}
+                            {countrySelectorJsx}
                         </select>
 
-                        <select className="countriesTownsSelectors" onChange={(value)=>this.handleTownChange(value)}>
+                        <select className="countriesTownsSelectors"
+                        onChange={(value)=>this.handleTownChange(value)}>
                             <option className="inscriptionFormOptions">Ville</option>
                             {townSelectroJsx}
                         </select>
@@ -116,6 +125,11 @@ export default class InscriptionForm extends Component{
                         </div>
                     </div>
                 </form>
+            </React.Fragment>
+        return(
+            <div className="mainContInscriptionForm">
+                {this.state.displayForm? inscriptionFormJsx : null}
+                {this.state.displayPopUp?<PopUp message={this.state.message} function={this.props.addInsciptionForm}/> : null}
             </div>
         )
     }
