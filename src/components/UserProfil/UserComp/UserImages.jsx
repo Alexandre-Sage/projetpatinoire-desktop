@@ -10,6 +10,7 @@ export default class UserImages extends Component{
             description: null,
             title: null,
             displayPictureUploadComponent: true,
+            logger: null
         }
     } componentDidMount(){
         fetch(`${process.env.REACT_APP_API_URL}usersImages` ,{
@@ -20,40 +21,48 @@ export default class UserImages extends Component{
           .then(response => response.json())
           .then(data => this.setState({userImages: data}))
           .catch(err => {console.log(err)})
-    } handleTextInputChange(event){
-        if(event.target.name==="imageTitle"){
-            this.setState({title: event.target.value});
-        }else{
-            this.setState({description: event.target.value});
-        };
-    } handleFilesChange(event){
-        this.setState({imageUpload: event.target.files[0]})
-    } handlePictureUploads(event){
-        event.preventDefault();
-        const formData= new FormData()
-        formData.append("image", this.state.imageUpload)
-        formData.append("title",this.state.title)
-        formData.append("description", this.state.description)
-        fetch(`http://localhost:4000/usersImages/upload`,{
-            method: "POST",
-            body: formData,
-            headers: { "Accept": "multipart/form-data" },
-            credentials: "include",
-        })
-            .then(response => response.json())
-            .then(response =>alert(response))
-            .catch(err => {console.log(err)})
-    } handleProfilPictureChange(event){
-        event.preventDefault();
-        fetch(`http://localhost:4000/usersImages/profilPictureChange/${parseInt(event.target.getAttribute("value"))}`,{
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            credentials: "include",
-        })
-            .then(response => response.json())
-            .then(response =>alert(response))
-            .catch(err => {alert(err)})
-
+    } handleUserImagesActions(event){
+        switch(event.target.id){
+            case "userImageTitle":
+                this.setState({title: event.target.value});
+            break;
+            case "userImageDescription":
+                this.setState({description: event.target.value});
+            break;
+            case "imageFileInput":
+                this.setState({imageUpload: event.target.files[0]})
+            break;
+            case "submitImage":
+                event.preventDefault();
+                const formData= new FormData()
+                formData.append("image", this.state.imageUpload)
+                formData.append("title",this.state.title)
+                formData.append("description", this.state.description)
+                fetch(`http://localhost:4000/usersImages/upload`,{
+                    method: "POST",
+                    body: formData,
+                    headers: { "Accept": "multipart/form-data" },
+                    credentials: "include",
+                })
+                    .then(response => response.json())
+                    .then(response =>alert(response))
+                    .catch(err => {console.log(err)})
+            break;
+            case "userProfilPictureChange":
+                event.preventDefault();
+                fetch(`http://localhost:4000/usersImages/profilPictureChange/${parseInt(event.target.getAttribute("value"))}`,{
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    credentials: "include",
+                })
+                    .then(response => response.json())
+                    .then(response =>alert(response))
+                    .catch(err => {alert(err)})
+            break;
+            default:
+                alert("What did you do")
+            break;
+        }
     } render(){
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="imageContainer">
@@ -61,18 +70,20 @@ export default class UserImages extends Component{
                 <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt=""/>
                 <h4 className="userImageDescriptionTitle">DESCRIPTION: </h4>
                 <p className="userImageDescription">{image.imageDescription}</p>
-                <div onClick={(event)=>this.handleProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>
+                <div id="userProfilPictureChange" onClick={(event)=>this.handleUserImagesActions(event)} value= {image.imageId}>Changer photo du profils</div>
             </div>
         ))
         const pictureUploadsJsx=(
             <form encType="multipart/form-data" className="userImageUploadsForm">
                 <label htmlFor="image">Importer une image</label>
-                <input type="file" name="image" onChange={(event)=>this.handleFilesChange(event)}/>
+                <input id="imageFileInput" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
+
                 <label htmlFor="imageTitle">Titre de l'image</label>
-                <input type="text" name="imageTitle" onChange={(event)=>this.handleTextInputChange(event)}/>
+                <input id="userImageTitle" type="text" name="imageTitle" onChange={(event)=>this.handleUserImagesActions(event)}/>
+
                 <label htmlFor="imageDescription">Description de l'image</label>
-                <input type="textarea" name="imageDescription" onChange={(event)=>this.handleTextInputChange(event)}/>
-                <p type="submit" name="image" onClick={(event)=>this.handlePictureUploads(event)}>ENVOYER</p>
+                <input id="userImageDescription" type="textarea" name="imageDescription" onChange={(event)=>this.handleUserImagesActions(event)}/>
+                <p id="submitImage" type="submit" onClick={(event)=>this.handleUserImagesActions(event)}>ENVOYER</p>
             </form>
         )
         return(

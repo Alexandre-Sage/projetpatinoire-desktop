@@ -29,27 +29,22 @@ export default class UserPage extends Component{
           .then(response => response.json())
           .then(data => this.setState({userProfil: data}))
           .catch(err => {console.log(err)})
-    } handleUserImagesDisplay(event){
-        event.preventDefault()
-        if(!this.state.displayUserImages){
-            this.setState({displayUserImages: true})
-            this.setState({displayHistory: false})
-        } else {
-            this.setState({displayUserImages: false})
-            this.setState({displayHistory: true})
+    } handleUserComponentsDisplay(event){
+        switch(event.target.id){
+            case "UserImagesDisplay":
+                !this.state.displayUserImages? this.setState({displayUserImages: true, displayHistory: false, displayUserInfo: false}):this.setState({displayUserImages: false, displayHistory: true, displayUserInfo: false})
+            break;
+            case "userInfosDisplay":
+                !this.state.displayUserInfo?this.setState({displayUserInfo: true, displayHistory: false, displayUserImages: false}):this.setState({displayHistory: true, displayUserInfo: false, displayUserImages: false})
+            break;
+            case "userToForumLink":
+                this.setState({forumLinkClicked: true})
+            break;
+            default:
+                this.setState({displayHistory: true, displayUserInfo: false, displayUserImages: false})
+            break;
         }
-    } handleUserInfoDisplay(event){
-        if(!this.state.displayUserInfo){
-            this.setState({displayHistory: false})
-            this.setState({displayUserInfo: true})
-            this.setState({displayUserImages: false})
-        } else{
-            this.setState({displayHistory: true})
-            this.setState({displayUserInfo: false})
-        }
-    } handleForumLink(event){
-        this.setState({forumLinkClicked: true})
-    } render(){
+    }  render(){
         const headerProfilJsx= this.state.userProfil.map((user, key)=> (
             <header className="userPageHeader" key={key}>
                 <h2 className="userPageTitle">Profil de: {user.firstName} {user.LastName} </h2>
@@ -69,17 +64,17 @@ export default class UserPage extends Component{
                 <nav className="userNavContainer">
                     <ul className="userNavBar">
                         <li>
-                            <div className="btn-linear-flat" onClick={(click)=>this.handleUserImagesDisplay(click)}>
+                            <div id="UserImagesDisplay" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
                                <p>{!this.state.displayUserImages? "PHOTOS":"PROFIL"}</p>
                             </div>
                         </li>
                         <li>
-                            <div className="btn-linear-flat" onClick={(click)=>this.handleUserInfoDisplay(click)}>
+                            <div id="userInfosDisplay" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
                                <p>INFO PROFIL</p>
                             </div>
                         </li>
                         <li>
-                            <div className="btn-linear-flat" onClick={(click)=>this.handleForumLink(click)}>
+                            <div id="userToForumLink" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
                                <p>FORUM</p>
                             </div>
                         </li>
