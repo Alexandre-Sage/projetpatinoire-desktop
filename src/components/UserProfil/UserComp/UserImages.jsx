@@ -9,8 +9,8 @@ export default class UserImages extends Component{
             imageUpload: null,
             description: null,
             title: null,
-            displayPictureUploadComponent: true,
-            logger: null
+            displayPictureUploadComponent: false,
+            displayImageJsx: true,
         }
     } componentDidMount(){
         fetch(`${process.env.REACT_APP_API_URL}usersImages` ,{
@@ -59,6 +59,9 @@ export default class UserImages extends Component{
                     .then(response =>alert(response))
                     .catch(err => {alert(err)})
             break;
+            case "displayImageUpload":
+                this.state.displayImageJsx?this.setState({displayPictureUploadComponent:true, displayImageJsx: false}):this.setState({displayPictureUploadComponent:false, displayImageJsx:true})
+            break;
             default:
                 alert("What did you do")
             break;
@@ -67,7 +70,7 @@ export default class UserImages extends Component{
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="imageContainer">
                 <h3 className="userImageTitle">TITRE: {image.imageTitle}</h3>
-                <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt=""/>
+                <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}/>
                 <h4 className="userImageDescriptionTitle">DESCRIPTION: </h4>
                 <p className="userImageDescription">{image.imageDescription}</p>
                 <div id="userProfilPictureChange" onClick={(event)=>this.handleUserImagesActions(event)} value= {image.imageId}>Changer photo du profils</div>
@@ -88,7 +91,8 @@ export default class UserImages extends Component{
         )
         return(
             <div className="userImagesMainContainer">
-                {userImageJsx}
+                <div id="displayImageUpload" className="" onClick={(event)=>this.handleUserImagesActions(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
+                {this.state.displayImageJsx?userImageJsx:null}
                 {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
             </div>
         )

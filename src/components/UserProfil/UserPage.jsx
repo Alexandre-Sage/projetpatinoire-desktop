@@ -70,7 +70,7 @@ export default class UserPage extends Component{
                         </li>
                         <li>
                             <div id="userInfosDisplay" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
-                               <p>INFO PROFIL</p>
+                               <p>{this.state.displayUserInfo? "PROFIL":"INFO UTILISATEUR"}</p>
                             </div>
                         </li>
                         <li>
@@ -96,7 +96,7 @@ export default class UserPage extends Component{
                     {this.state.displayUserImages?<UserImages/>: null}
                     {this.state.displayUserInfo?<UserInfo userProfil={this.state.userProfil}/>: null}
                 </main>
-                {this.state.forumLinkClicked? <Navigate to="/forum"/>:null}
+                {this.state.forumLinkClicked? <Navigate to="/forum/categories"/>:null}
             </div>
         );
     };

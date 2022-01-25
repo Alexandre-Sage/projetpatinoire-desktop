@@ -40,14 +40,12 @@ export default class InscriptionForm extends Component{
             Object.entries(this.state.answers).map(([objectKeys, keyValues])=>{
                 let confirmation=false;
                 if(objectKeys==="password"){
-                    //eslint-disable-next-line
-                    {keyValues===this.state.confirmationPassword? confirmation=true : confirmation=false}
+                    keyValues===this.state.confirmationPassword? confirmation=true : confirmation=false
                     if (confirmation===false){
                         alert("Mot de passe incorect")
                     }else if(keyValues.length< 2){
                         alert("Pas asser de caractère dans le mot de passe")
                     }else{
-                        alert("ok")
                         fetch(`${process.env.REACT_APP_API_URL}inscription/sendInscriptionForm`,{
                             method: "POST",
                             headers: { "Content-Type": "application/json" },

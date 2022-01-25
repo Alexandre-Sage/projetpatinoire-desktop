@@ -18,33 +18,13 @@ export default class App extends Component{
         document.body.classList.add("landingPageBody");
     } addInsciptionForm(event){
         event.preventDefault();
-        if(!this.state.displayInscriptionForm){
-            this.setState({displayInscriptionForm : true})
-        } else{
-            this.setState({displayInscriptionForm : false})
-        };
-        if(this.state.displayButtonsTitle){
-            this.setState({displayButtonsTitle: false});
-        }else{
-            this.setState({displayButtonsTitle: true});
-        };
-        //{!this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false})}
-        //{this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
+        !this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false});
+        this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true});
 
     } addConnexionForm(event){
         event.preventDefault();
-        if(!this.state.displayConnexionForm){
-            this.setState({displayConnexionForm : true});
-        }else{
-            this.setState({displayConnexionForm : false});
-        }
-        if(this.state.displayButtonsTitle){
-            this.setState({displayButtonsTitle: false});
-        }else{
-            this.setState({displayButtonsTitle: true});
-        }
-        //{!this.state.displayConnexionForm?  this.setState({displayConnexionForm : true}) : this.setState({displayConnexionForm : false})};
-        //{this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})};
+        !this.state.displayConnexionForm?  this.setState({displayConnexionForm : true}) : this.setState({displayConnexionForm : false});
+        this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})
     } render(){
         const ButtonsTitleLandingPage=(
             <React.Fragment>

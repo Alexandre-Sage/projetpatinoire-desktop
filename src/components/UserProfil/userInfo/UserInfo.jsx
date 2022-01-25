@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import ProfilModificationForm from "./ProfilModificationForm";
+import PasswordModification from "./PasswordModification";
 
 export default class UserInfo extends Component{
     constructor(props){
@@ -13,10 +14,10 @@ export default class UserInfo extends Component{
         }
     } displayUpdateForm(event){
         switch(event.target.id){
-            case "info":
+            case "buttonInfoModificationForm":
                 this.state.displayForm? this.setState({displayForm: false, displayInfo: true}):this.setState({displayForm: true, displayInfo: false})
             break;
-            case "pass":
+            case "buttonPasswordModificationForm":
                 this.state.displayPassForm? this.setState({displayPassForm: false, displayInfo: true}):this.setState({displayPassForm: true, displayInfo: false})
             break;
             default:
@@ -34,21 +35,19 @@ export default class UserInfo extends Component{
                 <h3>Email: {detail.email}</h3>
                 <h3>Ville: {detail.townName}</h3>
                 <h3>Home Spot: {detail.homeSpot}</h3>
-                <div id="info" className="btn-linear-flat" onClick={(info)=>this.displayUpdateForm(info)}>
+                <div id="buttonInfoModificationForm" className="btn-linear-flat" onClick={(info)=>this.displayUpdateForm(info)}>
                    <p>MODIFIER INFO</p>
                 </div>
-                <div id="pass" className="btn-linear-flat" onClick={(pass)=>this.displayUpdateForm(pass)}>
+                <div id="buttonPasswordModificationForm" className="btn-linear-flat" onClick={(pass)=>this.displayUpdateForm(pass)}>
                    <p>MODIFIER MOT DE PASS</p>
                 </div>
                 </React.Fragment>
             ))
-            const passForm=<p>Hello</p>
-    //}
         return(
             <div>
                 {this.state.displayInfo? userInfoJsx: null}
                 {this.state.displayForm? <ProfilModificationForm userProfil={this.state.userProfil}/>: null}
-                {this.state.displayPassForm? passForm: null}
+                {this.state.displayPassForm? <PasswordModification/>: null}
             </div>
         )
     }
