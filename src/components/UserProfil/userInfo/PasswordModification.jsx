@@ -20,6 +20,7 @@ export default class PasswordModification extends Component{
                 this.setState({newPasswordConfirmation: event.target.value})
             break;
             case "sendPasswordModification":
+                //eslint-disable-next-line
                 Object.entries(this.state.answers).map(([objectKeys, keyValues])=>{
                     let confirmation=false;
                     if(objectKeys==="newPassword"){
@@ -42,6 +43,9 @@ export default class PasswordModification extends Component{
                         }
                     }
                 })
+            break;
+            default:
+                alert("WHAT?")
             break;
         }
     } render(){

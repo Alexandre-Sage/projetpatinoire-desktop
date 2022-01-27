@@ -31,7 +31,7 @@ export default class InscriptionForm extends Component{
         this.setState({answers:{...this.state.answers, "town":selectedTown.target.value}})
     } handleInputChange(input){
         //eslint-disable-next-line
-        {input.target.name==="passwordConfirmation"? this.setState({confirmationPassword: input.target.value}) : this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}})}
+        input.target.name==="passwordConfirmation"? this.setState({confirmationPassword: input.target.value}) : this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}})
     } handleSubmit(event){
         event.preventDefault()
         //eslint-disable-next-line

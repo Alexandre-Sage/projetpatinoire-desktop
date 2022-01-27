@@ -91,6 +91,7 @@ export default class UserPage extends Component{
                     </ul>
                 </nav>
                 <main className="userPageMainTag">
+
                     {this.state.displayHistory?<PictureHistory/>: null}
                     {this.state.displayHistory?<UserForumHistory/>: null}
                     {this.state.displayUserImages?<UserImages/>: null}
