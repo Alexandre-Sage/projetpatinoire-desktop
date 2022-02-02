@@ -9,33 +9,30 @@ export default class ConnexionForm extends Component{
         this.state={
             answers:{},
             connected: false,
+            params: null,
+            message: null
         }
-
     } handleInputChange(input){
         this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}});
-
     } handleConnexionButton(event){
         event.preventDefault();
-        const passwordInput=this.state.answers.passwordInput;
-        const emailInput=this.state.answers.emailInput;
-
-            fetch(`${process.env.REACT_APP_API_URL}users/${emailInput}/${passwordInput}`,{
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(this.state.answers),
-                credentials: 'include',
-            })
-                .then(response => response.json())
-                .then(data =>{if(data==="mail" || data==="mdp"){
-                        alert(data)
-                    } else {
-                        this.setState({connected: true});
-                    }
-                })
-                .catch(err => {console.log(err);})
-
+        fetch(`${process.env.REACT_APP_API_URL}users`,{
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.state.answers),
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data =>this.setState({
+                        connected: data.validator,
+                        params: data.userName,
+                        message: data.message
+                    })
+                )
+        .catch(err => {console.log(err);})
     } render(){
         const {addConnexionForm}= this.props;
+        console.log(this.state.message);
         return(
             <div className="connexionFromMainContainer">
                 <div className="closeButtonTitleConnexionFormContainer">
@@ -46,7 +43,7 @@ export default class ConnexionForm extends Component{
                 <form className="connexionForm">
                     <div className="connexionFormEmailPasswordContainer">
                         <label className="connexionFormLabel" htmlFor="emailInput">Email utilisateur: </label>
-                        <input className="connexionFormInput" type="text" name="emailInput"  onChange={(email)=>this.handleInputChange((email))}/>
+                        <input className="connexionFormInput" type="text" name="emailInput" onChange={(email)=>this.handleInputChange((email))}/>
                         <label  className="connexionFormLabel" htmlFor="passwordInput">Mot de passe utilisateur</label>
                         <input className="connexionFormInput" type="password" name="passwordInput" onChange={(password)=>this.handleInputChange((password))} />
                     </div>
@@ -54,7 +51,7 @@ export default class ConnexionForm extends Component{
                        <p>CONNEXION</p>
                     </div>
                 </form>
-                {this.state.connected? <Navigate to="/userProfil"/>:null}
+                {this.state.connected? <Navigate to={`/userProfil/${this.state.params}`}/>:null}
             </div>
         );
     }

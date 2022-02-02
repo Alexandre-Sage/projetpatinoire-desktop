@@ -2,8 +2,9 @@ import React from "react";
 import {Component} from "react";
 import {Link} from "react-router-dom";
 import "./css/userPage.css";
+import ParamsReader from "../Modules/ParamsReader";
 
-export default class ForumMainPage extends Component{
+class ForumMainPage extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -21,22 +22,23 @@ export default class ForumMainPage extends Component{
           .then(data => this.setState({forumCategories: data}))
           .catch(err => {console.log(err)})
     } render(){
+        console.log(this.props.params);
         const categoriesJsx=
             <nav>
                 <ul>
                 {this.state.forumCategories.map((category, key)=>(
                     <li key={key}>
                         <Link className="btn-linear-flat"
-                         to={`/forum/category/${category.categoryId}/${category.categoryName}/topics`}>{category.categoryName}</Link>
+                         to={`/${this.props.params.userName}/forum/category/${category.categoryId}/${category.categoryName}/topics`}>{category.categoryName}</Link>
                     </li>
                 ))}
                 </ul>
             </nav>
-
         return(
-            <div>
+            <main>
                 {categoriesJsx}
-            </div>
+            </main>
         )
     }
 }
+export default ParamsReader(ForumMainPage)

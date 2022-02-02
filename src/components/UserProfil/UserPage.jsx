@@ -17,6 +17,7 @@ export default class UserPage extends Component{
             displayUserImages: false,
             forumLinkClicked: false,
             displayUserInfo: false,
+            params: null,
         }
     } componentDidMount(){
         document.body.classList.add("userPageBody");
@@ -27,7 +28,7 @@ export default class UserPage extends Component{
             credentials: 'include',
         })
           .then(response => response.json())
-          .then(data => this.setState({userProfil: data}))
+          .then(data => this.setState({userProfil: data, params: data[0].userName}))
           .catch(err => {console.log(err)})
     } handleUserComponentsDisplay(event){
         switch(event.target.id){
@@ -45,6 +46,7 @@ export default class UserPage extends Component{
             break;
         }
     }  render(){
+        console.log(this.state.params);
         const headerProfilJsx= this.state.userProfil.map((user, key)=> (
             <header className="userPageHeader" key={key}>
                 <h2 className="userPageTitle">Profil de: {user.firstName} {user.LastName} </h2>
@@ -91,13 +93,12 @@ export default class UserPage extends Component{
                     </ul>
                 </nav>
                 <main className="userPageMainTag">
-
                     {this.state.displayHistory?<PictureHistory/>: null}
                     {this.state.displayHistory?<UserForumHistory/>: null}
                     {this.state.displayUserImages?<UserImages/>: null}
                     {this.state.displayUserInfo?<UserInfo userProfil={this.state.userProfil}/>: null}
                 </main>
-                {this.state.forumLinkClicked? <Navigate to="/forum/categories"/>:null}
+                {this.state.forumLinkClicked? <Navigate to={`/${this.state.params}/forum/categories`}/>:null}
             </div>
         );
     };

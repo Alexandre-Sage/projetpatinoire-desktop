@@ -7,9 +7,10 @@
     --font-colorWhite: rgba(206, 224, 221, 1);
     --inputBackground-color: rgba(188, 188, 188, 0.3);
     --inputBorder-style: none;
+    --API-URL-landingPage-backgroundImage: url("http://localhost:4000/public/images/reactAssets/tube.jpg");
 }
 .landingPageBody{
-    background: url("./images/tube.jpg") no-repeat;
+    background:  var(--API-URL-landingPage-backgroundImage) no-repeat;
     background-size: cover;
 }
 .mainContainerLandingPage{
