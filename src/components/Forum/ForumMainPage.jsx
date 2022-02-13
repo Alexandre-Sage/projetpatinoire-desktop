@@ -22,14 +22,13 @@ class ForumMainPage extends Component{
           .then(data => this.setState({forumCategories: data}))
           .catch(err => {console.log(err)})
     } render(){
-        console.log(this.props.params);
         const categoriesJsx=
             <nav>
                 <ul>
                 {this.state.forumCategories.map((category, key)=>(
                     <li key={key}>
                         <Link className="btn-linear-flat"
-                         to={`/${this.props.params.userName}/forum/category/${category.categoryId}/${category.categoryName}/topics`}>{category.categoryName}</Link>
+                         to={`/${this.props.params.userName}/${this.props.params.userId}/forum/category/${category.categoryId}/${category.categoryName}/topics`}>{category.categoryName}</Link>
                     </li>
                 ))}
                 </ul>

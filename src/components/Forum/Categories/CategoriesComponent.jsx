@@ -30,7 +30,7 @@ class CategoriesComponent extends Component{
             <ul>
                 {this.state.forumTopics.map((topic, key)=>(
                     <li key={key}>
-                        <Link to={`/${this.props.params.userName}/forum/category/${this.props.params.id}/${this.props.params.category}/topic/${topic.topicId}/${topic.topicTitle}`}>{topic.topicTitle}</Link>
+                        <Link to={`/${this.props.params.userName}/${this.props.params.userId}/forum/category/${this.props.params.id}/${this.props.params.category}/topic/${topic.topicId}/${topic.topicTitle}`}>{topic.topicTitle}</Link>
                     </li>
                 ))}
             </ul>

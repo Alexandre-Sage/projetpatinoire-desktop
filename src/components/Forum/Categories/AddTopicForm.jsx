@@ -86,7 +86,7 @@ export default class AddTopicForm extends Component{
                 <label htmlFor="pictureUpload">Ajouter une image a votre premier post</label>
                 <input onChange={(event)=>this.handleAddTopicFormActions(event)} type="file" name="pictureUpload"/>
                 <div onClick={(event)=>this.handleSubmitNewTopic(event)}>ENVOYER</div>
-                {this.state.newTopicAccepted?<Navigate to={`/${this.props.userName}/forum/category/${this.props.categoryId}/${this.props.categoryName}/topic/${this.state.newTopicId}/${this.state.answers.topicTitle}`}/>:null}
+                {this.state.newTopicAccepted?<Navigate to={`/${this.props.userName}/${this.props.userId}/forum/category/${this.props.categoryId}/${this.props.categoryName}/topic/${this.state.newTopicId}/${this.state.answers.topicTitle}`}/>:null}
             </form>
 
         )

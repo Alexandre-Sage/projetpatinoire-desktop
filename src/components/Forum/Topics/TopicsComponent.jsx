@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import ParamsReader from "../../Modules/ParamsReader";
 import AddPostForm from "./AddPostForm";
 //Composant affichant le contenue d'un topic affiche aussi le formulaire perméttant d'ajouter un nouveaux post, utilise le composant HOC ParamsReader pour récupérer les paramètre de l'url.
-
 class TopicsComponent extends Component{
     constructor(props){
         super(props)
@@ -29,18 +28,19 @@ class TopicsComponent extends Component{
         this.state.displayAddPostForm? this.setSate({displayAddPostForm: false}): this.setState({displayAddPostForm: true})
     } render(){
         //Element jsx qui affiche les données récupérer via l'api
-        const forumPostsJsx= <ul>
-                                {this.state.forumPosts.map((post, key)=>(
-                                    <li key={key}>
-                                        <div>
-                                            <Link to={this.props.params.userName===post.userName?`/userProfil/${this.props.params.userName}`:`/otherProfil/${post.userId}/${post.userName}`} >{post.userName}</Link>
-                                            <p>{post.postCreationDate}</p>
-                                        </div>
-                                        {post.imagePath?<img src={`${process.env.REACT_APP_API_URL}${post.imagePath}`} alt="" />:null}
-                                        <p>{post.postContent}</p>
-                                    </li>
-                                ))}
-                            </ul>
+        const forumPostsJsx=
+            <ul>
+                {this.state.forumPosts.map((post, key)=>(
+                    <li key={key}>
+                        <div>
+                            <Link to={this.props.params.userName===post.userName?`/userProfil/${this.props.params.userName}/${post.userId}`:`/${this.props.params.userName}/${this.props.params.userId}/userprofil/${post.userName}/${post.userId}`} >{post.userName}</Link>
+                            <p>{post.postCreationDate}</p>
+                        </div>
+                        {post.imagePath?<img src={`${process.env.REACT_APP_API_URL}${post.imagePath}`} alt="" />:null}
+                        <p>{post.postContent}</p>
+                    </li>
+                ))}
+            </ul>
         return(
             <main>
                 {forumPostsJsx}

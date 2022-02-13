@@ -72,7 +72,6 @@ export default class AddTopicForm extends Component{
                 <label htmlFor="imageUpload">Ajouter une image (facultatif)</label>
                 <input onChange={(event)=>this.handleAddPostInput(event)} type="file" name="imageUpload"/>
                 <div onClick={(event)=>this.handlePostSubmit(event)}>ENVOYER</div>
-                {/*this.state.postAccepted? <Redirect to={`/${this.props.params.userName}/forum/category/${this.props.params.categoryId}/${this.props.params.category}/topic/${this.props.params.id}/${this.props.params.topic}`}/>: null*/}
             </form>
         )
     }

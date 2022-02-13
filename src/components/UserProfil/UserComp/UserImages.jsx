@@ -1,7 +1,8 @@
 import React from "react";
 import {Component} from "react";
+import ParamsReader from "../../Modules/ParamsReader";
 
-export default class UserImages extends Component{
+class UserImages extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -11,16 +12,17 @@ export default class UserImages extends Component{
             title: null,
             displayPictureUploadComponent: false,
             displayImageJsx: true,
+            message:null,
         }
     } componentDidMount(){
-        fetch(`${process.env.REACT_APP_API_URL}usersImages` ,{
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            credentials: 'include',
+        fetch(`${process.env.REACT_APP_API_URL}usersImages/${this.props.params.userId}` ,{
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include',
         })
-          .then(response => response.json())
-          .then(data => this.setState({userImages: data}))
-          .catch(err => {console.log(err)})
+        .then(response => response.json())
+        .then(data => this.setState({userImages: data}))
+        .catch(err => {console.log(err)})
     } handleUserImagesActions(event){
         switch(event.target.id){
             case "userImageTitle":
@@ -44,9 +46,9 @@ export default class UserImages extends Component{
                     headers: { "Accept": "multipart/form-data" },
                     credentials: "include",
                 })
-                    .then(response => response.json())
-                    .then(response =>alert(response))
-                    .catch(err => {console.log(err)})
+                .then(response=>response.json())
+                .then(data=>alert(data.message))
+                .catch(err=>{console.log(err)})
             break;
             case "userProfilPictureChange":
                 event.preventDefault();
@@ -55,25 +57,32 @@ export default class UserImages extends Component{
                     headers: {"Content-Type": "application/json"},
                     credentials: "include",
                 })
-                    .then(response => response.json())
-                    .then(response =>alert(response))
-                    .catch(err => {alert(err)})
+                .then(response => response.json())
+                .then(response =>alert(response))
+                .catch(err => {alert(err)})
             break;
             case "displayImageUpload":
-                this.state.displayImageJsx?this.setState({displayPictureUploadComponent:true, displayImageJsx: false}):this.setState({displayPictureUploadComponent:false, displayImageJsx:true})
+                this.state.displayImageJsx?this.setState({
+                    displayPictureUploadComponent:true,
+                    displayImageJsx: false
+                }):this.setState({
+                    displayPictureUploadComponent:false,
+                    displayImageJsx:true
+                })
             break;
             default:
                 alert("What did you do")
             break;
         }
     } render(){
+        console.log(this.props.profilOwner);
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="imageContainer">
                 <h3 className="userImageTitle">TITRE: {image.imageTitle}</h3>
                 <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}/>
                 <h4 className="userImageDescriptionTitle">DESCRIPTION: </h4>
                 <p className="userImageDescription">{image.imageDescription}</p>
-                <div id="userProfilPictureChange" onClick={(event)=>this.handleUserImagesActions(event)} value= {image.imageId}>Changer photo du profils</div>
+                {this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserImagesActions(event)} value= {image.imageId}>Changer photo du profils</div>: null}
             </div>
         ))
         const pictureUploadsJsx=(
@@ -89,12 +98,14 @@ export default class UserImages extends Component{
                 <p id="submitImage" type="submit" onClick={(event)=>this.handleUserImagesActions(event)}>ENVOYER</p>
             </form>
         )
+        const displayFormButtonJsx=<div id="displayImageUpload" className="" onClick={(event)=>this.handleUserImagesActions(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
         return(
             <div className="userImagesMainContainer">
-                <div id="displayImageUpload" className="" onClick={(event)=>this.handleUserImagesActions(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
+                {this.props.profilOwner?displayFormButtonJsx:null}
                 {this.state.displayImageJsx?userImageJsx:null}
                 {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
             </div>
         )
     }
 }
+export default ParamsReader(UserImages)

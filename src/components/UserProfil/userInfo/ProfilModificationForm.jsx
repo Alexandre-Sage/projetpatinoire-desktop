@@ -9,6 +9,7 @@ export default class ProfilModificationForm extends Component{
             towns: [],
             answers: this.props.userProfil[0],
             displayMessage: false,
+            message: null,
             formValues: this.props.userProfil
         }
     } componentDidMount(){
@@ -76,7 +77,7 @@ export default class ProfilModificationForm extends Component{
             credentials: 'include',
         })
             .then(response => response.json())
-            .then(data =>console.log(data))
+            .then(data =>this.setState({message: data.message, displayMessage: true}))
             .catch(err => {console.log(err)})
     } render(){
         const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} className="inscriptionFormOptions" value={country.countryId} name="country">{country.countryName}</option>));

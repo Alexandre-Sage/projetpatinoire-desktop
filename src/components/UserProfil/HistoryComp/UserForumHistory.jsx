@@ -1,21 +1,22 @@
 import React from "react";
 import {Component} from "react";
+import ParamsReader from "../../Modules/ParamsReader";
 
-export default class UserForumHistory extends Component{
+class UserForumHistory extends Component{
     constructor(props){
         super(props)
         this.state={
             forumHistory: [],
         }
     } componentDidMount(){
-            fetch(`${process.env.REACT_APP_API_URL}users/userProfilForumHistory` ,{
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-                credentials: 'include',
-            })
-              .then(response => response.json())
-              .then(data => this.setState({forumHistory:[data]}))
-              .catch(err => {console.log(err)})
+        fetch(`${process.env.REACT_APP_API_URL}users/userProfilForumHistory/${this.props.params.userId}` ,{
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => this.setState({forumHistory:[data]}))
+        .catch(err => {console.log(err)})
     } render(){
         const userHistroyJsx= this.state.forumHistory.map((postDetails)=>postDetails.map((detail, key)=>(
                 <div key={key}>
@@ -27,8 +28,9 @@ export default class UserForumHistory extends Component{
         )
         return(
             <div>
-            {userHistroyJsx}
-        </div>
+                {userHistroyJsx}
+            </div>
         )
     }
 }
+export default ParamsReader(UserForumHistory);

@@ -6,7 +6,8 @@ export default class PasswordModification extends Component{
         super(props)
         this.state={
             answers:{},
-            newPasswordConfirmation:""
+            newPasswordConfirmation:"",
+            message: null
         }
     } handlePasswordInputActions(event){
         switch(event.target.id){
@@ -37,9 +38,9 @@ export default class PasswordModification extends Component{
                                 body: JSON.stringify(this.state.answers),
                                 credentials: 'include',
                             })
-                                .then(response => response.json())
-                                .then(data =>console.log(data))
-                                .catch(err => {console.log(err)})
+                            .then(response => response.json())
+                            .then(data =>this.setState({message: data.message}))
+                            .catch(err => {console.log(err)})
                         }
                     }
                 })
@@ -49,20 +50,21 @@ export default class PasswordModification extends Component{
             break;
         }
     } render(){
-        const passwordModificationFormJsx=  <form>
-                                                <label className="inscriptionFormLabel" htmlFor="actualPass">Entrez votre mot de passe</label>
-                                                <input id="actualPassword" className="nameInput" type="password" name="actualPassword" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
+        const passwordModificationFormJsx=
+            <form>
+                <label className="inscriptionFormLabel" htmlFor="actualPass">Entrez votre mot de passe</label>
+                <input id="actualPassword" className="nameInput" type="password" name="actualPassword" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
 
-                                                <label className="inscriptionFormLabel" htmlFor="newPass">Nouveaux mot de passe </label>
-                                                <input id="newPassword" className="nameInput" type="password" name="newPassword" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
+                <label className="inscriptionFormLabel" htmlFor="newPass">Nouveaux mot de passe </label>
+                <input id="newPassword" className="nameInput" type="password" name="newPassword" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
 
-                                                <label className="inscriptionFormLabel" htmlFor="newPassConfirmation">Confirmation du nouveaux mot de passe</label>
-                                                <input id="passwordConfirmation" className="nameInput" type="password" name="newPassConfirmation" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
+                <label className="inscriptionFormLabel" htmlFor="newPassConfirmation">Confirmation du nouveaux mot de passe</label>
+                <input id="passwordConfirmation" className="nameInput" type="password" name="newPassConfirmation" onChange={(pass)=>this.handlePasswordInputActions(pass)} />
 
-                                                <div id="sendPasswordModification" className="btn-linear-flat" onClick={(pass)=>this.handlePasswordInputActions(pass)}>
-                                                   <p>MODIFIER MOT DE PASS</p>
-                                                </div>
-                                            </form>
+                <div id="sendPasswordModification" className="btn-linear-flat" onClick={(pass)=>this.handlePasswordInputActions(pass)}>
+                   <p>MODIFIER MOT DE PASS</p>
+                </div>
+            </form>
         return(
             <React.Fragment>
                 {passwordModificationFormJsx}

@@ -53,10 +53,12 @@ export default class InscriptionForm extends Component{
                             credentials: 'include',
                         })
                             .then(response => response.json())
-                            .then(data =>{
-                                this.setState({message: data});
-                                this.setState({displayPopUp: true});
-                                this.setState({displayForm: false})
+                            .then(data =>{ console.log(data);
+                                this.setState({
+                                    message: data.message,
+                                    displayPopUp: true,
+                                    displayForm: false
+                                });
                             })
                             .catch(err => {console.log(err);})
                     }

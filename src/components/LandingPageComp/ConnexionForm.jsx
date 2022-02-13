@@ -25,7 +25,7 @@ export default class ConnexionForm extends Component{
         .then(response => response.json())
         .then(data =>this.setState({
                         connected: data.validator,
-                        params: data.userName,
+                        params: data.userParams,
                         message: data.message
                     })
                 )
@@ -51,7 +51,7 @@ export default class ConnexionForm extends Component{
                        <p>CONNEXION</p>
                     </div>
                 </form>
-                {this.state.connected? <Navigate to={`/userProfil/${this.state.params}`}/>:null}
+                {this.state.connected? <Navigate to={`/userProfil/${this.state.params.userName}/${this.state.params.userId}`}/>:null}
             </div>
         );
     }

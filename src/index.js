@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import UserPage from "./components/UserProfil/UserPage.jsx";
-import OthersProfils from "./components/UserProfil/OthersProfils.jsx";
 import ForumMainPage from "./components/Forum/ForumMainPage.jsx";
 import CategoriesComponent from "./components/Forum/Categories/CategoriesComponent.jsx";
 import TopicsComponent from "./components/Forum/Topics/TopicsComponent.jsx";
+import Chat from "./components/Chat/Chat.jsx";
+import ChatFlow from "./components/Chat/ChatFlow.jsx";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,11 +16,13 @@ ReactDOM.render(
       <BrowserRouter>
           <Routes>
             <Route path="/" element={<App/>}/>
-            <Route path="/userprofil/:userName" element={<UserPage/>}/>
-            <Route path="/otherProfil/:userId/:userName" element={<OthersProfils/>}/>
-            <Route path="/:userName/forum/categories" element={<ForumMainPage/>}/>
-            <Route path="/:userName/forum/category/:id/:category/topics" element={<CategoriesComponent/>}/>
-            <Route path="/:userName/forum/category/:categoryId/:category/topic/:id/:topic" element={<TopicsComponent/>}/>
+            <Route path="/userprofil/:userName/:userId" element={<UserPage/>}/>
+            <Route path="/userProfil/:userName/:userId/chat" element={<Chat/>}/>
+            <Route path="/userProfil/:userName/:userId/chat/chatFlow/:flowId" element={<ChatFlow/>}/>
+            <Route path="/:ownerUserName/:ownerId/userprofil/:userName/:userId" element={<UserPage/>}/>
+            <Route path="/:userName/:userId/forum/categories" element={<ForumMainPage/>}/>
+            <Route path="/:userName/:userId/forum/category/:id/:category/topics" element={<CategoriesComponent/>}/>
+            <Route path="/:userName/:userId/forum/category/:categoryId/:category/topic/:id/:topic" element={<TopicsComponent/>}/>
           </Routes>
       </BrowserRouter>
   </React.StrictMode>,
