@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import PopUp from "../popUp/PopUp.jsx";
+import PopUp from "../Modules/popUp/PopUp.jsx";
 import  "./css/CssInscriptionForm.css";
 import  "../../cssBouton/btn_croix.css";
 import "../../cssBouton/btn-linear-flat.css";
@@ -129,7 +129,7 @@ export default class InscriptionForm extends Component{
         return(
             <div className="mainContInscriptionForm">
                 {this.state.displayForm? inscriptionFormJsx : null}
-                {this.state.displayPopUp?<PopUp message={this.state.message} function={this.props.addInsciptionForm}/> : null}
+                {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.props.function()} seconds={5000}/> : null}
             </div>
         )
     }

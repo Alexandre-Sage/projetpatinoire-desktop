@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import PopUp from "../../Modules/popUp/PopUp.jsx";
 
 export default class ProfilModificationForm extends Component{
     constructor(props){
@@ -77,7 +78,13 @@ export default class ProfilModificationForm extends Component{
             credentials: 'include',
         })
             .then(response => response.json())
-            .then(data =>this.setState({message: data.message, displayMessage: true}))
+            .then(data =>{this.setState({
+                    message: data.message,
+                    displayMessage: true,
+                })
+                this.props.handleProfilRefresh(event)
+                //this.props.displayUpdateInfoForm()
+            })
             .catch(err => {console.log(err)})
     } render(){
         const countrySelectorJsx= this.state.countries.map((countries)=>countries.map((country)=><option key={country.countryId} className="inscriptionFormOptions" value={country.countryId} name="country">{country.countryName}</option>));
@@ -125,7 +132,8 @@ export default class ProfilModificationForm extends Component{
         ))
         return(
             <React.Fragment>
-                {updateProfilFormJsx}
+                {!this.state.displayMessage?updateProfilFormJsx: null}
+                {this.state.displayMessage? <PopUp message={this.state.message} function={()=>this.props.displayUpdateInfoForm()} seconds={3000}/>: null}
             </React.Fragment>
         )
     }

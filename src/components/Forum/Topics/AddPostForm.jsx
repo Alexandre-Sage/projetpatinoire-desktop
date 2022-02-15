@@ -39,7 +39,13 @@ export default class AddTopicForm extends Component{
             })
             .then(response => response.json())
             .then(data =>{
-                this.setState({message: data.message, postAccepted: data.validator});
+                this.setState({
+                    message: data.message,
+                    postAccepted: data.validator
+                });
+                if(this.state.postAccepted){
+                    this.props.refreshOnPost(event);
+                }
             })
             .catch(err => {console.log(err)})
         } else{
@@ -56,7 +62,7 @@ export default class AddTopicForm extends Component{
                     postAccepted: data.validator
                 })
                 if(this.state.postAccepted){
-                    window.location.reload(true)
+                    this.props.refreshOnPost(event);
                 }
             })
             .catch(err => {console.log(err)})

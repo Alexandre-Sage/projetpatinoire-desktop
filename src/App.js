@@ -16,15 +16,24 @@ export default class App extends Component{
 
     } componentDidMount(){
         document.body.classList.add("landingPageBody");
-    } addInsciptionForm(event){
-        event.preventDefault();
-        !this.state.displayInscriptionForm?  this.setState({displayInscriptionForm : true}) : this.setState({displayInscriptionForm : false});
-        this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true});
-
-    } addConnexionForm(event){
-        event.preventDefault();
-        !this.state.displayConnexionForm?  this.setState({displayConnexionForm : true}) : this.setState({displayConnexionForm : false});
-        this.state.displayButtonsTitle? this.setState({displayButtonsTitle: false}): this.setState({displayButtonsTitle: true})
+    } addInsciptionForm(/*event*/){
+        //event.preventDefault();
+        !this.state.displayInscriptionForm?  this.setState({
+            displayInscriptionForm : true,
+            displayButtonsTitle: false
+        }) : this.setState({
+            displayInscriptionForm : false,
+            displayButtonsTitle: true
+        });
+    } addConnexionForm(){
+        !this.state.displayConnexionForm?this.setState({
+            displayConnexionForm:true,
+            displayInscriptionForm:false,
+            displayButtonsTitle: false
+        }): this.setState({
+            displayConnexionForm : false,
+            displayButtonsTitle: true
+        });
     } render(){
         const ButtonsTitleLandingPage=(
             <React.Fragment>
@@ -33,7 +42,7 @@ export default class App extends Component{
                     <div className="btn-linear-flat" onClick={(click)=>this.addConnexionForm(click)}>
                        <p>CONNEXION</p>
                     </div>
-                    <div className="btn-linear-flat" onClick={(click)=>this.addInsciptionForm(click)}>
+                    <div className="btn-linear-flat" onClick={(click)=>this.addInsciptionForm(click)} >
                        <p>INSCRIPTION</p>
                     </div>
                 </div>
@@ -42,7 +51,7 @@ export default class App extends Component{
             <main className="mainContainerLandingPage">
                 <div className="blackBackLandingPage">
                     {this.state.displayButtonsTitle? ButtonsTitleLandingPage: null}
-                    {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)}/> : null}
+                    {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)} function={()=>this.addConnexionForm()}/> : null}
                     {this.state.displayConnexionForm? <ConnexionForm addConnexionForm={(event)=>this.addConnexionForm(event)}/> : null}
                 </div>
             </main>

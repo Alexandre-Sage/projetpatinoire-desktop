@@ -26,6 +26,15 @@ class TopicsComponent extends Component{
     } handledisplayAddPostForm(event){
         //Fonction perméttant d'afficher le formulaire d'ajout de post
         this.state.displayAddPostForm? this.setSate({displayAddPostForm: false}): this.setState({displayAddPostForm: true})
+    } handelTopicRefesh(event){
+        fetch(`${process.env.REACT_APP_API_URL}forum/posts/${this.props.params.id}`,{
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+            credentials: 'include',
+        })
+        .then(response => response.json())
+        .then(data => this.setState({forumPosts: data}))
+        .catch(err => {console.log(err)})
     } render(){
         //Element jsx qui affiche les données récupérer via l'api
         const forumPostsJsx=
@@ -45,7 +54,7 @@ class TopicsComponent extends Component{
             <main>
                 {forumPostsJsx}
                 <h2>FORM</h2>
-                <AddPostForm params={this.props.params}/>
+                <AddPostForm params={this.props.params} refreshOnPost={(event)=>this.handelTopicRefesh(event)}/>
             </main>
         )
     }

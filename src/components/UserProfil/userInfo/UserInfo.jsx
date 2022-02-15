@@ -12,24 +12,32 @@ class UserInfo extends Component{
             displayForm: false,
             displayPassForm: false,
             displayInfo: true,
-            owner: false
+            displayButtons: this.props.profilOwner
         }
     } componentDidMount(){
         // eslint-disable-next-line
-        window.location==`${process.env.REACT_APP_URL}userProfil/${this.props.params.userName}`? this.setState({owner: true}): this.setState({owner: false})
-    } displayUpdateForm(event){
-        switch(event.target.id){
-            case "buttonInfoModificationForm":
-                this.state.displayForm? this.setState({displayForm: false, displayInfo: true}):this.setState({displayForm: true, displayInfo: false})
-            break;
-            case "buttonPasswordModificationForm":
-                this.state.displayPassForm? this.setState({displayPassForm: false, displayInfo: true}):this.setState({displayPassForm: true, displayInfo: false})
-            break;
-            default:
-                this.setState({displayInfo: true, displayForm: false, displayPassForm: false})
-            break;
-        }
-
+        //window.location==`${process.env.REACT_APP_URL}userProfil/${this.props.params.userName}`? this.setState({owner: true}): this.setState({owner: false})
+        this.props.handleProfilRefresh()
+    } displayUpdateInfoForm(){
+        this.state.displayForm? this.setState({
+            displayForm: false,
+            displayInfo: true,
+            displayButtons: true
+        }):this.setState({
+            displayForm: true,
+            displayInfo: false,
+            displayButtons: false
+        })
+    } handleDisplayPassModificationForm(){
+        this.state.displayPassForm? this.setState({
+            displayPassForm: false,
+            displayInfo: true,
+            displayButtons: true
+        }):this.setState({
+            displayPassForm: true,
+            displayInfo: false,
+            displayButtons: false
+        })
     } render(){
         const userInfoJsx=this.state.userProfil.map((detail,key)=>(
             <React.Fragment key={key}>
@@ -44,10 +52,10 @@ class UserInfo extends Component{
         ))
         const modificationButton=
             <React.Fragment>
-                <div id="buttonInfoModificationForm" className="btn-linear-flat" onClick={(info)=>this.displayUpdateForm(info)}>
+                <div id="buttonInfoModificationForm" className="btn-linear-flat" onClick={(info)=>this.displayUpdateInfoForm(info)}>
                    <p>MODIFIER INFO</p>
                 </div>
-                <div id="buttonPasswordModificationForm" className="btn-linear-flat" onClick={(pass)=>this.displayUpdateForm(pass)}>
+                <div id="buttonPasswordModificationForm" className="btn-linear-flat" onClick={(pass)=>this.handleDisplayPassModificationForm(pass)}>
                    <p>MODIFIER MOT DE PASS</p>
                 </div>
             </React.Fragment>
@@ -55,9 +63,9 @@ class UserInfo extends Component{
         return(
             <div>
                 {this.state.displayInfo? userInfoJsx: null}
-                {this.props.profilOwner? modificationButton: null}
-                {this.state.displayForm? <ProfilModificationForm userProfil={this.state.userProfil}/>: null}
-                {this.state.displayPassForm? <PasswordModification/>: null}
+                {this.state.displayButtons? modificationButton: null}
+                {this.state.displayForm? <ProfilModificationForm userProfil={this.state.userProfil} handleProfilRefresh={(event)=>this.props.handleProfilRefresh(event)} displayUpdateInfoForm={(event)=>this.displayUpdateInfoForm(event)}/>: null}
+                {this.state.displayPassForm? <PasswordModification handleDisplayPassModificationForm={(event)=>this.handleDisplayPassModificationForm(event)}/>: null}
             </div>
         )
     }

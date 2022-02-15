@@ -23,8 +23,10 @@ class UserPage extends Component{
             flowId: null
         }
     } componentDidMount(){
+        this.handleProfilsRefresh()
         document.body.classList.add("userPageBody");
         document.body.classList.remove("landingPageBody");
+    } handleProfilsRefresh(){
         fetch(`${process.env.REACT_APP_API_URL}users/userProfil/${this.props.params.userId}` ,{
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -60,9 +62,6 @@ class UserPage extends Component{
                     displayUserInfo: false,
                     displayUserImages: false
                 })
-            break;
-            case "userToForumLink":
-                this.setState({forumLinkClicked: true})
             break;
             default:
                 this.setState({
@@ -122,8 +121,8 @@ class UserPage extends Component{
                 <main className="userPageMainTag">
                     {this.state.displayHistory?<PictureHistory profilOwner={this.state.owner}/>: null}
                     {this.state.displayHistory?<UserForumHistory/>: null}
-                    {this.state.displayUserImages?<UserImages profilOwner={this.state.owner}/>: null}
-                    {this.state.displayUserInfo?<UserInfo userProfil={this.state.userProfil} profilOwner={this.state.owner}/>: null}
+                    {this.state.displayUserImages?<UserImages profilOwner={this.state.owner} handleProfilsRefresh={(event)=>this.handleProfilsRefresh(event)}/>: null}
+                    {this.state.displayUserInfo?<UserInfo userProfil={this.state.userProfil} profilOwner={this.state.owner} handleProfilRefresh={(event)=>this.handleProfilsRefresh(event)}/>: null}
                 </main>
                 {this.state.redirectToFlow?<Navigate to={`/userProfil/${this.props.params.ownerUserName}/${this.props.params.ownerId}/chat/chatFlow/${this.state.flowId}`}/>:null}
             </React.Fragment>
