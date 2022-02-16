@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import moment from "moment";
 import ParamsReader from "../../Modules/ParamsReader";
 
 class UserForumHistory extends Component{
@@ -19,15 +20,15 @@ class UserForumHistory extends Component{
         .catch(err => {console.log(err)})
     } render(){
         const userHistroyJsx= this.state.forumHistory.map((postDetails)=>postDetails.map((detail, key)=>(
-                <div key={key}>
-                    <h3>{detail.topicTitle}</h3>
-                    <p>{detail.postContent}</p>
-                    <p>{detail.postCreationDate}</p>
+                <div className="userHistoryJsxContainer" key={key}>
+                    <h3 className="userHistoryJsxTitle">{detail.topicTitle}</h3>
+                    <p className="userHistoryJsxContent">{detail.postContent}</p>
+                    <p className="userHistoryJsxDate">{moment(detail.postCreationDate).format("d/mm/yyyy | hh: mm")}</p>
                  </div>
              ))
         )
         return(
-            <div>
+            <div className="userHistoryMainContainer">
                 {userHistroyJsx}
             </div>
         )

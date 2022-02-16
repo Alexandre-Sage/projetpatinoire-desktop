@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import {Navigate, Redirect} from "react-router-dom";
+import PopUp from "../../Modules/popUp/PopUp.jsx";
 //Composant d'ajout des post sur un sujet du forum afficher sur la route TopicsComponent
 export default class AddTopicForm extends Component{
     constructor(props){
@@ -13,9 +13,12 @@ export default class AddTopicForm extends Component{
             postAccepted: false,
             //Message
             message: null,
+            displayPopUp: false,
+            displayErrorPopUp: false,
         }
     } handleAddPostInput(event){
         //Fonction traitant les input
+        // eslint-disable-next-line
         switch(event.target.name){
             case "postContent":
                 this.setState({answers:{[event.target.name]: event.target.value}})
@@ -41,7 +44,8 @@ export default class AddTopicForm extends Component{
             .then(data =>{
                 this.setState({
                     message: data.message,
-                    postAccepted: data.validator
+                    postAccepted: data.validator,
+                    displayPopUp: true,
                 });
                 if(this.state.postAccepted){
                     this.props.refreshOnPost(event);
@@ -59,14 +63,17 @@ export default class AddTopicForm extends Component{
             .then(data =>{
                 this.setState({
                     message: data.message,
-                    postAccepted: data.validator
-                })
+                    postAccepted: data.validator,
+                    displayPopUp: true,
+                });
                 if(this.state.postAccepted){
                     this.props.refreshOnPost(event);
                 }
             })
             .catch(err => {console.log(err)})
         }
+    } handlePopUp(){
+        this.setState({displayPopUp: false})
     } render(){
         //console.log(decodeURI(window.location.history()));
         //console.log(this.props.params);
@@ -78,6 +85,7 @@ export default class AddTopicForm extends Component{
                 <label htmlFor="imageUpload">Ajouter une image (facultatif)</label>
                 <input onChange={(event)=>this.handleAddPostInput(event)} type="file" name="imageUpload"/>
                 <div onClick={(event)=>this.handlePostSubmit(event)}>ENVOYER</div>
+                {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
             </form>
         )
     }

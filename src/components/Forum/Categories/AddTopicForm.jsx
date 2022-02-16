@@ -1,9 +1,11 @@
 import React from "react";
 import {Component} from "react";
 import {Navigate} from "react-router-dom";
+import PopUp from "../../Modules/popUp/PopUp.jsx";
+import ParamsReader from "../../Modules/ParamsReader.jsx";
 
 //Composant affichant le formulaire d'ajout de sujet composant aficher depuis la route du CategoriesComponent
-export default class AddTopicForm extends Component{
+class AddTopicForm extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -15,7 +17,9 @@ export default class AddTopicForm extends Component{
             //Message a envoyer au popup
             message: null,
             //Activation du navigate
-            newTopicAccepted: false
+            newTopicAccepted: false,
+            displayPopUp: false,
+            displayErrorPopUp: false,
         }
     } handleAddTopicFormActions(event){
         //Fonction traitant les input du formulaire d'ajout de topic
@@ -49,11 +53,18 @@ export default class AddTopicForm extends Component{
             })
                 .then(response => response.json())
                 .then(data =>{
-                    this.setState({
-                        newTopicId: data.topicId,
-                        message: data.message,
-                        newTopicAccepted: true
-                    })
+                    if(data.message===`Votre nouveaux sujet à bien été ajouter`){
+                        this.setState({
+                            newTopicId: data.topicId,
+                            message: data.message,
+                            displayPopUp: true,
+                        })
+                    } else{
+                        this.setState({
+                            message: data.message,
+                            displayErrorPopUp: true
+                        })
+                    }
                 })
                 .catch(err => {console.log(err)})
         }else{
@@ -66,15 +77,23 @@ export default class AddTopicForm extends Component{
             })
                 .then(response => response.json())
                 .then(data =>{
-                    this.setState({
-                        newTopicId: data.topicId,
-                        message: data.message,
-                        newTopicAccepted: true
-                    })
+                    if(data.message===`Votre nouveaux sujet à bien été ajouter`){
+                        this.setState({
+                            newTopicId: data.topicId,
+                            message: data.message,
+                            displayPopUp: true,
+                        })
+                    } else{
+                        this.setState({
+                            message: data.message,
+                            displayErrorPopUp: true
+                        })
+                    }
                 })
                 .catch(err => {console.log(err)})
         }
-
+    } handlePopUp(){
+        this.state.displayPopUp? this.setState({newTopicAccepted: true}):this.setState({displayErrorPopUp: false})
     } render(){
         console.log(this.state.message);
         return(
@@ -86,9 +105,12 @@ export default class AddTopicForm extends Component{
                 <label htmlFor="pictureUpload">Ajouter une image a votre premier post</label>
                 <input onChange={(event)=>this.handleAddTopicFormActions(event)} type="file" name="pictureUpload"/>
                 <div onClick={(event)=>this.handleSubmitNewTopic(event)}>ENVOYER</div>
-                {this.state.newTopicAccepted?<Navigate to={`/${this.props.userName}/${this.props.userId}/forum/category/${this.props.categoryId}/${this.props.categoryName}/topic/${this.state.newTopicId}/${this.state.answers.topicTitle}`}/>:null}
+                {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
+                {this.state.displayErrorPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
+                {this.state.newTopicAccepted?<Navigate to={`/${this.props.params.userName}/${this.props.params.userId}/forum/category/${this.props.categoryId}/${this.props.categoryName}/topic/${this.state.newTopicId}/${this.state.answers.topicTitle}`}/>:null}
             </form>
 
         )
     }
 }
+export default ParamsReader(AddTopicForm)

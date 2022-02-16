@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import moment from "moment";
 import ParamsReader from "../../Modules/ParamsReader";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
 
@@ -102,31 +103,36 @@ class UserImages extends Component{
         })
     } render(){
         const userImageJsx= this.state.userImages.map((image,key)=>(
-            <div key={key} className="imageContainer">
-                <h3 className="userImageTitle">TITRE: {image.imageTitle}</h3>
-                <img className="userImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}/>
-                <h4 className="userImageDescriptionTitle">DESCRIPTION: </h4>
-                <p className="userImageDescription">{image.imageDescription}</p>
+            <div key={key} className="userImageJsxMainContainer">
+                <h3 className="userImageJsxTitle">TITRE: {image.imageTitle}</h3>
+                <img className="userImageJsxImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}/>
+                <div className="userImageJsxSmallContainer">
+                    <div className="userImageJsxDescriptionContainer">
+                        <h4 className="userImageJsxDescriptionTitle">DESCRIPTION: </h4>
+                        <p className="userImageJsxDescription">{image.imageDescription}</p>
+                    </div>
+                    <p className="userImageJsxImageDate">{moment(image.iimageUploadDate).format("d/mm/yyyy | hh:mm")}</p>
+                </div>
                 {this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>: null}
             </div>
         ))
         const pictureUploadsJsx=(
-            <form encType="multipart/form-data" className="userImageUploadsForm">
-                <label htmlFor="image">Importer une image</label>
-                <input id="imageFileInput" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
+            <form encType="multipart/form-data" className="pictureUploadsJsxForm">
+                <label className="pictureUploadsJsxLabel" htmlFor="image">Importer une image</label>
+                <input id="imageFileInput" className="pictureUploadsJsxFileInput" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
 
-                <label htmlFor="imageTitle">Titre de l'image</label>
-                <input id="userImageTitle" type="text" name="imageTitle" onChange={(event)=>this.handleUserImagesActions(event)}/>
+                <label className="pictureUploadsJsxLabel" htmlFor="imageTitle">Titre de l'image</label>
+                <input id="userImageTitle" className="pictureUploadsJsxInput" type="text" name="imageTitle" onChange={(event)=>this.handleUserImagesActions(event)}/>
 
-                <label htmlFor="imageDescription">Description de l'image</label>
-                <input id="userImageDescription" type="textarea" name="imageDescription" onChange={(event)=>this.handleUserImagesActions(event)}/>
+                <label className="pictureUploadsJsxLabel" htmlFor="imageDescription">Description de l'image</label>
+                <input id="userImageDescription" className="pictureUploadsJsxInput" type="textarea" name="imageDescription" onChange={(event)=>this.handleUserImagesActions(event)}/>
                 <p id="submitImage" type="submit" onClick={(event)=>this.handleImageSubmit(event)}>ENVOYER</p>
             </form>
         )
-        const displayFormButtonJsx=<div id="displayImageUpload" className="" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
+        const formButtonJsx=<div id="displayImageUpload" className="userImageDisplayFormButton" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
         return(
             <div className="userImagesMainContainer">
-                {this.state.displayFormButtonJsx?displayFormButtonJsx:null}
+                {this.state.displayFormButtonJsx?formButtonJsx:null}
                 {this.state.displayImageJsx?userImageJsx:null}
                 {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
                 {this.state.displayPopUp? <PopUp message={this.state.message} function={()=>this.displayImageUpload()}
