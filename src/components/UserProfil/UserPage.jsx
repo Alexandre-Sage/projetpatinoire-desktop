@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import ProfilHeader from "./ProfilHeader";
+import ProfilHeader from "./userHeader/ProfilHeader";
 import UserForumHistory from "./HistoryComp/UserForumHistory.jsx";
 import PictureHistory from "./HistoryComp/PictureHistory.jsx";
 import UserImages from "./UserComp/UserImages.jsx";
@@ -91,26 +91,26 @@ class UserPage extends Component{
         const navBarJsx=
             <nav className="userNavContainer">
                 <ul className="userNavBar">
-                    <li>
-                        <div id="UserImagesDisplay" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
+                    <li className="userNavBarListItems">
+                        <div id="UserImagesDisplay" className="btn-linear-flat navBarButton" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
                            <p>{!this.state.displayUserImages? "PHOTOS":"PROFIL"}</p>
                         </div>
                     </li>
-                    <li>
-                        <div id="userInfosDisplay" className="btn-linear-flat" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
+                    <li className="userNavBarListItems">
+                        <div id="userInfosDisplay" className="btn-linear-flat navBarButton" onClick={(click)=>this.handleUserComponentsDisplay(click)}>
                            <p>{this.state.displayUserInfo? "PROFIL":"INFO UTILISATEUR"}</p>
                         </div>
                     </li>
-                    <li>
-                       <Link className="btn-linear-flat" to={this.state.owner?`/${this.props.params.userName}/${this.props.params.userId}/forum/categories`:`/${this.props.params.ownerUserName}/${this.props.params.ownerId}/forum/categories`}>FORUM</Link>
+                    <li className="userNavBarListItems">
+                       <Link className="btn-linear-flat navBarButton" to={this.state.owner?`/${this.props.params.userName}/${this.props.params.userId}/forum/categories`:`/${this.props.params.ownerUserName}/${this.props.params.ownerId}/forum/categories`}>FORUM</Link>
                     </li>
-                    <li>
-                        <div className="btn-linear-flat">
+                    <li className="userNavBarListItems">
+                        <div className="btn-linear-flat navBarButton">
                            <p>COVOIT</p>
                         </div>
                     </li>
-                    <li>
-                         {this.state.owner?<Link className="btn-linear-flat" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat`}>MESSAGERIE</Link>:<div className="btn-linear-flat" onClick={(event)=>this.handleChatFlowCreation(event)}>Envoyer un message</div>}
+                    <li className="userNavBarListItems">
+                         {this.state.owner?<Link className="btn-linear-flat navBarButton" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat`}>MESSAGERIE</Link>:<div className="btn-linear-flat navBarButton" onClick={(event)=>this.handleChatFlowCreation(event)}>Envoyer un message</div>}
                     </li>
                 </ul>
             </nav>

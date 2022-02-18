@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import "./css/ProfilHeader.css"
 
 export default class ProfilHeader extends Component{
     /*constructor(props) {

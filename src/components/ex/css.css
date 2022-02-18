@@ -1,15 +1,21 @@
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
+@media only screen and (min-width : 1300px){
+
+}
+@media only screen and (min-width: 1031px) and (max-width: 1366px){
 
 }
 
-@media only screen and (min-width: 360px) and (max-width: 640px){
+@media only screen and (min-width: 360px) and (max-width: 460px){
 
 }
 
-@media only screen and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width : 768px) and (max-device-width : 1007px){
+@media only screen and (min-width: 460px) and (max-width: 660px){
 
 }
 
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
+@media only screen and (min-width: 660px) and (max-width: 760px){
+
+}
+@media only screen and (min-width: 760px) and (max-width: 1036px){
 
 }

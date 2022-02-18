@@ -1,0 +1,261 @@
+@media only screen and (min-width : 1300px) {
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .userPageTitle{
+        font-size: 3em;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-around;
+        width: 40%;
+        max-width: 60%;
+        min-width: 30%;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 50%;
+        min-width: 40%;
+        max-width: 60%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 1031px) and (max-width: 1366px){
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .userPageTitle{
+        font-size: 3em;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+        max-width: 60%;
+        min-width: 30%;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 75%;
+        min-width: 30%;
+        max-width: 60%;
+        height: auto;
+        overflow: hidden;
+    }
+    .userPageHeaderInfoContainer{
+        overflow: visible;
+        width: 100%;
+        margin-left: 10%;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 1.6em;
+        /*width: 50rem;*/
+        overflow: visible;
+    }
+}
+
+
+@media only screen and (min-width: 360px) and (max-width: 460px){
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .userPageTitle{
+        font-size: 3em;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        width: 60%;
+        min-width: 50%;
+    }
+    .userPageHeaderInfoContainer{
+        width: 100%;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 1.6em;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 460px) and (max-width: 660px){
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: visible;
+        min-width: 55rem;
+    }
+
+    .userPageTitle{
+        font-size: 2.5rem;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 75%;
+        min-width: 75%;
+        max-width: 75%;
+        overflow: visible;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 40%;
+        min-width: 40%;
+        max-width: 60%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .userPageHeaderInfoContainer{
+        overflow: visible;
+        width: 50%;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 1.4rem;
+        overflow: visible;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 660px) and (max-width: 760px){
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        min-width: 80%;
+    }
+
+    .userPageTitle{
+        font-size: 3rem;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+        min-width: 50%;
+        max-width: 90%;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 40%;
+        min-width: 40%;
+        max-width: 60%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .userPageHeaderInfoContainer{
+        overflow: visible;
+        width: 50%;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 1.4rem;
+        overflow: visible;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 760px) and (max-width: 1036px){
+    .userPageHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        min-width: 80%;
+    }
+
+    .userPageTitle{
+        font-size: 2.5rem;
+    }
+
+    .userPageHeaderInfoPictureContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 60%;
+        min-width: 50%;
+        max-width: 90%;
+    }
+
+    .userPageProfilPicture{
+        border-radius: 0.5rem;
+        width: 40%;
+        min-width: 40%;
+        max-width: 60%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .userPageHeaderInfoContainer{
+        overflow: visible;
+        width: 50%;
+    }
+
+    .userPageHeaderInfo{
+        font-size: 1.4rem;
+        overflow: visible;
+        width: 100%;
+    }
+}
+
+
+@media only screen and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width : 768px) and (max-device-width : 1007px){
+    .userPageHeader{
+
+    }
+
+    .userPageTitle{
+
+    }
+
+    .userPageHeaderInfoPictureContainer{
+
+    }
+
+    .userPageProfilPicture{
+
+    }
+
+    .userPageHeaderInfo{
+
+    }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import "./css/pictureHistoryComp.css"
 import ParamsReader from "../../Modules/ParamsReader";
 
 class PictureHistory extends Component{
@@ -20,7 +21,10 @@ class PictureHistory extends Component{
         .catch(err => {console.log(err)})
     } render(){
         const pictureHistoryJsx= this.state.pictureHistory.map((picture, key)=>(
-            <img key={key} className="pictureHistoryImg" src={`${process.env.REACT_APP_API_URL}${picture.imagePath}`} alt="" />
+            <div key={key} className="pictureHistoryJsxContainer">
+                <img  className="pictureHistoryJsxImage" src={`${process.env.REACT_APP_API_URL}${picture.imagePath}`} alt="" />
+            </div>
+
        ))
         return(
             <div className="pictureHistoryMainContainer">

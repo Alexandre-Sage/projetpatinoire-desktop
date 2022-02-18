@@ -1,0 +1,171 @@
+ @media only screen and (min-width : 1300px){
+    .pictureHistoryMainContainer{
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+        width: 120rem;
+        height: 45rem;
+    }
+
+    .pictureHistoryJsxContainer{
+        border-radius: 0.5rem;
+        width: 80%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75%;
+    }
+
+    .pictureHistoryJsxImage{
+        border-radius: 0.5rem;
+        width: 90%;
+        height: auto;
+        max-height: 80%;
+        transform: scale(1,1.2);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+    }
+ }
+ @media only screen and (min-width: 1031px) and (max-width: 1300px){
+    .pictureHistoryMainContainer{
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+        width: 100rem;
+        min-width: 80rem;
+        height: 35rem;
+    }
+
+    .pictureHistoryJsxContainer{
+        border-radius: 0.5rem;
+        width: 80%;
+        max-width: 90%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75%;
+    }
+
+    .pictureHistoryJsxImage{
+        border-radius: 0.5rem;
+        width: 90%;
+        height: auto;
+        max-height: 80%;
+        transform: scale(1,1.2);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+    }
+ }
+
+ @media only screen and (min-width: 360px) and (max-width: 460px){
+    .pictureHistoryMainContainer{
+        display: hidden
+    }
+
+    .pictureHistoryJsxContainer{
+        display: hidden
+
+    }
+
+    .pictureHistoryJsxImage{
+        display: hidden
+    }
+ }
+
+ @media only screen and (min-width: 460px) and (max-width: 660px){
+    .pictureHistoryMainContainer{
+        display: none;
+    }
+
+    .pictureHistoryJsxContainer{
+
+        display: hidden;
+    }
+
+    .pictureHistoryJsxImage{
+        display: hidden;
+    }
+ }
+
+ @media only screen and (min-width: 660px) and (max-width: 760px){
+    .pictureHistoryMainContainer{
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+        width: 80%;
+        min-width: 50rem;
+        max-height: 20rem;;
+        height: 30rem;
+    }
+
+    .pictureHistoryJsxContainer{
+        border-radius: 0.5rem;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75%;
+    }
+
+    .pictureHistoryJsxImage{
+        border-radius: 0.5rem;
+        width: 90%;
+        height: auto;
+        max-height: 80%;
+        transform: scale(1,1.2);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+    }
+ }
+ @media only screen and (min-width: 760px) and (max-width: 1036px){
+    .pictureHistoryMainContainer{
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+        width: 90%;
+        min-width: 60rem;
+        max-height: 25rem;;
+        height: 30rem;
+    }
+
+    .pictureHistoryJsxContainer{
+        border-radius: 0.5rem;
+        width: 80%;
+        max-width: 90%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75%;
+    }
+
+    .pictureHistoryJsxImage{
+        border-radius: 0.5rem;
+        width: 90%;
+        height: auto;
+        max-height: 80%;
+        transform: scale(1,1.2);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+    }
+ }

@@ -1,7 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import {Link} from "react-router-dom";
-import "./css/userPage.css";
+//import "./css/userPage.css";
 import ParamsReader from "../Modules/ParamsReader";
 
 class ForumMainPage extends Component{
