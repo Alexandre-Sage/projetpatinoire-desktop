@@ -20,7 +20,6 @@ class UserForumHistory extends Component{
         .then(data => this.setState({forumHistory:[data]}))
         .catch(err => {console.log(err)})
     } render(){
-        console.log(this.state.forumHistory);
         const userHistroyJsx= this.state.forumHistory.map((postDetails)=>postDetails.map((detail, key)=>(
                 <div className="userHistoryJsxContainer" key={key}>
                     <h3 className="userHistoryJsxTitle">{detail.topicTitle}</h3>

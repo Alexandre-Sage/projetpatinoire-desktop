@@ -3,6 +3,8 @@ import {Component} from "react";
 import moment from "moment";
 import ParamsReader from "../../Modules/ParamsReader";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
+import "./css/UserImage.css";
+import FullScreen from "../../Modules/FullScreen/FullScreen.jsx";
 
 class UserImages extends Component{
     constructor(props){
@@ -17,7 +19,14 @@ class UserImages extends Component{
             displayPopUpProfilPictureChange:false,
             displayPopUp: false,
             message:null,
-            displayFormButtonJsx: this.props.profilOwner
+            displayFormButtonJsx: this.props.profilOwner,
+            displayFullScreen: false,
+            imageData: {
+                imageTitle: null,
+                imagePath: null,
+                imageDescription: null,
+                imageUploadDate: null,
+            }
         }
     } componentDidMount(){
         this.handleImageRefesh()
@@ -95,6 +104,19 @@ class UserImages extends Component{
             displayFormButtonJsx: true,
             displayPopUp: false
         })
+    } handleFullScreenDisplay(event){
+        this.setState({
+            displayImageJsx: false,
+            displayFullScreen: true,
+            displayFormButtonJsx: false,
+            imageData: {
+                imageTitle: event.target.title,
+                imagePath: event.target.src,
+                imageDescription: event.target.getAttribute("alt"),
+                imageUploadDate: event.target.getAttribute("date"),
+            }
+        })
+
     } handlePopUpFunction(){
         this.setState({
             displayImageJsx: true,
@@ -105,15 +127,16 @@ class UserImages extends Component{
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="userImageJsxMainContainer">
                 <h3 className="userImageJsxTitle">TITRE: {image.imageTitle}</h3>
-                <img className="userImageJsxImage" src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}/>
+                <img className="userImageJsxImage" onClick={(event)=>this.handleFullScreenDisplay(event)} src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription} title={image.title} date={image.imageUploadDate}/>
                 <div className="userImageJsxSmallContainer">
                     <div className="userImageJsxDescriptionContainer">
                         <h4 className="userImageJsxDescriptionTitle">DESCRIPTION: </h4>
                         <p className="userImageJsxDescription">{image.imageDescription}</p>
                     </div>
-                    <p className="userImageJsxImageDate">{moment(image.iimageUploadDate).format("d/mm/yyyy | hh:mm")}</p>
+                    <p className="userImageJsxImageDate">{moment(image.imageUploadDate).format("d/mm/yyyy | hh:mm")}</p>
                 </div>
                 {this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>: null}
+
             </div>
         ))
         const pictureUploadsJsx=(
@@ -134,6 +157,7 @@ class UserImages extends Component{
             <div className="userImagesMainContainer">
                 {this.state.displayFormButtonJsx?formButtonJsx:null}
                 {this.state.displayImageJsx?userImageJsx:null}
+                {this.state.displayFullScreen? <FullScreen imageTitle={this.state.imageData.imageTitle} imagePath={this.state.imageData.imagePath} imageDescription={this.state.imageData.imageDescription} uploadDate={moment(this.state.imageData.uploadDate).format("d/mm/yyyy | hh:mm")} />:null}
                 {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
                 {this.state.displayPopUp? <PopUp message={this.state.message} function={()=>this.displayImageUpload()}
                 seconds={3000}/>:null}

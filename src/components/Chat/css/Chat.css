@@ -1,48 +1,92 @@
-.chatJsxMainContainer{
+@media only screen and (min-width : 1300px){
+    .chatPageBody{
+        background-color: rgba(31, 32, 33, 1);
+        color: white;
+    }
+
+    .chatJsxMainContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chatFlowDisplayJsxContainer{
+        height: 35rem;
+        width: 80%;
+        margin-top: 2%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        background: rgb(64,52,124);
+        background: linear-gradient(189deg, rgba(64,52,124,1) 0%, rgba(29,76,162,1) 31%, rgba(35,1,144,1) 75%, rgba(41,0,236,1) 96%);
+        border-radius: 0.5rem;
+    }
+
+    .chatFlowDisplayJsxLinkContainer{
+        display: flex;
+        width: 30%;
+        height: 100%;
+        flex-direction: column;
+        gap: 15%;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .chatFlowDisplayJsxImage{
+        border-radius: 0.5rem;
+        width: 60%;
+        height: auto;
+        max-height: 50%;
+        transform: scale(1,1.2);
+        overflow: hidden;
+        object-fit: cover;
+        object-position: center;
+
+    }
+
+    .chatFlowDisplayJsxSmallContainer{
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .chatFlowDisplayJsxTitle{
+        font-size: 1.8rem;
+    }
+
+    .chatFlowDisplayJsxUserName{
+        font-size: 1.5rem;
+        text-decoration: none;
+        margin-top: 5%;
+        margin-left: 2%;
+    }
+
+    .chatFlowDisplayJsxButtonsContainer{
+        display: flex;
+        align-items: center;
+        width: 50%;
+        justify-content: space-around;
+        margin-top: 5%;
+    }
+}
+@media only screen and (min-width: 1031px) and (max-width: 1366px){
 
 }
 
-.chatFlowDisplayJsxContainer{
+@media only screen and (min-width: 360px) and (max-width: 460px){
 
 }
 
-
-.chatJsxLinkContainer{
-
-}
-
-.chatFlowDisplayJsxImage{
+@media only screen and (min-width: 460px) and (max-width: 660px){
 
 }
 
-.chatFlowDisplayJsxSmallContainer{
+@media only screen and (min-width: 660px) and (max-width: 760px){
 
 }
-
-.chatFlowDisplayJsxTitle{
-
-}
-
-.chatFlowDisplayJsxUserName{
-
-}
-
-.chatFlowDisplayJsxButtonsContainer{
-
-}
-
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
-
-}
-
-@media only screen and (min-width: 360px) and (max-width: 640px){
-
-}
-
-@media only screen and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width : 768px) and (max-device-width : 1007px){
-
-}
-
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
+@media only screen and (min-width: 760px) and (max-width: 1036px){
 
 }

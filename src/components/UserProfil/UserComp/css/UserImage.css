@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
+/*@media only screen and (min-width: 1030px) and (max-width: 1366px){*/
     .userImagesMainContainer{
 
     }
@@ -16,7 +16,8 @@
     }
 
     .userImageJsxImage{
-
+        width: 25rem;
+        height: 25rem;
     }
 
 
@@ -56,7 +57,7 @@
 
     }
 
-}
+/*}*/
 
 @media only screen and (min-width: 360px) and (max-width: 640px){
     .userImagesMainContainer{

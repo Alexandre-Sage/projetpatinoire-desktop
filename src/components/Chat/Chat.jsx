@@ -3,6 +3,7 @@ import {Component} from "react";
 import {Link, Navigate} from "react-router-dom";
 import ParamsReader from "../Modules/ParamsReader";
 import "../../cssBouton/btn-linear-flat.css";
+import "./css/Chat.css"
 
 class Chat extends Component{
     constructor(props){
@@ -16,6 +17,8 @@ class Chat extends Component{
         }
          //this.handleProfilLink= this.handleProfilLink.bind (this);
     } componentDidMount(){
+        document.body.classList.add("chatPageBody");
+        document.body.classList.remove("userPageBody");
         fetch(`${process.env.REACT_APP_API_URL}chat` ,{
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -38,15 +41,15 @@ class Chat extends Component{
         const chatFlowDisplayJsx= this.state.chatFlow.map((flowDetails, key)=>(
             <React.Fragment key={key}>
                 <div className="chatFlowDisplayJsxContainer">
-                    <Link className="chatFlowDisplayJsxLinkContainer" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>
-                        <img className="chatFlowDisplayJsxImage" src={flowDetails.sendingUserName===this.props.params.userName? process.env.REACT_APP_API_URL+flowDetails.receiverPath:process.env.REACT_APP_API_URL+flowDetails.sendingUserPath} alt="" />
+                    <Link className="chatFlowDisplayJsxLinkContainer" style={{textDecoration: 'none', color: "white"}} to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>
                         <div className="chatFlowDisplayJsxSmallContainer">
                             <h3 className="chatFlowDisplayJsxTitle">Discussions avec:</h3>
                             <p className="chatFlowDisplayJsxUserName">{flowDetails.sendingUserName===this.props.params.userName?flowDetails.receiverUserName:flowDetails.sendingUserName}</p>
                         </div>
+                        <img className="chatFlowDisplayJsxImage" src={flowDetails.sendingUserName===this.props.params.userName? process.env.REACT_APP_API_URL+flowDetails.receiverPath:process.env.REACT_APP_API_URL+flowDetails.sendingUserPath} alt="" />
                     </Link>
                     <div className="chatFlowDisplayJsxButtonsContainer">
-                        <p className="btn-linear-flat">Messages</p>
+                        <Link className="btn-linear-flat" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>Messages</Link>
                         {flowDetails.sendingUserName===this.props.params.userName?<p onClick={(event)=>this.handleProfilLink(event, flowDetails.receiverUserId, flowDetails.receiverUserName)} className="btn-linear-flat">Profil</p>:<p onClick={(event)=>this.handleProfilLink(event, flowDetails.sendingUserId, flowDetails.sendingUserName)} className="btn-linear-flat">Profil</p>}
                     </div>
                 </div>
