@@ -1,4 +1,38 @@
+.fullScreenContainer{
+    border: solid white 1px;
+    width: 75%;
+    margin-left: 10%;
+    height: 500rem;
+    overflow: hidden;
+    /*object-fit: cover;
+    object-position: center;*/
+}
+
+.fullsScreenTitle{
+    color: white;
+}
+
 .fullScreenImage{
-    width: 50rem;
-    height: 50rem;   
+    width: 75%;
+    height: auto;
+    max-height: 60rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.5rem;
+}
+
+.fullsScreenDescriptionTitle{
+
+}
+
+.fulleScreenDescription{
+
+}
+
+.fullScreenDateTitle{
+
+}
+
+.fullScreenUploadDate{
+
 }

@@ -126,23 +126,22 @@ class UserImages extends Component{
     } render(){
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="userImageJsxMainContainer">
-                <h3 className="userImageJsxTitle">TITRE: {image.imageTitle}</h3>
+                {/*<h3 className="userImageJsxTitle">TITRE: {image.imageTitle}</h3>*/}
                 <img className="userImageJsxImage" onClick={(event)=>this.handleFullScreenDisplay(event)} src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription} title={image.title} date={image.imageUploadDate}/>
-                <div className="userImageJsxSmallContainer">
+                {/*<div className="userImageJsxSmallContainer">
                     <div className="userImageJsxDescriptionContainer">
                         <h4 className="userImageJsxDescriptionTitle">DESCRIPTION: </h4>
                         <p className="userImageJsxDescription">{image.imageDescription}</p>
                     </div>
                     <p className="userImageJsxImageDate">{moment(image.imageUploadDate).format("d/mm/yyyy | hh:mm")}</p>
-                </div>
-                {this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>: null}
-
+                </div>*/}
+                {/*this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>: null*/}
             </div>
         ))
         const pictureUploadsJsx=(
             <form encType="multipart/form-data" className="pictureUploadsJsxForm">
                 <label className="pictureUploadsJsxLabel" htmlFor="image">Importer une image</label>
-                <input id="imageFileInput" className="pictureUploadsJsxFileInput" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
+                <input id="imageFileInput" className="pictureUploadsJsxFileInput btn-linear-flat" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
 
                 <label className="pictureUploadsJsxLabel" htmlFor="imageTitle">Titre de l'image</label>
                 <input id="userImageTitle" className="pictureUploadsJsxInput" type="text" name="imageTitle" onChange={(event)=>this.handleUserImagesActions(event)}/>
@@ -152,18 +151,20 @@ class UserImages extends Component{
                 <p id="submitImage" type="submit" onClick={(event)=>this.handleImageSubmit(event)}>ENVOYER</p>
             </form>
         )
-        const formButtonJsx=<div id="displayImageUpload" className="userImageDisplayFormButton" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
+        const formButtonJsx=<div id="displayImageUpload" className="userImageDisplayFormButton btn-linear-flat" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
         return(
-            <div className="userImagesMainContainer">
+            <React.Fragment>
                 {this.state.displayFormButtonJsx?formButtonJsx:null}
-                {this.state.displayImageJsx?userImageJsx:null}
-                {this.state.displayFullScreen? <FullScreen imageTitle={this.state.imageData.imageTitle} imagePath={this.state.imageData.imagePath} imageDescription={this.state.imageData.imageDescription} uploadDate={moment(this.state.imageData.uploadDate).format("d/mm/yyyy | hh:mm")} />:null}
-                {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
-                {this.state.displayPopUp? <PopUp message={this.state.message} function={()=>this.displayImageUpload()}
-                seconds={3000}/>:null}
-                {this.state.displayPopUpProfilPictureChange? <PopUp message={this.state.message} function={()=>this.handlePopUpFunction()}
-                seconds={3000}/>:null}
-            </div>
+                <div className="userImagesMainContainer">
+                    {this.state.displayImageJsx?userImageJsx:null}
+                    {this.state.displayFullScreen? <FullScreen imageTitle={this.state.imageData.imageTitle} imagePath={this.state.imageData.imagePath} imageDescription={this.state.imageData.imageDescription} uploadDate={moment(this.state.imageData.uploadDate).format("d/mm/yyyy | hh:mm")} />:null}
+                    {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
+                    {this.state.displayPopUp? <PopUp message={this.state.message} function={()=>this.displayImageUpload()}
+                    seconds={3000}/>:null}
+                    {this.state.displayPopUpProfilPictureChange? <PopUp message={this.state.message} function={()=>this.handlePopUpFunction()}
+                    seconds={3000}/>:null}
+                </div>
+            </React.Fragment>
         )
     }
 }

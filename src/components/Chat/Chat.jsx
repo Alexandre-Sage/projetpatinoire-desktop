@@ -44,13 +44,14 @@ class Chat extends Component{
                     <Link className="chatFlowDisplayJsxLinkContainer" style={{textDecoration: 'none', color: "white"}} to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>
                         <div className="chatFlowDisplayJsxSmallContainer">
                             <h3 className="chatFlowDisplayJsxTitle">Discussions avec:</h3>
+
                             <p className="chatFlowDisplayJsxUserName">{flowDetails.sendingUserName===this.props.params.userName?flowDetails.receiverUserName:flowDetails.sendingUserName}</p>
                         </div>
                         <img className="chatFlowDisplayJsxImage" src={flowDetails.sendingUserName===this.props.params.userName? process.env.REACT_APP_API_URL+flowDetails.receiverPath:process.env.REACT_APP_API_URL+flowDetails.sendingUserPath} alt="" />
                     </Link>
                     <div className="chatFlowDisplayJsxButtonsContainer">
-                        <Link className="btn-linear-flat" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>Messages</Link>
-                        {flowDetails.sendingUserName===this.props.params.userName?<p onClick={(event)=>this.handleProfilLink(event, flowDetails.receiverUserId, flowDetails.receiverUserName)} className="btn-linear-flat">Profil</p>:<p onClick={(event)=>this.handleProfilLink(event, flowDetails.sendingUserId, flowDetails.sendingUserName)} className="btn-linear-flat">Profil</p>}
+                        <Link className="btn-linear-flat chatBtn" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat/chatFlow/${flowDetails.flowId}`}>Messages</Link>
+                        {flowDetails.sendingUserName===this.props.params.userName?<p onClick={(event)=>this.handleProfilLink(event, flowDetails.receiverUserId, flowDetails.receiverUserName)} className="btn-linear-flat chatBtn">Profil</p>:<p onClick={(event)=>this.handleProfilLink(event, flowDetails.sendingUserId, flowDetails.sendingUserName)} className="btn-linear-flat chatBtn">Profil</p>}
                     </div>
                 </div>
             </React.Fragment>

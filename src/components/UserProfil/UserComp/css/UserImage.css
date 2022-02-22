@@ -1,45 +1,39 @@
-/*@media only screen and (min-width: 1030px) and (max-width: 1366px){*/
-    .userImagesMainContainer{
+/*@media only screen and (min-width : 1300px){*/
 
+/*/////////////////////////////////////////////////////////////////////*/
+
+    .userImagesMainContainer{
+        width: 75%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        align-items:center;
+        gap: 3%;
     }
 
     .userImageDisplayFormButton{
-
+        margin-right: auto;
+        margin-left: 12.5%;
     }
 
     .userImageJsxMainContainer{
-
-    }
-
-    .userImageJsxTitle{
-
-    }
-
-    .userImageJsxImage{
-        width: 25rem;
+        display: flex;
+        margin-top: 2%;
+        width: 35rem;
         height: 25rem;
+        overflow: hidden;
+        object-position: center;
+        object-fit: contain;
     }
 
-
-    .userImageJsxSmallContainer{
-
+    .userImageJsxImage{
+        width: 100%;
+        height: auto;
+        object-position: center;
+        object-fit: cover;
+        border-radius: 0.5rem;
     }
 
-    .userImageJsxDescriptionContainer{
-
-    }
-
-    .userImageJsxDescriptionTitle{
-
-    }
-
-    .userImageJsxDescription{
-
-    }
-
-    .userImageJsxImageDate{
-
-    }
 
     .pictureUploadsJsxForm{
 
@@ -50,191 +44,35 @@
     }
 
     .pictureUploadsJsxFileInput{
+        width: 20rem;
+        height: 10rem;
+        background-color: none;
+        border: 1px solid white;
+    }
+
+    input[type=file]::file-selector-button{
 
     }
 
     .pictureUploadsJsxInput{
 
     }
-
 /*}*/
-
-@media only screen and (min-width: 360px) and (max-width: 640px){
-    .userImagesMainContainer{
-
-    }
-
-    .userImageDisplayFormButton{
-
-    }
-
-    .userImageJsxMainContainer{
-
-    }
-
-    .userImageJsxTitle{
-
-    }
-
-    .userImageJsxImage{
-
-    }
-
-
-    .userImageJsxSmallContainer{
-
-    }
-
-    .userImageJsxDescriptionContainer{
-
-    }
-
-    .userImageJsxDescriptionTitle{
-
-    }
-
-    .userImageJsxDescription{
-
-    }
-
-    .userImageJsxImageDate{
-
-    }
-
-    .pictureUploadsJsxForm{
-
-    }
-
-    .pictureUploadsJsxLabel{
-
-    }
-
-    .pictureUploadsJsxFileInput{
-
-    }
-
-    .pictureUploadsJsxInput{
-
-    }
+@media only screen and (min-width: 1031px) and (max-width: 1366px){
 
 }
 
-@media only screen and (orientation : landscape) and (-webkit-min-device-pixel-ratio: 1) and (min-device-width : 768px) and (max-device-width : 1007px){
-    .userImagesMainContainer{
-
-    }
-
-    .userImageDisplayFormButton{
-
-    }
-
-    .userImageJsxMainContainer{
-
-    }
-
-    .userImageJsxTitle{
-
-    }
-
-    .userImageJsxImage{
-
-    }
-
-
-    .userImageJsxSmallContainer{
-
-    }
-
-    .userImageJsxDescriptionContainer{
-
-    }
-
-    .userImageJsxDescriptionTitle{
-
-    }
-
-    .userImageJsxDescription{
-
-    }
-
-    .userImageJsxImageDate{
-
-    }
-
-    .pictureUploadsJsxForm{
-
-    }
-
-    .pictureUploadsJsxLabel{
-
-    }
-
-    .pictureUploadsJsxFileInput{
-
-    }
-
-    .pictureUploadsJsxInput{
-
-    }
+@media only screen and (min-width: 360px) and (max-width: 460px){
 
 }
 
-@media only screen and (min-width: 1030px) and (max-width: 1366px){
-    .userImagesMainContainer{
+@media only screen and (min-width: 460px) and (max-width: 660px){
 
-    }
+}
 
-    .userImageDisplayFormButton{
+@media only screen and (min-width: 660px) and (max-width: 760px){
 
-    }
-
-    .userImageJsxMainContainer{
-
-    }
-
-    .userImageJsxTitle{
-
-    }
-
-    .userImageJsxImage{
-
-    }
-
-
-    .userImageJsxSmallContainer{
-
-    }
-
-    .userImageJsxDescriptionContainer{
-
-    }
-
-    .userImageJsxDescriptionTitle{
-
-    }
-
-    .userImageJsxDescription{
-
-    }
-
-    .userImageJsxImageDate{
-
-    }
-
-    .pictureUploadsJsxForm{
-
-    }
-
-    .pictureUploadsJsxLabel{
-
-    }
-
-    .pictureUploadsJsxFileInput{
-
-    }
-
-    .pictureUploadsJsxInput{
-
-    }
+}
+@media only screen and (min-width: 760px) and (max-width: 1036px){
 
 }
