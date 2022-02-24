@@ -1,8 +1,7 @@
 .fullScreenContainer{
-    border: solid white 1px;
     width: 75%;
     margin-left: 10%;
-    height: 500rem;
+    height: auto;
     overflow: hidden;
     /*object-fit: cover;
     object-position: center;*/
@@ -10,6 +9,7 @@
 
 .fullsScreenTitle{
     color: white;
+    font-size: 2rem;
 }
 
 .fullScreenImage{
@@ -22,17 +22,24 @@
 }
 
 .fullsScreenDescriptionTitle{
-
+    font-size: 1.6rem;
+    text-decoration-line: underline;
 }
 
 .fulleScreenDescription{
-
+    font-size: 1.3rem;
 }
 
 .fullScreenDateTitle{
-
+    font-size: 1.6rem;
+    text-decoration-line: underline;
 }
 
 .fullScreenUploadDate{
+    font-size: 1.3rem;
+}
 
+.fullScreenCloseButton{
+    margin-left: 70%;
+    top: 2rem;
 }

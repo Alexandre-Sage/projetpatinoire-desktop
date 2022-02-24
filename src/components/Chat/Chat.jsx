@@ -57,10 +57,15 @@ class Chat extends Component{
             </React.Fragment>
         ))
         return(
-            <main className="chatJsxMainContainer">
-                {chatFlowDisplayJsx}
-                {this.state.profilButtonClicked?<Navigate to={`/${this.props.params.userName}/${this.props.params.userId}/userprofil/${this.state.userName}/${this.state.userId}`}/>:null}
-            </main>
+            <React.Fragment>
+                <header className="chatHeader">
+                    <h1 className="chatTitle">Messagerie</h1>
+                </header>
+                <main className="chatJsxMainContainer">
+                    {chatFlowDisplayJsx}
+                    {this.state.profilButtonClicked?<Navigate to={`/${this.props.params.userName}/${this.props.params.userId}/userprofil/${this.state.userName}/${this.state.userId}`}/>:null}
+                </main>
+            </React.Fragment>
         )
     }
 } export default ParamsReader(Chat)

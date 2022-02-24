@@ -1,0 +1,39 @@
+.forumPageBody{
+}
+
+.categoriesHeaderTag{
+    display: flex;
+    justify-content: center;
+}
+
+.categoriesTitle{
+    font-size: 3rem;
+}
+
+.categoriesMainTag{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 0.1rem solid white;
+    border-radius: 0.1rem;
+    width: 75%;
+    margin-left: 12%;
+}
+
+.categoriesNavContainer{
+    display: flex;
+
+}
+
+
+.categoriesListContainer{
+    list-style-type: none;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.categoriesListItems{
+
+}

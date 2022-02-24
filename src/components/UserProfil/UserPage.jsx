@@ -102,7 +102,7 @@ class UserPage extends Component{
                         </div>
                     </li>
                     <li className="userNavBarListItems">
-                       <Link className="btn-linear-flat navBarButton" to={this.state.owner?`/${this.props.params.userName}/${this.props.params.userId}/forum/categories`:`/${this.props.params.ownerUserName}/${this.props.params.ownerId}/forum/categories`}>FORUM</Link>
+                       <Link className="btn-linear-flat navBarButton" style={{"textDecoration":"none", "color":"white"}} to={this.state.owner?`/${this.props.params.userName}/${this.props.params.userId}/forum/categories`:`/${this.props.params.ownerUserName}/${this.props.params.ownerId}/forum/categories`}>FORUM</Link>
                     </li>
                     <li className="userNavBarListItems">
                         <div className="btn-linear-flat navBarButton">
@@ -110,7 +110,7 @@ class UserPage extends Component{
                         </div>
                     </li>
                     <li className="userNavBarListItems">
-                         {this.state.owner?<Link className="btn-linear-flat navBarButton" to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat`}>MESSAGERIE</Link>:<div className="btn-linear-flat navBarButton" onClick={(event)=>this.handleChatFlowCreation(event)}>Envoyer un message</div>}
+                         {this.state.owner?<Link className="btn-linear-flat navBarButton" style={{"textDecoration":"none", "color":"white"}} to={`/userProfil/${this.props.params.userName}/${this.props.params.userId}/chat`}>MESSAGERIE</Link>:<div className="btn-linear-flat navBarButton" onClick={(event)=>this.handleChatFlowCreation(event)}>Envoyer un message</div>}
                     </li>
                 </ul>
             </nav>

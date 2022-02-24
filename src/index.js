@@ -21,7 +21,7 @@ ReactDOM.render(
             <Route path="/userProfil/:userName/:userId/chat/chatFlow/:flowId" element={<ChatFlow/>}/>
             <Route path="/:ownerUserName/:ownerId/userprofil/:userName/:userId" element={<UserPage/>}/>
             <Route path="/:userName/:userId/forum/categories" element={<ForumMainPage/>}/>
-            <Route path="/:userName/:userId/forum/category/:id/:category/topics" element={<CategoriesComponent/>}/>
+            <Route path="/:userName/:userId/forum/category/:categoryId/:category/topics" element={<CategoriesComponent/>}/>
             <Route path="/:userName/:userId/forum/category/:categoryId/:category/topic/:id/:topic" element={<TopicsComponent/>}/>
           </Routes>
       </BrowserRouter>

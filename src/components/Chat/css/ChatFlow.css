@@ -1,0 +1,81 @@
+ .chatFlowMain{
+    display: flex;
+    border: 1px solid white;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .chatMessageContainer{
+    display: flex;
+    height: 40rem;
+    flex-direction: column-reverse;
+    width: 80%;
+    overflow: scroll;
+ }
+
+ .ownerMessage{
+    width: 45%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    border-radius: 0.5rem;
+    background: rgb(64,52,124);
+    background: linear-gradient(189deg, rgba(64,52,124,1) 0%, rgba(29,76,162,1) 31%, rgba(35,1,144,1) 75%, rgba(41,0,236,1) 96%);
+    flex-wrap: wrap;
+ }
+
+ .otherMessage{
+    margin-bottom: 2%;
+    border-radius: 0.5rem;
+    width: 45%;
+    margin-right: auto;
+     background: rgb(80,52,124);
+    background: linear-gradient(189deg, rgba(80,52,124,1) 0%, rgba(76,13,180,1) 31%, rgba(94,9,152,1) 75%, rgba(120,0,236,1) 96%);
+ }
+
+.chatSenderName{
+    font-size: 1.6rem;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.chatMessageContent{
+    font-size:1.3rem;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    display:flex;
+    margin-left: 1%;
+}
+
+.chatMessageSendingDateFromNow{
+    font-size: 1rem;
+    text-align: right;
+    margin-right: 1%;
+}
+
+.chatMessageSendingDate{
+    font-size: 1rem;
+    margin-right: 1%;
+    text-align: right;
+}
+
+.newMessageForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.newMessageFormLabel{
+    font-size: 1.6rem;
+}
+
+.newMessageFormInput{
+    background-color: var(--inputBackground-color);
+    border: none;
+    width: 50rem;
+    height: 15rem;
+    word-break: break-word;
+}
+
+.newMessageSendingButton{
+
+}

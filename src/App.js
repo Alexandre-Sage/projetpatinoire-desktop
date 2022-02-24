@@ -16,8 +16,7 @@ export default class App extends Component{
 
     } componentDidMount(){
         document.body.classList.add("landingPageBody");
-    } addInsciptionForm(/*event*/){
-        //event.preventDefault();
+    } addInsciptionForm(){
         !this.state.displayInscriptionForm?  this.setState({
             displayInscriptionForm : true,
             displayButtonsTitle: false

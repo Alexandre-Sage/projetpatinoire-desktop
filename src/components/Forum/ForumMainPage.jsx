@@ -1,7 +1,8 @@
 import React from "react";
 import {Component} from "react";
 import {Link} from "react-router-dom";
-//import "./css/userPage.css";
+import "../../cssBouton/btn-forum.css";
+import "./css/ForumMainPage.css"
 import ParamsReader from "../Modules/ParamsReader";
 
 class ForumMainPage extends Component{
@@ -23,20 +24,25 @@ class ForumMainPage extends Component{
           .catch(err => {console.log(err)})
     } render(){
         const categoriesJsx=
-            <nav>
-                <ul>
+            <nav className="categoriesNavContainer">
+                <ul className="categoriesListContainer">
                 {this.state.forumCategories.map((category, key)=>(
-                    <li key={key}>
-                        <Link className="btn-linear-flat"
+                    <li key={key} className="categoriesListItems">
+                        <Link className="btn-top-line" style={{textDecorationLine: 'none', color: "white"}}
                          to={`/${this.props.params.userName}/${this.props.params.userId}/forum/category/${category.categoryId}/${category.categoryName}/topics`}>{category.categoryName}</Link>
                     </li>
                 ))}
                 </ul>
             </nav>
         return(
-            <main>
-                {categoriesJsx}
-            </main>
+            <React.Fragment>
+                <header className="categoriesHeaderTag">
+                    <h1 className="categoriesTitle">Catégories</h1>
+                </header>
+                <main className="categoriesMainTag">
+                    {categoriesJsx}
+                </main>
+            </React.Fragment>
         )
     }
 }

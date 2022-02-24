@@ -1,0 +1,38 @@
+:root{
+    --btn-top-line-padding: 1.5rem 4rem;
+    --btn-top-line-letter-spacing: 0.2rem;
+    --btn-top-line-letter-margin: 0rem 2rem;
+    --btn-top-line-letter-border-bottom: 2px solid #fff;
+    --btn-top-line-width: 50rem;
+    --btn-top-line-before-background: #fff;
+}
+
+.btn-top-line {
+  text-align: center;
+  display: inline-block;
+  padding: var(--btn-top-line-padding);
+  cursor: pointer;
+  letter-spacing: var(--btn-top-line-letter-spacing);
+  position:relative;
+  overflow:hidden;
+  border-bottom: var(--btn-top-line-letter-border-bottom) ;
+  margin: var(--btn-top-line-letter-margin);
+  width: var(--btn-top-line-width);
+}
+
+.btn-top-line:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : var(--btn-top-line-before-background);
+  left: 0;
+  height: 0.1rem;
+  top: 0;
+  transition: all 1s;
+  opacity: 0.7;
+}
+
+.btn-top-line:hover:before {
+  width: 100%;
+  left:0;
+}

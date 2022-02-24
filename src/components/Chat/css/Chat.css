@@ -4,6 +4,19 @@
         color: white;
     }
 
+    .chatHeader{
+        display: flex;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        justify-content: center;
+        border-top: 0.2rem solid rgba(39, 155, 245, 0.8);
+        border-bottom: 0.2rem solid rgba(39, 155, 245, 0.8);
+    }
+
+    .chatTitle{
+        font-size: 3rem;
+    }
+
     .chatJsxMainContainer{
         display: flex;
         flex-direction: column;
