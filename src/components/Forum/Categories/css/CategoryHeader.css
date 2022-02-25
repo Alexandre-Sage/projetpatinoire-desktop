@@ -1,0 +1,51 @@
+.generalCategoryHeader{
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/general.jpg") no-repeat;
+    background-position: center 50%;
+    background-size: cover;
+}
+
+
+.reportCategoryHeader{
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/report.jpg") no-repeat;
+    background-position:center 30%;
+    background-size: cover;
+}
+
+.matosCategoryHeader{
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/matos.jpg") no-repeat;
+    background-position: center;
+    background-size: 100%;
+    transform: scale(1.2);
+}
+
+.diyCategoryHeader{
+    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/diy.jpg")
+}
+
+.photoCategoryHeader{
+    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/photo.jpg")
+}
+
+.secretSpotCategoryHeader{
+    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/secretspot.jpg")
+}
+
+.categoryHeader{
+    height: 50rem
+}
+
+.categoryHeaderTitle{
+
+}
+
+.categoryHeaderSmallContainer{
+
+}
+
+.categoryHeaderRulesTile{
+
+}
+
+.categoryHeaderRules{
+
+}

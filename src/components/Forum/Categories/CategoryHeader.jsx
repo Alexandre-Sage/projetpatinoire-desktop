@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";
+import "./css/CategoryHeader.css";
 
 export default class CategoryHeader extends Component{
     constructor(props){
@@ -33,15 +34,15 @@ export default class CategoryHeader extends Component{
     } render(){
         const categoryHeaderJsx= this.state.category.map((detail, key)=>(
             <React.Fragment key={key}>
-                <h1>{detail.categoryName}</h1>
-                <div>
-                    <h2>Regles de la catégorie</h2>
-                    <p>{detail.categoryRules}</p>
+                <h1 className="categoryHeaderTitle">{detail.categoryName}</h1>
+                <div className="categoryHeaderSmallContainer">
+                    <h2 className="categoryHeaderRulesTile">Regles de la catégorie</h2>
+                    <p className="categoryHeaderRules">{detail.categoryRules}</p>
                 </div>
             </React.Fragment>
         ))
         return(
-            <header className={this.classNameSelector()}>
+            <header className={`categoryHeader ${this.classNameSelector()}`}>
                 {categoryHeaderJsx}
             </header>
         )
