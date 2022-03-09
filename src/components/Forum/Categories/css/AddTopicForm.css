@@ -1,0 +1,51 @@
+.addTopicFormTag{
+    width: 73%;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.addTopicFormLabel{
+    color: white;
+    font-size: 1.6rem;
+}
+
+.topicTitleInput{
+    background-color: var(--inputBackground-color);
+    width: 75rem;
+    height: 2.5rem;
+    border: none;
+}
+
+.addTopicFirstPostInput{
+    background-color: var(--inputBackground-color);
+    border: none;
+    width: 75rem;
+    height: 15rem;
+    word-break: break-word;
+}
+
+.addTopicFormSmallContainer{
+    display: flex;
+    width: 100%;
+}
+
+.addTopicFormImageButtonContainer{
+    display: flex;
+    margin-right: 22%;
+}
+
+.addTopicFormImageLabel{
+    color: white;
+    position: absolute;
+}
+
+
+input[type=file]{
+    position: absolute;
+    width: 25rem;
+    height: 5rem;
+    opacity: 0
+
+}

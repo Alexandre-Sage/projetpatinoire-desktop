@@ -12,8 +12,8 @@ export default class ConnexionForm extends Component{
             params: null,
             message: null
         }
-    } handleInputChange(input){
-        this.setState({answers: {...this.state.answers, [input.target.name]: input.target.value}});
+    } handleInputChange(event){
+        this.setState({answers: {...this.state.answers, [event.target.name]: event.target.value}});
     } handleConnexionButton(event){
         event.preventDefault();
         fetch(`${process.env.REACT_APP_API_URL}users`,{

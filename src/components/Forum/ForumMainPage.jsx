@@ -13,7 +13,7 @@ class ForumMainPage extends Component{
         }
     } componentDidMount(){
         document.body.classList.add("forumPageBody");
-        document.body.classList.add("userPageBody");
+        document.body.classList.remove("userPageBody", "forumPageTopicsBody", "chatPageBody");
         fetch(`${process.env.REACT_APP_API_URL}forum/categories`,{
             method: "GET",
             headers: {"Content-Type": "application/json"},

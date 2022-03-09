@@ -5,6 +5,7 @@ import ParamsReader from "../../Modules/ParamsReader";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
 import "./css/UserImage.css";
 import FullScreen from "../../Modules/FullScreen/FullScreen.jsx";
+import "../../../cssBouton/btn-linear-flat.css";
 
 class UserImages extends Component{
     constructor(props){
@@ -144,15 +145,16 @@ class UserImages extends Component{
         ))
         const pictureUploadsJsx=(
             <form encType="multipart/form-data" className="pictureUploadsJsxForm">
-                <label className="pictureUploadsJsxLabel" htmlFor="image">Importer une image</label>
-                <input id="imageFileInput" className="pictureUploadsJsxFileInput btn-linear-flat" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
-
+                <div className="btn-linear-flat containerFileButton">
+                    <label className="pictureUploadsJsxFileLabel" htmlFor="image">Importer une image</label>
+                    <input id="imageFileInput" className="pictureUploadsJsxFileInput btn-linear-flat" type="file" name="image" onChange={(event)=>this.handleUserImagesActions(event)}/>
+                </div>
                 <label className="pictureUploadsJsxLabel" htmlFor="imageTitle">Titre de l'image</label>
                 <input id="userImageTitle" className="pictureUploadsJsxInput" type="text" name="imageTitle" onChange={(event)=>this.handleUserImagesActions(event)}/>
 
                 <label className="pictureUploadsJsxLabel" htmlFor="imageDescription">Description de l'image</label>
                 <input id="userImageDescription" className="pictureUploadsJsxInput" type="textarea" name="imageDescription" onChange={(event)=>this.handleUserImagesActions(event)}/>
-                <p id="submitImage" type="submit" onClick={(event)=>this.handleImageSubmit(event)}>ENVOYER</p>
+                <p className="btn-linear-flat" id="submitImage" type="submit" onClick={(event)=>this.handleImageSubmit(event)}>ENVOYER</p>
             </form>
         )
         const formButtonJsx=<div id="displayImageUpload" className="userImageDisplayFormButton btn-linear-flat" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>

@@ -43,7 +43,9 @@ export default class CategoryHeader extends Component{
         ))
         return(
             <header className={`categoryHeader ${this.classNameSelector()}`}>
-                {categoryHeaderJsx}
+                <div className="categoryHeaderJsxBlackBack">
+                    {categoryHeaderJsx}
+                </div>
             </header>
         )
     }

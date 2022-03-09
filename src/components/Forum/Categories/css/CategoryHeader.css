@@ -14,38 +14,60 @@
 .matosCategoryHeader{
     background: url("http://localhost:4000/public/images/reactAssets/forumHeader/matos.jpg") no-repeat;
     background-position: center;
-    background-size: 100%;
-    transform: scale(1.2);
+    background-size: cover;
+    transform: scale(1, 1);
 }
 
 .diyCategoryHeader{
-    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/diy.jpg")
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/diy.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .photoCategoryHeader{
-    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/photo.jpg")
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/photo.jpg") no-repeat;
+    background-position: center 55%;
+    background-size: cover;
 }
 
 .secretSpotCategoryHeader{
-    background-image: url("http://localhost:4000/public/images/reactAssets/forumHeader/secretspot.jpg")
+    background: url("http://localhost:4000/public/images/reactAssets/forumHeader/secretspot.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .categoryHeader{
-    height: 50rem
+    height: 40rem;
 }
 
-.categoryHeaderTitle{
+.categoryHeaderJsxBlackBack{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+
+.categoryHeaderTitle{
+    font-size: 3rem;
+    text-align: center;
+    color: white;
 }
 
 .categoryHeaderSmallContainer{
-
+    width: 75%;
 }
 
 .categoryHeaderRulesTile{
-
+    font-size: 2rem;
+    color: white;
+    text-decoration: underline;
 }
 
 .categoryHeaderRules{
-
+    font-size: 1.6rem;
+    color: white;
 }

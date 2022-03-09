@@ -25,7 +25,8 @@ class UserPage extends Component{
     } componentDidMount(){
         this.handleProfilsRefresh()
         document.body.classList.add("userPageBody");
-        document.body.classList.remove("landingPageBody");
+        document.body.classList.remove("landingPageBody", "forumPageTopicsBody", "forumPageBody", "chatPageBody");
+
     } handleProfilsRefresh(){
         fetch(`${process.env.REACT_APP_API_URL}users/userProfil/${this.props.params.userId}` ,{
             method: "GET",

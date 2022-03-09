@@ -1,5 +1,12 @@
 /*@media only screen and (min-width : 1300px){*/
 
+
+/*input[type=file]{
+    position: absolute;
+    width: 25rem;
+    height: 5rem;
+    opacity: 1;
+}*/
 /*/////////////////////////////////////////////////////////////////////*/
 
     .userImagesMainContainer{
@@ -43,17 +50,13 @@
 
     }
 
-    .pictureUploadsJsxFileInput{
-        width: 20rem;
-        height: 10rem;
-        background-color: none;
-        border: 1px solid white;
-    }
-
-    input[type=file]::file-selector-button{
+    .containerFileButton{
 
     }
 
+    .pictureUploadsJsxFileLabel{
+        position: absolute;
+    }
     .pictureUploadsJsxInput{
 
     }

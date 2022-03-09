@@ -3,6 +3,8 @@ import {Component} from "react";
 import {Navigate} from "react-router-dom";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
 import ParamsReader from "../../Modules/ParamsReader.jsx";
+import "./css/AddTopicForm.css";
+import "../../../cssBouton/btn-linear-flat.css";
 
 //Composant affichant le formulaire d'ajout de sujet composant aficher depuis la route du CategoriesComponent
 class AddTopicForm extends Component{
@@ -97,14 +99,18 @@ class AddTopicForm extends Component{
     } render(){
         console.log(this.state.message);
         return(
-            <form>
-                <label htmlFor="topicTitle">Nom du nouveaux sujet</label>
-                <input onChange={(event)=>this.handleAddTopicFormActions(event)} type="text" name="topicTitle"/>
-                <label htmlFor="firstTopicPost">Premier post</label>
-                <input onChange={(event)=>this.handleAddTopicFormActions(event)} type="textarea" name="firstTopicPost"/>
-                <label htmlFor="pictureUpload">Ajouter une image a votre premier post</label>
-                <input onChange={(event)=>this.handleAddTopicFormActions(event)} type="file" name="pictureUpload"/>
-                <div onClick={(event)=>this.handleSubmitNewTopic(event)}>ENVOYER</div>
+            <form className="addTopicFormTag">
+                <label className="addTopicFormLabel" htmlFor="topicTitle">Nom du nouveaux sujet</label>
+                <input className="topicTitleInput" onChange={(event)=>this.handleAddTopicFormActions(event)} type="text" name="topicTitle"/>
+                <label className="addTopicFormLabel" htmlFor="firstTopicPost">Premier post</label>
+                <textarea className="addTopicFirstPostInput" onChange={(event)=>this.handleAddTopicFormActions(event)} type="textarea" name="firstTopicPost"/>
+                <div className="addTopicFormSmallContainer">
+                    <div className="addTopicFormImageButtonContainer btn-linear-flat" >
+                        <label className="addTopicFormImageLabel" htmlFor="pictureUpload">Ajouter une image a votre premier post</label>
+                        <input className="topicFormImageButton " onChange={(event)=>this.handleAddTopicFormActions(event)} type="file" name="pictureUpload" placeholder="fuck"/>
+                    </div>
+                    <div className="btn-linear-flat" onClick={(event)=>this.handleSubmitNewTopic(event)}>ENVOYER</div>
+                </div>
                 {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
                 {this.state.displayErrorPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
                 {this.state.newTopicAccepted?<Navigate to={`/${this.props.params.userName}/${this.props.params.userId}/forum/category/${this.props.categoryId}/${this.props.categoryName}/topic/${this.state.newTopicId}/${this.state.answers.topicTitle}`}/>:null}

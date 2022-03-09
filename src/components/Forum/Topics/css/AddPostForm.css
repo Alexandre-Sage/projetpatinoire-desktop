@@ -1,0 +1,37 @@
+.addPostFormTag{
+    width: 73%;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.addPostFormLabel{
+    color: white;
+    font-size: 1.6rem;
+}
+
+.addPostInput{
+    background-color: var(--inputBackground-color);
+    border: none;
+    width: 75rem;
+    height: 15rem;
+    word-break: break-word;
+}
+
+.addPostFormImageButtonContainer{
+    display: flex;
+    margin-right: 22%;
+}
+
+.addPostFormImageLabel{
+    color: white;
+    position: absolute;
+}
+
+input[type=file]{
+    position: absolute;
+    width: 25rem;
+    height: 5rem;
+    opacity: 0
+}

@@ -42,7 +42,7 @@ export default class InscriptionForm extends Component{
                     keyValues===this.state.confirmationPassword? confirmation=true : confirmation=false
                     if (confirmation===false){
                         alert("Mot de passe incorect")
-                    }else if(keyValues.length< 2){
+                    }else if(confirmation && keyValues.length< 2){
                         alert("Pas asser de caractère dans le mot de passe")
                     }else{
                         fetch(`${process.env.REACT_APP_API_URL}inscription/sendInscriptionForm`,{
@@ -128,7 +128,7 @@ export default class InscriptionForm extends Component{
         return(
             <div className="mainContInscriptionForm">
                 {this.state.displayForm? inscriptionFormJsx : null}
-                {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.props.function()} seconds={5000}/> : null}
+                {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.props.popUpFunction()} seconds={5000}/> : null}
             </div>
         )
     }

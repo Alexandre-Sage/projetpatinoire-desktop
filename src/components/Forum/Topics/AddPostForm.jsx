@@ -1,6 +1,8 @@
 import React from "react";
 import {Component} from "react";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
+import "../../../cssBouton/btn-linear-flat.css";
+import "./css/AddPostForm.css"
 //Composant d'ajout des post sur un sujet du forum afficher sur la route TopicsComponent
 export default class AddTopicForm extends Component{
     constructor(props){
@@ -79,12 +81,14 @@ export default class AddTopicForm extends Component{
         //console.log(this.props.params);
         console.log(this.state);
         return(
-            <form>
-                <label htmlFor="postContent">Nouveaux post: </label>
-                <input onChange={(event)=>this.handleAddPostInput(event)} type="textarea" name="postContent" />
-                <label htmlFor="imageUpload">Ajouter une image (facultatif)</label>
-                <input onChange={(event)=>this.handleAddPostInput(event)} type="file" name="imageUpload"/>
-                <div onClick={(event)=>this.handlePostSubmit(event)}>ENVOYER</div>
+            <form className="addPostFormTag">
+                <label className="addPostFormLabel" htmlFor="postContent">Nouveaux post: </label>
+                <input className="addPostInput" onChange={(event)=>this.handleAddPostInput(event)} type="textarea" name="postContent" />
+                <div className="addPostFormImageButtonContainer btn-linear-flat">
+                    <label className="addPostFormImageLabel" htmlFor="imageUpload">Ajouter une image (facultatif)</label>
+                    <input className="" onChange={(event)=>this.handleAddPostInput(event)} type="file" name="imageUpload"/>
+                </div>
+                <div className="btn-linear-flat" onClick={(event)=>this.handlePostSubmit(event)}>ENVOYER</div>
                 {this.state.displayPopUp?<PopUp message={this.state.message} function={()=>this.handlePopUp()} seconds={3000}/>:null}
             </form>
         )

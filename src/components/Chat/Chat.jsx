@@ -17,8 +17,8 @@ class Chat extends Component{
         }
          //this.handleProfilLink= this.handleProfilLink.bind (this);
     } componentDidMount(){
-        document.body.classList.add("chatPageBody");
-        document.body.classList.remove("userPageBody");
+        document.body.classList.add("chatPageBody" );
+        document.body.classList.remove("userPageBody", "forumPageTopicsBody", "forumPageBody");
         fetch(`${process.env.REACT_APP_API_URL}chat` ,{
             method: "GET",
             headers: { "Content-Type": "application/json" },

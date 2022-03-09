@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
+import "./css/ProfilModificationForm.scss";
 
 export default class ProfilModificationForm extends Component{
     constructor(props){
@@ -131,10 +132,10 @@ export default class ProfilModificationForm extends Component{
             </form>
         ))
         return(
-            <React.Fragment>
+            <div>
                 {!this.state.displayMessage?updateProfilFormJsx: null}
                 {this.state.displayMessage? <PopUp message={this.state.message} function={()=>this.props.displayUpdateInfoForm()} seconds={3000}/>: null}
-            </React.Fragment>
+            </div>
         )
     }
 }

@@ -1,0 +1,36 @@
+$btn-croix-rules:(
+    button-croix-height: 0.5rem,
+    button-croix-width: 3rem,
+    font-button-croix-color: rgba(228, 228, 228, 0.8),
+    border-button-croix-color: rgba(255,255,255,0.5),
+    background-button-croix-color: rgba(255,255,255,0.1),
+    border-button-croix-width: 0.1rem,
+    border-button-croix-style: solid,
+    button-croix-letter-spacing: 0.2rem,
+    font-button-croix-size: 1rem,
+);
+
+@mixin btn-croix($button-croix-height, $button-croix-width, $font-button-croix-color, $font-button-croix-size, $border-button-croix-width, $border-button-croix-style, $border-button-croix-color, $background-button-croix-color){
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   line-height: $button-croix-height;
+   height: $button-croix-height;
+   width: $button-croix-width;
+   cursor: pointer;
+   color: $font-button-croix-color;
+   transition: all 0.5s;
+   position: relative;
+   font-size: $font-button-croix-size;
+   &:before{
+       content: '';
+       transition: all 0.5s;
+       border: $border-button-croix-width $border-button-croix-style $border-button-croix-color;
+       background-color: $background-button-croix-color;
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+   }
+};

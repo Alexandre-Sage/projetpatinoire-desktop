@@ -1,0 +1,32 @@
+@import "./scss/ButtonsMixins/btn-linear-flat.scss";
+@import "./scss/ButtonsMixins/btn-croix.scss";
+*{
+font-size: 10px;
+}
+@mixin blue-linearGradient(){
+    background: rgb(64,52,124);
+    background: linear-gradient(189deg, rgba(64,52,124,1) 0%, rgba(29,76,162,1) 31%, rgba(35,1,144,1) 75%, rgba(41,0,236,1) 96%);
+}
+
+@mixin light-blue-linearGradient(){
+    background: rgb(2,138,145);
+    background: linear-gradient(90deg, rgba(2,138,145,1) 9%, rgba(2,111,98,1) 33%, rgba(3,157,157,1) 77%, rgba(6,200,230,1) 100%);
+}
+//Container
+$box-show: 1px solid white;
+$main-backGround-color: rgba(31, 32, 33, 1);
+$main-border-radius: 0.5rem;
+//Text
+$main-font-color: rgba(206, 224, 221, 1);
+//Input
+$text-input-backgroundColor: rgba(188, 188, 188, 0.3);
+$input-border-style: none;
+
+//BackgroundImages
+$API-URL-landingPage-backgroundImage: url("http://localhost:4000/public/images/reactAssets/tube.jpg");
+$API-URL-generalCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/general.jpg");
+$API-URL-reportCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/report.jpg");
+$API-URL-matosCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/matos.jpg");
+$API-URL-diyCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/diy.jpg");
+$API-URL-photoCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/photo.jpg");
+$API-URL-secretSpotCategoryHeader-backgroundImage: url("http://localhost:4000/public/images/reactAssets/forumHeader/secretspot.jpg");

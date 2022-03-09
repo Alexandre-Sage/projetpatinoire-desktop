@@ -2,8 +2,8 @@ import React from "react";
 import {Component} from "react";
 import InscriptionForm from "./components/LandingPageComp/InscriptionForm.jsx";
 import ConnexionForm from "./components/LandingPageComp/ConnexionForm.jsx";
-import "./App.css"
-import "./cssBouton/btn-linear-flat.css";
+import "./scss/App.scss"
+
 
 export default class App extends Component{
     constructor(props){
@@ -36,12 +36,12 @@ export default class App extends Component{
     } render(){
         const ButtonsTitleLandingPage=(
             <React.Fragment>
-                <h1 className="landingPageTitle">lorem ipsum</h1>
+                <h1>lorem ipsum</h1>
                 <div className="landingPageButtonsContainer">
-                    <div className="btn-linear-flat" onClick={(click)=>this.addConnexionForm(click)}>
+                    <div onClick={(click)=>this.addConnexionForm(click)}>
                        <p>CONNEXION</p>
                     </div>
-                    <div className="btn-linear-flat" onClick={(click)=>this.addInsciptionForm(click)} >
+                    <div onClick={(click)=>this.addInsciptionForm(click)} >
                        <p>INSCRIPTION</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ export default class App extends Component{
             <main className="mainContainerLandingPage">
                 <div className="blackBackLandingPage">
                     {this.state.displayButtonsTitle? ButtonsTitleLandingPage: null}
-                    {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)} function={()=>this.addConnexionForm()}/> : null}
+                    {this.state.displayInscriptionForm? <InscriptionForm addInsciptionForm={(event)=>this.addInsciptionForm(event)} popUpFunction={()=>this.addConnexionForm()}/> : null}
                     {this.state.displayConnexionForm? <ConnexionForm addConnexionForm={(event)=>this.addConnexionForm(event)}/> : null}
                 </div>
             </main>

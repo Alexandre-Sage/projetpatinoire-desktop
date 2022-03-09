@@ -1,0 +1,129 @@
+.forumPageTopicsBody{
+    background-color: rgba(31, 32, 33, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.categoriesComponentMainTag{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1%;
+
+}
+.addTopicBtn{
+    margin-right: auto;
+    margin-left: 13.5%;
+}
+
+.categoriesSmallTitle{
+    color: white;
+    /*margin-top: 5rem;*/
+    font-size: 3rem;
+    margin-right: auto;
+    margin-left: 13.5%;
+}
+
+.topicDisplayJsxList{
+    list-style: none;
+    width: 75%;
+}
+
+.topicDisplayJsxListItem{
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topicDisplayJsxLink{
+    display: flex;
+    width: 75%;
+    height: 2rem;
+    align-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topicTitle{
+    font-size: 2rem;
+}
+
+:root{
+    --3d-btn-left-background-color-no-effect:rgba(2, 50, 95, 0.8);
+    --3d-btn-left-background-color-perspective: #53a6d7;
+    --3d-btn-left-margin: 1.5rem 3rem;
+    --3d-btn-left-padding:2.8rem 9rem;
+}
+
+.btn3dLeft {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: center;
+    align-content:  space-between;
+    border: none;
+    background: none;
+    text-align: center;
+    cursor: pointer;
+    padding: var(--3d-btn-left-padding);
+    text-transform: uppercase;
+    margin: var(--3d-btn-left-margin);
+    color: inherit;
+    letter-spacing: 0.2rem;
+    outline: none;
+    -moz-transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    border-radius: 0.5rem;
+    background: rgb(2,138,145);
+    background: linear-gradient(90deg, rgba(2,138,145,1) 9%, rgba(2,111,98,1) 33%, rgba(3,157,157,1) 77%, rgba(6,200,230,1) 100%);
+    /*background: var(--3d-btn-left-background-color-no-effect)*/;
+    outline: 1px solid transparent;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.btn3dLeft:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.btn3dLeft:active {
+   background: rgb(23,21,21);
+  background: linear-gradient(90deg, rgba(23,21,21,1) 35%, rgba(51,46,46,1) 73%, rgba(82,96,98,1) 100%);
+}
+
+.btn3dLeft:after {
+    border-radius: 1rem;
+    width: 2%;
+    height: 100%;
+    left: 100%;
+    top: 0;
+    background: var(--3d-btn-left-background-color-perspective);
+    -webkit-transform-origin: 0% 0%;
+    -webkit-transform: rotateY(90deg);
+    -moz-transform-origin: 0% 0%;
+    -moz-transform: rotateY(90deg);
+    -ms-transform-origin: 0% 0%;
+    -ms-transform: rotateY(90deg);
+    transform-origin: 0% 0%;
+    transform: rotateY(90deg);
+}
+
+.btn3dLeft:hover {
+
+    letter-spacing: 0.1rem;
+    border-radius: 0.5rem;
+  -webkit-transform: rotateY(-15deg);
+  -moz-transform: rotateY(-15deg);
+  -ms-transform: rotateY(-15deg);
+  transform: rotateY(-15deg);
+}
