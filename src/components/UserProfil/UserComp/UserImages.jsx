@@ -4,7 +4,8 @@ import moment from "moment";
 import ParamsReader from "../../Modules/ParamsReader";
 import PopUp from "../../Modules/popUp/PopUp.jsx";
 import "./css/UserImage.css";
-import FullScreen from "../../Modules/FullScreen/FullScreen.jsx";
+import Carousel from "../../Modules/ImageCarousel/Carousel.jsx";
+
 import "../../../cssBouton/btn-linear-flat.css";
 
 class UserImages extends Component{
@@ -22,12 +23,7 @@ class UserImages extends Component{
             message:null,
             displayFormButtonJsx: this.props.profilOwner,
             displayFullScreen: false,
-            imageData: {
-                imageTitle: null,
-                imagePath: null,
-                imageDescription: null,
-                imageUploadDate: null,
-            }
+            imageId: null
         }
     } componentDidMount(){
         this.handleImageRefesh()
@@ -119,13 +115,7 @@ class UserImages extends Component{
                 displayImageJsx: false,
                 displayFullScreen: true,
                 displayFormButtonJsx: false,
-                imageData: {
-                    imageTitle: event.target.title,
-                    imagePath: event.target.src,
-                    imageDescription: event.target.getAttribute("alt"),
-                    imageUploadDate: event.target.getAttribute("date"),
-                    imageId: event.target.getAttribute("imageid")
-                }
+                imageId: event.target.getAttribute("imageid")
             })
         }
 
@@ -139,8 +129,7 @@ class UserImages extends Component{
     } render(){
         const userImageJsx= this.state.userImages.map((image,key)=>(
             <div key={key} className="userImageJsxMainContainer">
-                <img className="userImageJsxImage" onClick={(event)=>this.handleFullScreenDisplay(event)} src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription} title={image.title} date={image.imageUploadDate} imageid={image.imageId}/>
-                {/*this.props.profilOwner?<div id="userProfilPictureChange" onClick={(event)=>this.handleUserProfilPictureChange(event)} value= {image.imageId}>Changer photo du profils</div>: null*/}
+                <img className="userImageJsxImage" onClick={(event)=>this.handleFullScreenDisplay(event)} src={`${process.env.REACT_APP_API_URL}${image.imagePath}`} alt={image.imageDescription}  imageid={image.imageId}/>
             </div>
         ))
         const pictureUploadsJsx=(
@@ -160,12 +149,11 @@ class UserImages extends Component{
         const formButtonJsx=<div id="displayImageUpload" className="userImageDisplayFormButton btn-linear-flat" onClick={(event)=>this.displayImageUpload(event)}> {this.state.displayImageJsx?"Ajouter une image":"Annuler"}</div>
         return(
             <React.Fragment>
-
                 {this.props.profilOwner?this.state.displayFormButtonJsx?formButtonJsx:null:null}
                 <div className="userImagesMainContainer">
                     {this.state.displayImageJsx?userImageJsx:null}
 
-                    {this.state.displayFullScreen? <FullScreen imageTitle={this.state.imageData.imageTitle} imagePath={this.state.imageData.imagePath} imageDescription={this.state.imageData.imageDescription} uploadDate={moment(this.state.imageData.uploadDate).format("d/mm/yyyy | hh:mm")} closeFunction={(event)=>this.handleFullScreenDisplay(event)} function={(event)=>this.handleUserProfilPictureChange(event)} profilOwner={this.props.profilOwner}   imageId={this.state.imageData.imageId}/>:null}
+                    {this.state.displayFullScreen?<Carousel imagesData={this.state.userImages} imageId={this.state.imageId} profilOwner={this.props.profilOwner}  function={(event)=>this.handleUserProfilPictureChange(event)} closeFunction={(event)=>this.handleFullScreenDisplay(event)}/>: null}
 
                     {this.state.displayPictureUploadComponent?pictureUploadsJsx:null}
                     {this.state.displayPopUp? <PopUp message={this.state.message} function={()=>this.displayImageUpload()}

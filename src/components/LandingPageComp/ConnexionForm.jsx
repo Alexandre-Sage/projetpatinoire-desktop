@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import  "./css/CssConnexionForm.css"
+import  "./css/ScssConnexionForm.scss"
 import {Navigate} from "react-router-dom";
 
 export default class ConnexionForm extends Component{
@@ -35,20 +35,20 @@ export default class ConnexionForm extends Component{
         console.log(this.state.message);
         return(
             <div className="connexionFromMainContainer">
-                <div className="closeButtonTitleConnexionFormContainer">
-                    <h3 className="connexionFormTitle">Connexion</h3>
-                    <div onClick={(click)=>addConnexionForm(click)} className="btn-croix">
+                <div>
+                    <h3>Connexion</h3>
+                    <div onClick={(click)=>addConnexionForm(click)}>
                     </div>
                 </div>
-                <form className="connexionForm">
+                <form>
                     <div className="connexionFormEmailPasswordContainer">
-                        <label className="connexionFormLabel" htmlFor="emailInput">Email utilisateur: </label>
-                        <input className="connexionFormInput" type="text" name="emailInput" onChange={(email)=>this.handleInputChange((email))}/>
-                        <label  className="connexionFormLabel" htmlFor="passwordInput">Mot de passe utilisateur</label>
-                        <input className="connexionFormInput" type="password" name="passwordInput" onChange={(password)=>this.handleInputChange((password))} />
+                        <label htmlFor="emailInput">Email utilisateur: </label>
+                        <input type="text" name="emailInput" onChange={(email)=>this.handleInputChange((email))}/>
+                        <label  htmlFor="passwordInput">Mot de passe utilisateur</label>
+                        <input type="password" name="passwordInput" onChange={(password)=>this.handleInputChange((password))} />
                     </div>
-                    <div className="btn-linear-flat" onClick={(event)=>this.handleConnexionButton(event)}>
-                       <p>CONNEXION</p>
+                    <div className="sendConnexionFormBtn" onClick={(event)=>this.handleConnexionButton(event)}>
+                       CONNEXION
                     </div>
                 </form>
                 {this.state.connected? <Navigate to={`/userProfil/${this.state.params.userName}/${this.state.params.userId}`}/>:null}

@@ -1,0 +1,52 @@
+@import "../../../Var.scss";
+
+ .connexionFromMainContainer{
+    background: $inscription-connexionForm-background;
+    width: 90rem;
+    height: 40rem;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center;
+    div{
+        display: flex;
+        width: 80rem;
+        justify-content: space-between;
+        align-items: center;
+         h3{
+            color: $main-font-color;
+            font-size: 3.5rem;
+         }
+         div{
+            @include btn-croix($btn-croix-rules...)
+         }
+     }
+     form{
+        display: flex;
+        justify-content: space-between;
+        width: 80rem;
+        align-items: center;
+        .connexionFormEmailPasswordContainer{
+            display: flex;
+            flex-wrap: wrap;
+            width: 50rem;
+            height: 15rem;
+            align-items: center;
+            justify-content: space-between;
+            label{
+                font-size:1.6rem;
+                color: $main-font-color;
+            }
+            input{
+                width: 25rem;
+                height: 3rem;
+                background-color: $text-input-backgroundColor;
+                border: $input-border-style;
+                color: $main-font-color;
+            }
+        }
+        .sendConnexionFormBtn{
+            @include btn-linear-flat($btn-linear-flat-rules...);
+        }
+     }
+ }

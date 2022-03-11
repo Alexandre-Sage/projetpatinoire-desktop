@@ -1,0 +1,76 @@
+@import "../../../Var.scss";
+
+.carouselMainContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .previousButton{
+        box-sizing: border-box;
+        height: 8rem;
+        width: 8rem;
+        border-style: solid;
+        border-color: white;
+        border-width: 0rem 0.1rem 0.1rem 0rem;
+        transform: rotate(135deg);
+        transition: border-width 150ms ease-in-out;
+        &:hover{
+            border-bottom-width: 1rem;
+            border-right-width: 0.4rem;
+        }
+    }
+    .nextButton{
+        box-sizing: border-box;
+        height: 8rem;
+        width: 8rem;
+        border-style: solid;
+        border-color: white;
+        border-width: 0rem 0.1rem 0.1rem 0rem;
+        transform: rotate(-45deg);
+        transition: border-width 150ms ease-in-out;
+        &:hover{
+            border-bottom-width: 1rem;
+            border-right-width: 0.4rem;
+        }
+    }
+    .carouselImageContainer{
+        width: 75%;
+        margin-left: 10%;
+        height: auto;
+        overflow: hidden;
+        .fullScreenCloseButton{
+            @include btn-croix($btn-croix-rules...);
+            margin-left: 85%;
+            top: 2rem;
+        }
+        h3{
+            color: $main-font-color;
+            font-size: 2rem;
+        }
+        img{
+            width: 90%;
+            height: auto;
+            max-height: 60rem;
+            object-fit: cover;
+            object-position: center;
+            border-radius: $main-border-radius;
+        }
+        .fullsScreenDescriptionTitle{
+            font-size: 1.6rem;
+            color: $main-font-color;
+            text-decoration-line: underline;
+        }
+        .fulleScreenDescription{
+            font-size: 1.3rem;
+        }
+        .fullScreenDateTitle{
+            font-size: 1.6rem;
+            text-decoration-line: underline;
+        }
+        .fullScreenUploadDate{
+            font-size: 1.3rem;
+        }
+        .changeProfilPictureBtn{
+            @include btn-linear-flat($btn-linear-flat-rules...)
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@import "../../../Var.scss";
+
+.userPageBody{
+    background-color: $main-backGround-color;
+    color: $main-font-color;
+    width: 100%;
+    height: 100%;
+    nav{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-top: 0.2rem solid rgba(39, 155, 245, 0.8);
+        border-bottom: 0.2rem solid rgba(39, 155, 245, 0.8);
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        ul{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            li{
+                div{
+                    @include btn-linear-flat($btn-linear-flat-rules...);
+                }
+            }
+        }
+    }
+    .userPageMainTag{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
