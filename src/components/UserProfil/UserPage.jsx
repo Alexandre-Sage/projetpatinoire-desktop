@@ -5,6 +5,7 @@ import UserForumHistory from "./HistoryComp/UserForumHistory.jsx";
 import PictureHistory from "./HistoryComp/PictureHistory.jsx";
 import UserImages from "./UserComp/UserImages.jsx";
 import UserInfo from "./userInfo/UserInfo.jsx";
+import FirstConnexion from "./FirstConn/FirstConnexion.jsx";
 import "./css/userPage.css";
 import "../../cssBouton/btn-linear-flat.css";
 import ParamsReader from "../Modules/ParamsReader";
@@ -20,13 +21,21 @@ class UserPage extends Component{
             displayUserInfo: false,
             owner: null,
             redirectToFlow: false,
-            flowId: null
+            flowId: null,
+            firstConnexion: null,
         }
     } componentDidMount(){
         this.handleProfilsRefresh()
         document.body.classList.add("userPageBody");
         document.body.classList.remove("landingPageBody", "forumPageTopicsBody", "forumPageBody", "chatPageBody");
+        window.addEventListener("popstate", this.onPopstate);
 
+    } onPopstate(event){
+        //Fonction pour le bouton précédent
+        event.preventDefault()
+        window.history.replaceState({"test":"test"})
+        console.log(event);
+        alert("RETOUR")
     } handleProfilsRefresh(){
         fetch(`${process.env.REACT_APP_API_URL}users/userProfil/${this.props.params.userId}` ,{
             method: "GET",
@@ -36,41 +45,53 @@ class UserPage extends Component{
         .then(response => response.json())
         .then(data => this.setState({
                 userProfil: data.userDetails,
-                owner: data.profilOwner
+                owner: data.profilOwner,
+                firstConnexion: data.firstConnexion
             })
         )
         .catch(err => {console.log(err)})
+    } handleFirstConnexion(){
+        this.setState({
+            displayFisrtConnexionComponent: true,
+            displayHistory: false
+        })
+    } handlePictureComponentDisplay(event){
+        !this.state.displayUserImages? this.setState({
+            displayUserImages: true,
+            displayHistory: false,
+            displayUserInfo: false
+        }):this.setState({
+            displayUserImages: false,
+            displayHistory: true,
+            displayUserInfo: false
+        })
     } handleUserComponentsDisplay(event){
-        switch(event.target.id){
-            case "UserImagesDisplay":
-                !this.state.displayUserImages? this.setState({
-                    displayUserImages: true,
-                    displayHistory: false,
-                    displayUserInfo: false
-                }):this.setState({
-                    displayUserImages: false,
-                    displayHistory: true,
-                    displayUserInfo: false
-                })
-            break;
-            case "userInfosDisplay":
-                !this.state.displayUserInfo?this.setState({
-                    displayUserInfo: true,
-                    displayHistory: false,
-                    displayUserImages: false
-                }):this.setState({
-                    displayHistory: true,
-                    displayUserInfo: false,
-                    displayUserImages: false
-                })
-            break;
-            default:
-                this.setState({
-                    displayHistory: true,
-                    displayUserInfo: false,
-                    displayUserImages: false
-                })
-            break;
+        if(event.target.id==="UserImagesDisplay" || event.target.id=== "firstConnexionFrameStartButton"){
+            !this.state.displayUserImages? this.setState({
+                displayUserImages: true,
+                displayHistory: false,
+                displayUserInfo: false
+            }):this.setState({
+                displayUserImages: false,
+                displayHistory: true,
+                displayUserInfo: false
+            })
+        } else if(event.target.id==="userInfosDisplay"){
+            !this.state.displayUserInfo?this.setState({
+                displayUserInfo: true,
+                displayHistory: false,
+                displayUserImages: false
+            }):this.setState({
+                displayHistory: true,
+                displayUserInfo: false,
+                displayUserImages: false
+            })
+        } else{
+            this.setState({
+                displayHistory: true,
+                displayUserInfo: false,
+                displayUserImages: false
+            })
         }
     } handleChatFlowCreation(event){
         fetch(`${process.env.REACT_APP_API_URL}chat/newFlow/${this.props.params.ownerId}/${this.props.params.userId}`,{
@@ -88,7 +109,8 @@ class UserPage extends Component{
         })
         .catch(err => {console.log(err)})
     } render(){
-        console.log(this.state);
+        //console.log(this.props.history);
+        console.log(this.state)
         const navBarJsx=
             <nav className="userNavContainer">
                 <ul className="userNavBar">
@@ -117,11 +139,11 @@ class UserPage extends Component{
             </nav>
         return(
             <React.Fragment>
-                <ProfilHeader userProfil={this.state.userProfil}/>
+                <ProfilHeader userProfil={this.state.userProfil} handleUserComponentsDisplay={(event)=>this.handleUserComponentsDisplay(event)} firstConnexion={this.state.firstConnexion}/>
                 {navBarJsx}
                 <main className="userPageMainTag">
-                    {this.state.displayHistory?<PictureHistory profilOwner={this.state.owner}/>: null}
-                    {this.state.displayHistory?<UserForumHistory/>: null}
+                    {this.state.displayHistory && !this.state.firstConnexion?<PictureHistory profilOwner={this.state.owner}/>: null}
+                    {this.state.displayHistory && !this.state.firstConnexion?<UserForumHistory/>: null}
                     {this.state.displayUserImages?<UserImages profilOwner={this.state.owner} handleProfilsRefresh={(event)=>this.handleProfilsRefresh(event)}/>: null}
                     {this.state.displayUserInfo?<UserInfo userProfil={this.state.userProfil} profilOwner={this.state.owner} handleProfilRefresh={(event)=>this.handleProfilsRefresh(event)}/>: null}
                 </main>

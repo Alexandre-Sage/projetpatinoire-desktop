@@ -1,0 +1,44 @@
+@import "../../../Var.scss";
+
+.firstConnexionFrameContainer{
+    background-color: $first-connexion-welcome-background;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 45rem;
+    position: absolute;
+    margin-top: 10rem;
+    .welcomeJsxContainer{
+        //background-color: $first-connexion-welcome-background;
+        width: 80%;
+        height: 40rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        h2{
+            font:{
+                size: 3.5rem;
+            };
+            color: $main-font-color;
+        }
+        p{
+            font:{
+                size: 2rem;
+            };
+            color: $main-font-color;
+        }
+
+    }
+    .firstConnexionButtonContainer{
+        display: flex;
+        //border: $box-show;
+        width: 100%;
+        justify-content: space-between;
+        div{
+            @include btn-linear-flat($btn-linear-flat-rules...);
+        }
+    }
+}

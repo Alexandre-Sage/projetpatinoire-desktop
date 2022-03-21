@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
-import "./css/pictureHistoryComp.css"
+//import "./css/pictureHistoryComp.css";
+import "./css/PictureHistory.scss";
 import ParamsReader from "../../Modules/ParamsReader";
 
 class PictureHistory extends Component{

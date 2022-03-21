@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import "./css/ProfilHeader.css"
+import FirstConnexion from "../FirstConn/FirstConnexion.jsx";
 
 export default class ProfilHeader extends Component{
     /*constructor(props) {
@@ -18,6 +19,7 @@ export default class ProfilHeader extends Component{
                         <h3 className="userPageHeaderInfo">Ville: {user.townName}</h3>
                     </div>
                 </div>
+                {this.props.firstConnexion?<FirstConnexion handleUserComponentsDisplay={(event)=>this.props.handleUserComponentsDisplay(event)}/>:null}
             </header>
         ))
         return(

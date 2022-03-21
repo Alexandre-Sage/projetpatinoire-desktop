@@ -4,7 +4,6 @@ import InscriptionForm from "./components/LandingPageComp/InscriptionForm.jsx";
 import ConnexionForm from "./components/LandingPageComp/ConnexionForm.jsx";
 import "./scss/App.scss"
 
-
 export default class App extends Component{
     constructor(props){
         super(props)

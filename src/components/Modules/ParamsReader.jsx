@@ -1,10 +1,11 @@
 import React from "react";
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom";
 
 export default function ParamsReader(Component){
     function WrappedComponent(props){
         const params=useParams();
-        return <Component params={params} {...props}/>
+        const history= useNavigate();
+        return <Component params={params} history={history} {...props}/>
     }
     return WrappedComponent;
 }
